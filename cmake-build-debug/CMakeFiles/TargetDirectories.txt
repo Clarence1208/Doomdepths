@@ -1,0 +1,3 @@
+/Users/clarence/CLionProjects/Doomdepths/cmake-build-debug/CMakeFiles/Doomdepths.dir
+/Users/clarence/CLionProjects/Doomdepths/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/clarence/CLionProjects/Doomdepths/cmake-build-debug/CMakeFiles/rebuild_cache.dir
