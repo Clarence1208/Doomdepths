@@ -2,30 +2,43 @@
 #include <stdlib.h>
 #include <string.h>
 #include "MESSAGE_RESOLVER/messageResolver.h"
+#include "EQUIPMENT/equipment.h"
 
 
 int main() {
-    Translation translations[100];
-    int numTranslations = 0;
 
     // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
-    TranslationList* translationList = loadTranslations("../TEXT/messageID-en.txt");
+    TranslationList* translationList = loadTranslations("../TEXT/message-en.env");
 
     // Set the currently selected language (e.g., based on user preference)
 
     // Use the translate function to display translated text
-    const char *playText = translate("play", translations, numTranslations);
-    const char *quitText = translate("quit", translations, numTranslations);
-    const char *welcomeText = translate("welcome_message", translations, numTranslations);
+    const char *playText = translate("play", translationList);
+    const char *quitText = translate("quit", translationList);
+    const char *welcomeText = translate("welcome_message", translationList);
 
     printf("%s\n%s\n%s\n", playText, quitText, welcomeText);
 
-    loadTranslations("../TEXT/messageID-fr.txt", translations, &numTranslations);
+    translationList = loadTranslations("../TEXT/message-fr.env");
 
     printf("\n\n%s\n%s\n%s\n"
-            , translate("play", translations, numTranslations)
-            , translate("quit", translations, numTranslations)
-            , translate("welcome_message", translations, numTranslations));
+            , translate("play", translationList)
+            , translate("quit", translationList)
+            , translate("welcome_message", translationList));
+
+    Equipment *equipment = createDefaultWeapon();
+
+    printEquipment(*equipment, translationList);
+
+    Equipment *equipment2 = createDefaultArmor();
+
+    printEquipment(*equipment2, translationList);
+
+    Equipment *equipment3 = createEquipment("name", "description", 10, 100, 100, 100, WEAPON);
+
+    printEquipment(*equipment3, translationList);
+
+    freeTranslationList(translationList);
 
     return 0;
 }

@@ -19,6 +19,8 @@ TranslationList *create_translation_list();
 
 TranslationList *loadTranslations(const char *filename);
 
-const char *translate(const char *english, Translation translations[], int numTranslations);
+const char *translate(const char *messageID, TranslationList *translationList);
+
+void freeTranslationList(TranslationList *translationList);
 
 #endif //DOOMDEPTHS_MESSAGERESOLVER_H

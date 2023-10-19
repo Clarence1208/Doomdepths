@@ -7,7 +7,13 @@
 #include <string.h>
 #include "messageResolver.h"
 
-// Function to create a translation list
+/*
+ * create_translation_list
+ * Creates a new translation list
+ * size is set to 0
+ * @param numTranslations The number of translations to allocate space for
+ * @return A pointer to the new translation list
+ */
 TranslationList *create_translation_list(int numTranslations) {
     TranslationList *translationList = malloc(sizeof(TranslationList));
     translationList->translations = malloc(sizeof(Translation) * numTranslations);
@@ -15,7 +21,15 @@ TranslationList *create_translation_list(int numTranslations) {
     return translationList;
 }
 
-// Function to load translations from a file
+/*
+ * loadTranslations
+ * Loads translations from a file
+ * The file should be in the format:
+ *      messageID=translation
+ * a new TranslationList is created and initialized with the translations from the file
+ * @param filename The name of the file to load translations from
+ * @return A pointer to the new translation list
+ */
 TranslationList *loadTranslations(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
@@ -29,30 +43,67 @@ TranslationList *loadTranslations(const char *filename) {
     while(!feof(file))
     {
         ch = fgetc(file);
+        //skip lines that start with a #
+        if(ch == '#'){
+            while(ch != '\n' && ch != EOF){
+                ch = fgetc(file);
+            }
+            ch = fgetc(file);
+        }
         if(ch == '\n')
         {
             lines++;
         }
     }
     rewind(file);
+    lines++; //add one to account for the last buffer
+    printf("Number of lines in file: %d\n", lines);
 
     TranslationList *translationList = create_translation_list(lines);
 
 
-    while (fscanf(file, "%255[^=]=%255[^\n]\n",translationList->translations[translationList->size].messageID, translationList->translations[translationList->size].translation) == 2) {
-        translationList->size++;
+    char buffer[512]; // Assuming lines won't exceed 511 characters
+    while (fgets(buffer, sizeof(buffer), file)) {
+        // Skip lines that start with '#'
+        if (buffer[0] == '#') {
+            continue;
+        }
+
+        // Parse and add translations
+        if (sscanf(buffer, "%255[^=]=%255[^\n]\n", translationList->translations[translationList->size].messageID, translationList->translations[translationList->size].translation) == 2) {
+            translationList->size++;
+        } else {
+            perror("Error parsing translation file");
+        }
     }
 
     fclose(file);
     return translationList;
 }
 
-// Function to lookup a translation
-const char *translate(const char *messageID, Translation translations[], int numTranslations) {
-    for (int i = 0; i < numTranslations; i++) {
-        if (strcmp(messageID, translations[i].messageID) == 0) {
-            return translations[i].translation;
+/*
+ * translate
+ * Translates a messageID to a translation
+ * @param messageID The messageID to translate
+ * @param translationList The translation list to search for the messageID
+ * @return The translation of the messageID
+ */
+const char *translate(const char *messageID, TranslationList *translationList) {
+    for (int i = 0; i < translationList->size; i++) {
+        if (strcmp(messageID, translationList->translations[i].messageID) == 0) {
+            return translationList->translations[i].translation;
         }
     }
     return messageID; // Return the original English string if no translation is found
+}
+
+/*
+ * freeTranslationList
+ * Frees the memory allocated for a translation list
+ * The memory allocated for the translations is also freed
+ * @param translationList The translation list to free
+ */
+void freeTranslationList(TranslationList *translationList){
+    free(translationList->translations);
+    free(translationList);
 }

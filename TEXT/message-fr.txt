@@ -1,3 +1,0 @@
-play=Jouer
-quit=Quitter
-welcome_message=Bienvenue au jeu!
