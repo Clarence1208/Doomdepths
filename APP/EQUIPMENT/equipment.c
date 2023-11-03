@@ -45,7 +45,17 @@ Equipment *createEquipment(char *name, char *description, int equipmentEffective
 
 char *equipmentToString(Equipment equipment, TranslationList *translationList) {
     char *equipmentString = malloc(sizeof(char) * 256);
-    sprintf(equipmentString, "Name: %s\nDescription: %s\nEquipmentEffectivenessValue: %d\nDurability: %d\nDurabilityMax: %d\nPrice: %d\nType: %d\n", translate(equipment.name, translationList), translate(equipment.description, translationList), equipment.equipmentEffectivenessValue, equipment.durability, equipment.durabilityMax, equipment.price, equipment.type);
+    sprintf(equipmentString, "%s: %s\n"
+                             "Description: %s\n"
+                             "EquipmentEffectivenessValue: %d\n"
+                             "Durability: %d\nDurabilityMax: %d\n"
+                             "Price: %d\n"
+                             "Type: %d\n",
+                             translate("name", translationList),
+                             translate(equipment.name, translationList),
+                             translate(equipment.description, translationList),
+                             equipment.equipmentEffectivenessValue, equipment.durability,
+                             equipment.durabilityMax, equipment.price, equipment.type);
     return equipmentString;
 }
 
