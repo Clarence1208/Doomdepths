@@ -15,4 +15,14 @@ typedef struct Inventory {
     int max_size;
 } Inventory;
 
+Inventory *create_inventory(int max_size);
+
+char * inventoryToString(Inventory * inventory, TranslationList * translationList);
+
+void printInventory(Inventory * inventory, TranslationList * translationList);
+
+void addEquipmentToInventory(Inventory *inventory, Equipment equipment);
+
+void freeInventory(Inventory *inventory);
+
 #endif //DOOMDEPTHS_INVENTORY_H

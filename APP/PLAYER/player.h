@@ -25,7 +25,6 @@ typedef struct Player {
     Equipment *armor;
     Spells *spells;
     Inventory *inventory;
-
 }Player;
 
 

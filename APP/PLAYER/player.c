@@ -20,7 +20,13 @@ Player * newPlayer(char * name){
 
     player->weapon = malloc(sizeof(Equipment*));
     player->armor = malloc(sizeof(Equipment*));
+    Equipment * weapon = createDefaultWeapon();
+    Equipment * armor = createDefaultArmor();
+    player->weapon = weapon;
+    player->armor = armor;
 
+    Inventory * inventory = create_inventory(10);
+    player->inventory = inventory;
 
     return player;
 }
