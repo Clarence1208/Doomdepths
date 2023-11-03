@@ -18,6 +18,7 @@ typedef struct Player {
     int attack;
     int level;
     int experience;
+    int experience_to_next_level;
     int gold;
     int x;
     int y;
@@ -25,7 +26,23 @@ typedef struct Player {
     Equipment *armor;
     Spells *spells;
     Inventory *inventory;
+    TranslationList *translationList;
 }Player;
+
+Player * newPlayer(char * name, enum Language language);
+
+void addExperience(Player * player, int experience);
+
+void freePlayer(Player * player);
+
+
+char* weaponToString(Player * player);
+
+void printWeapon(Player * player);
+
+char* armorToString(Player * player);
+
+void printArmor(Player * player);
 
 
 #endif //DOOMDEPTHS_PLAYER_H

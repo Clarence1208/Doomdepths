@@ -5,9 +5,14 @@
 #include "EQUIPMENT/equipment.h"
 #include "INVENTORY/inventory.h"
 #include "DATABASE/database.h"
+#include "PLAYER/player.h"
 
 
 int main() {
+
+    Player * player = newPlayer("test", FR);
+
+    printWeapon(player);
 
     // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
     TranslationList* translationList = loadTranslations("../TEXT/message-en.env");
@@ -70,7 +75,6 @@ int main() {
     // Free what's needed to be freed
     freeTranslationList(translationList);
     freeInventory(inventory);
-
     return 0;
 }
 

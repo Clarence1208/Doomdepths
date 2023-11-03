@@ -71,3 +71,9 @@ void printConsumable(Consumable * consumable) {
     printf("%s", string);
     free(string);
 }
+
+void freeConsumable(Consumable * consumable) {
+    free(consumable->name);
+    free(consumable->description);
+    free(consumable);
+}

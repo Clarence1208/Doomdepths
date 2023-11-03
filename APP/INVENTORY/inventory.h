@@ -11,6 +11,8 @@
 typedef struct Inventory {
     Equipment *equipment;
     Consumable *consumable;
+    int nbrEquipment;
+    int nbrConsumable;
     int size;
     int max_size;
 } Inventory;
@@ -22,6 +24,8 @@ char * inventoryToString(Inventory * inventory, TranslationList * translationLis
 void printInventory(Inventory * inventory, TranslationList * translationList);
 
 void addEquipmentToInventory(Inventory *inventory, Equipment equipment);
+
+void addConsumableToInventory(Inventory *inventory, Consumable consumable);
 
 void freeInventory(Inventory *inventory);
 

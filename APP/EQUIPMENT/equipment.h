@@ -49,4 +49,6 @@ char *equipmentToString(Equipment equipment, TranslationList *translationList);
 
 void printEquipment(Equipment equipment, TranslationList *translationList);
 
+void freeEquipment(Equipment *equipment);
+
 #endif //DOOMDEPTHS_EQUIPMENT_H

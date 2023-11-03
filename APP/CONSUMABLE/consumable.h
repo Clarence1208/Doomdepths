@@ -27,4 +27,6 @@ Consumable *createConsumable(char *name,
                              int consumableEffectivenessValue,
                              enum consumableType type);
 
+void freeConsumable(Consumable * consumable);
+
 #endif //DOOMDEPTHS_CONSUMABLE_H
