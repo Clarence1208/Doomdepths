@@ -5,9 +5,9 @@
 #ifndef DOOMDEPTHS_PLAYER_H
 #define DOOMDEPTHS_PLAYER_H
 
-#import "../EQUIPMENT/equipment.h"
-#import "../SPELL/spells.h"
-#import "../INVENTORY/inventory.h"
+#include "../EQUIPMENT/equipment.h"
+#include "../SPELL/spells.h"
+#include "../INVENTORY/inventory.h"
 
 typedef struct Player {
     char *name;

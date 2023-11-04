@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "string.h"
+#include "../LOGGER/logger.h"
 
 /**
  * Create a new player
@@ -51,6 +52,7 @@ Player * newPlayer(char * name, enum Language language){
     player->inventory = inventory;
 
     player->translationList = loadTranslations(languagePathResolver(language));
+
 
     return player;
 }
@@ -143,6 +145,7 @@ void freePlayer(Player * player) {
     freeEquipment(player->weapon);
     freeEquipment(player->armor);
     freeInventory(player->inventory);
+    freeTranslationList(player->translationList);
     free(player);
 }
 

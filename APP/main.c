@@ -6,9 +6,19 @@
 #include "INVENTORY/inventory.h"
 #include "DATABASE/database.h"
 #include "PLAYER/player.h"
+#include "LOGGER/logger.h"
 
 
 int main() {
+
+    initLogger("../APP/app.log");
+
+    logMessage(DEBUG, "This is a debug message: %d", 42);
+    logMessage(INFO, "This is an informational message: %s", "Hello, world!");
+    logMessage(ERROR, "This is an error message: %s", "Something went wrong!");
+
+
+
 
     Player * player = newPlayer("test", FR);
 
@@ -69,12 +79,14 @@ int main() {
 
     createTableEquipments(db,sql,  zErrMsg, rc);
     insterIntoTest();
-*/
+*//*
 
 
     // Free what's needed to be freed
     freeTranslationList(translationList);
-    freeInventory(inventory);
+    freeInventory(inventory);*/
+
+    closeLogger();
     return 0;
 }
 
