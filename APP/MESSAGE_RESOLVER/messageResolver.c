@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "messageResolver.h"
+#include "../LOGGER/logger.h"
 
 /**
  * create_translation_list
@@ -57,7 +58,8 @@ TranslationList *loadTranslations(const char *filename) {
     }
     rewind(file);
     lines++; //add one to account for the last buffer
-    printf("Number of lines in file: %d\n", lines);
+
+    logMessage(INFO, "Number of lines in file: %d\n", lines);
 
     TranslationList *translationList = create_translation_list(lines);
 

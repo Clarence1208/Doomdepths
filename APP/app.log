@@ -1,0 +1,59 @@
+This is a log message: 42
+Another log message: Hello, world!
+This is a log message: 42
+Another log message: Hello, world!
+
+
+New session at: Fri Nov  3 20:42:42 2023
+This is a log message: 42
+Another log message: Hello, world!
+[04-11-2023 10:18:25] [DEBUG] This is a debug message: 42
+[04-11-2023 10:18:25] [INFO] This is an informational message: Hello, world!
+[04-11-2023 10:18:25] [[31mERROR[0m] This is an error message: Something went wrong!
+[04-11-2023 10:21:08] [DEBUG] This is a debug message: 42
+[04-11-2023 10:21:08] [INFO] This is an informational message: Hello, world!
+[04-11-2023 10:21:08] [[31mERROR[0m] This is an error message: Something went wrong!
+
+
+New session started at 04-11-2023 10:26:30
+[04-11-2023 10:26:30] [DEBUG] This is a debug message: 42
+[04-11-2023 10:26:30] [INFO] This is an informational message: Hello, world!
+[04-11-2023 10:26:30] [[31mERROR[0m] This is an error message: Something went wrong!
+
+
+New session started at 04-11-2023 10:30:59
+[04-11-2023 10:30:59] [INFO] new player created : d
+
+
+New session started at 04-11-2023 10:32:58
+[04-11-2023 10:32:58] [INFO] new player created : d
+
+
+New session started at 04-11-2023 10:34:17
+[04-11-2023 10:34:17] [INFO] Number of lines in file: 11
+
+[04-11-2023 10:34:17] [INFO] new player created : d , test
+[04-11-2023 10:34:17] [INFO] Number of lines in file: 4
+
+[04-11-2023 10:34:17] [INFO] Number of lines in file: 7
+
+
+
+New session started at 04-11-2023 10:37:12
+[04-11-2023 10:37:12] [INFO] Number of lines in file: 11
+
+[04-11-2023 10:37:12] [INFO] new player created : d , test
+[04-11-2023 10:37:12] [INFO] Number of lines in file: 4
+
+[04-11-2023 10:37:12] [INFO] Number of lines in file: 7
+
+
+
+New session started at 04-11-2023 10:37:43
+[04-11-2023 10:37:43] [INFO] Number of lines in file: 11
+
+[04-11-2023 10:37:43] [INFO] new player created : d , test
+[04-11-2023 10:37:43] [INFO] Number of lines in file: 4
+
+[04-11-2023 10:37:43] [INFO] Number of lines in file: 7
+

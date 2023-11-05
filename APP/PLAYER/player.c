@@ -27,7 +27,7 @@
  */
 Player * newPlayer(char * name, enum Language language){
     Player *player = malloc(sizeof(Player*));
-    player->name = malloc(sizeof(char) * strlen(name));
+    player->name = malloc(sizeof(char) * (strlen(name) + 1));
     strcpy(player->name, name);
     player->health = 100;
     player->max_health = 100;
@@ -53,6 +53,7 @@ Player * newPlayer(char * name, enum Language language){
 
     player->translationList = loadTranslations(languagePathResolver(language));
 
+    logMessage(INFO,"new player created : %s , %s", player->name, name);
 
     return player;
 }
