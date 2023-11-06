@@ -23,4 +23,6 @@ void printPlayableMap(char **map, Player *player);
 
 void createMap(Player *player);
 
+void startTest();
+
 #endif //DOOMDEPTHS_MAP_H

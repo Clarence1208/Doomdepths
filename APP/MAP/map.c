@@ -2,6 +2,7 @@
 #include "stdlib.h"
 #include "math.h"
 #include "time.h"
+#include "map.h"
 #include "../PLAYER/player.h"
 #include "../UTILS/utils.h"
 #include "../COMBAT/combat.h"
@@ -14,11 +15,8 @@ const int MAX_SHOP_ROOM = 1;
 const int MAX_ENNEMIES_ROOM = 20;
 const int MAX_VOID_ROOM = 15;
 
-void cls(){
-    printf("\e[1;1H\e[2J");
-}
 
-void movePlayer(char** map, Player* player, char movement) {
+void movePlayer(Player* player, char** map, char movement) {
     char tile = '0';
     switch (movement) {
         case 'z' :
@@ -242,7 +240,7 @@ void createMap(Player* player) {
         system("/bin/stty raw");
         movement = getchar();
         system("/bin/stty cooked");
-        movePlayer(map, player, movement);
+        movePlayer(player, map, movement);
         cls();
         printPlayableMap(map, player);
 
@@ -255,11 +253,11 @@ void createMap(Player* player) {
     freeMap(map);
 }
 
-int main(int argc, char**argv) {
+void startTest() {
 
     Player* player = malloc(sizeof(Player));
     
     createMap(player);
 
-    return 0;
+    return;
 }

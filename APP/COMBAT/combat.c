@@ -1,16 +1,24 @@
 #include "stdlib.h"
 #include "math.h"
 #include "time.h"
+#include "combat.h"
 #include "../PLAYER/player.h"
 #include "../MAP/map.h"
 #include "../UTILS/utils.h"
+#include "../MONSTER/monster.h"
 
-void startBattle(Player *player) {
+void startBattle(Player *player){
+    cls();
+    printf("Battle started !\n");
     srand(time(NULL));
-    nbEnnemies = rand() % 3 + 1;
-    // TODO: Create ennemies
-    printf("You are attacked by %d ennemies !\n", nbEnnemies);
-    printf("This is your weapon : \n" player->weapon->name);
+    int nbMonsters = rand() % 3 + 1;
+    Monster *monsters[nbMonsters];
+    for (int i = 0; i < nbMonsters; i++) {
+        monsters[i] = createMonster(player);
+        printf("You are getting attacked by a %s !\n", monsters[i]->name);
+    }
+    // TODO: Create monsters in terminal
+    //printf("This is your weapon : \n", player->weapon->name);
 
     return;
 }
