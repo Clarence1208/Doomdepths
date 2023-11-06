@@ -4,6 +4,7 @@
 #include "time.h"
 #include "../PLAYER/player.h"
 #include "../UTILS/utils.h"
+#include "../COMBAT/combat.h"
 
 const int MAP_SIZE = 7;
 const int MAP_TILE_SIZE = 5;
@@ -18,11 +19,13 @@ void cls(){
 }
 
 void movePlayer(char** map, Player* player, char movement) {
+    char tile = '0';
     switch (movement) {
         case 'z' :
             if (player->x > 0) {
                 if (map[player->x-1][player->y] != 'V') {
                     player->x--;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -30,6 +33,7 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->y > 0) {
                 if (map[player->x][player->y-1] != 'V') {
                     player->y--;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -37,6 +41,7 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->x < MAP_SIZE-1) {
                 if (map[player->x+1][player->y] != 'V') {
                     player->x++;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -44,9 +49,20 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->y < MAP_SIZE-1) {
                 if (map[player->x][player->y+1] != 'V') {
                     player->y++;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
+    }
+
+    if (tile == 'E') {
+        startBattle(player);
+    } else if (tile == 'S') {
+        // TO DO : Create shop
+        //startShop(player);
+    } else if (tile == 'B') {
+        // TO DO : Create boss battle
+        //startBossBattle(player);
     }
 }
 

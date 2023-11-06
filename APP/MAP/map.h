@@ -3,6 +3,7 @@
 
 #include "../PLAYER/player.h"
 #include "../UTILS/utils.h"
+#include "../COMBAT/combat.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "math.h"

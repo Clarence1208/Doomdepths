@@ -12,7 +12,8 @@ Player * newPlayer(char * name){
     player->mana = 100;
     player->max_mana = 100;
     player->attack = 10;
-    player->level = 0;
+    player->level = 1;
+    player->map_level = 1;
     player->experience = 0;
     player->gold = 0;
     player->x = 0;
