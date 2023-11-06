@@ -1,9 +1,15 @@
+// Creation date: 16-10-2023
+// Author: Nino PLANE
+// Last modified: 06-11-2023
+
 #include "stdio.h"
 #include "stdlib.h"
 #include "math.h"
 #include "time.h"
+#include "map.h"
 #include "../PLAYER/player.h"
 #include "../UTILS/utils.h"
+#include "../COMBAT/combat.h"
 
 const int MAP_SIZE = 7;
 const int MAP_TILE_SIZE = 5;
@@ -13,16 +19,16 @@ const int MAX_SHOP_ROOM = 1;
 const int MAX_ENNEMIES_ROOM = 20;
 const int MAX_VOID_ROOM = 15;
 
-void cls(){
-    printf("\e[1;1H\e[2J");
-}
 
-void movePlayer(char** map, Player* player, char movement) {
+void movePlayer(Player* player, char** map, char movement) {
+    map[player->x][player->y] = 'R';
+    char tile = '0';
     switch (movement) {
         case 'z' :
             if (player->x > 0) {
                 if (map[player->x-1][player->y] != 'V') {
                     player->x--;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -30,6 +36,7 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->y > 0) {
                 if (map[player->x][player->y-1] != 'V') {
                     player->y--;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -37,6 +44,7 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->x < MAP_SIZE-1) {
                 if (map[player->x+1][player->y] != 'V') {
                     player->x++;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -44,9 +52,20 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->y < MAP_SIZE-1) {
                 if (map[player->x][player->y+1] != 'V') {
                     player->y++;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
+    }
+
+    if (tile == 'E') {
+        startBattle(player);
+    } else if (tile == 'S') {
+        // TO DO : Create shop
+        //startShop(player);
+    } else if (tile == 'B') {
+        // TO DO : Create boss battle
+        //startBossBattle(player);
     }
 }
 
@@ -226,7 +245,7 @@ void createMap(Player* player) {
         system("/bin/stty raw");
         movement = getchar();
         system("/bin/stty cooked");
-        movePlayer(map, player, movement);
+        movePlayer(player, map, movement);
         cls();
         printPlayableMap(map, player);
 
@@ -237,13 +256,27 @@ void createMap(Player* player) {
     // TO DO : Save the game
 
     freeMap(map);
+    freePlayer(player);
 }
 
-int main(int argc, char**argv) {
+void startTest() {
 
     Player* player = malloc(sizeof(Player));
+    player->health = 100;
+    player->max_health = 100;
+    player->mana = 100;
+    player->max_mana = 100;
+    player->attack = 10;
+    player->level = 1;
+    player->map_level = 1;
+    player->experience = 0;
+    player->gold = 0;
+    player->x = 0;
+    player->y = 0;
+    player->weapon = createDefaultWeapon();
+    player->armor = createDefaultArmor();
     
     createMap(player);
 
-    return 0;
+    return;
 }

@@ -17,6 +17,7 @@ typedef struct Player {
     int max_mana;
     int attack;
     int level;
+    int map_level;
     int experience;
     int gold;
     int x;
@@ -28,5 +29,6 @@ typedef struct Player {
 
 }Player;
 
+void freePlayer(Player *player);
 
 #endif //DOOMDEPTHS_PLAYER_H

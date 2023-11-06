@@ -3,42 +3,45 @@
 #include <string.h>
 #include "MESSAGE_RESOLVER/messageResolver.h"
 #include "EQUIPMENT/equipment.h"
+#include "MAP/map.h"
 
 
 int main() {
 
-    // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
-    TranslationList* translationList = loadTranslations("../TEXT/message-en.env");
+        startTest();
 
-    // Set the currently selected language (e.g., based on user preference)
+//     // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
+//     TranslationList* translationList = loadTranslations("../TEXT/message-en.env");
 
-    // Use the translate function to display translated text
-    const char *playText = translate("play", translationList);
-    const char *quitText = translate("quit", translationList);
-    const char *welcomeText = translate("welcome_message", translationList);
+//     // Set the currently selected language (e.g., based on user preference)
 
-    printf("%s\n%s\n%s\n", playText, quitText, welcomeText);
+//     // Use the translate function to display translated text
+//     const char *playText = translate("play", translationList);
+//     const char *quitText = translate("quit", translationList);
+//     const char *welcomeText = translate("welcome_message", translationList);
 
-    translationList = loadTranslations("../TEXT/message-fr.env");
+//     printf("%s\n%s\n%s\n", playText, quitText, welcomeText);
 
-    printf("\n\n%s\n%s\n%s\n"
-            , translate("play", translationList)
-            , translate("quit", translationList)
-            , translate("welcome_message", translationList));
+//     translationList = loadTranslations("../TEXT/message-fr.env");
 
-    Equipment *equipment = createDefaultWeapon();
+//     printf("\n\n%s\n%s\n%s\n"
+//             , translate("play", translationList)
+//             , translate("quit", translationList)
+//             , translate("welcome_message", translationList));
 
-    printEquipment(*equipment, translationList);
+//     Equipment *equipment = createDefaultWeapon();
 
-    Equipment *equipment2 = createDefaultArmor();
+//     printEquipment(*equipment, translationList);
 
-    printEquipment(*equipment2, translationList);
+//     Equipment *equipment2 = createDefaultArmor();
 
-    Equipment *equipment3 = createEquipment("name", "description", 10, 100, 100, 100, WEAPON);
+//     printEquipment(*equipment2, translationList);
 
-    printEquipment(*equipment3, translationList);
+//     Equipment *equipment3 = createEquipment("name", "description", 10, 100, 100, 100, WEAPON);
 
-    freeTranslationList(translationList);
+//     printEquipment(*equipment3, translationList);
+
+//     freeTranslationList(translationList);
 
     return 0;
 }

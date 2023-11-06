@@ -36,6 +36,7 @@ typedef struct Equipment {
     int durability;
     int durabilityMax;
     int price;
+    int nbAttack;
     enum EquipmentType type;
 } Equipment;
 
@@ -43,10 +44,12 @@ Equipment *createDefaultWeapon();
 
 Equipment *createDefaultArmor();
 
-Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, enum EquipmentType type);
+Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, int nbAttack, enum EquipmentType type);
 
 char *equipmentToString(Equipment equipment, TranslationList *translationList);
 
 void printEquipment(Equipment equipment, TranslationList *translationList);
+
+void freeEquipment(Equipment *equipment);
 
 #endif //DOOMDEPTHS_EQUIPMENT_H
