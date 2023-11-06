@@ -5,7 +5,7 @@
 
 Player * newPlayer(char * name){
     Player *player = malloc(sizeof(Player*));
-    player->name = malloc(sizeof(char) * strlen(name));
+    player->name = malloc(sizeof(char) * strlen(name) + 1);
     strcpy(player->name, name);
     player->health = 100;
     player->max_health = 100;

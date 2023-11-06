@@ -28,27 +28,29 @@ Monster * newMonster(char *name, int hp, int attack, int defense, int level, int
     monster->defense = defense;
     monster->level = level;
     monster->experience = hp * level;
+    monster->gold = attack * level;
     monster->type = type;
+    printf("%s\n", monster->name);
     return monster;
 }
 
-Monster * createMonster(Player * player){
+Monster * createMonster(Player *player){
     int type = rand() % 5;
     switch (type) {
         case 0:
-            return newMonster("Goblin", 10 * player->map_level, 5 * player->map_level, 2 * player->map_level, player->map_level, 1);
+            return newMonster("Goblin", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
             break;
         case 1:
-            return newMonster("Orc", 15 * player->map_level, 7 * player->map_level, 3 * player->map_level, player->map_level, 2);
+            return newMonster("Orc", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
             break;
         case 2:
-            return newMonster("Troll", 20 * player->map_level, 10 * player->map_level, 5 * player->map_level, player->map_level, 3);
+            return newMonster("Troll", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
             break;
         case 3:
-            return newMonster("Dragon", 50 * player->map_level, 20 * player->map_level, 10 * player->map_level, player->map_level, 4);
+            return newMonster("Dragon", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
             break;
         case 4:
-            return newMonster("Demon", 100 * player->map_level, 50 * player->map_level, 20 * player->map_level, player->map_level, 5);
+            return newMonster("Demon", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
             break;
     }
     return NULL;

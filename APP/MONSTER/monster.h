@@ -13,6 +13,7 @@ typedef struct Monster{
     int defense;
     int level;
     int experience; // how much experience the player gets for killing this monster
+    int gold; // how much gold the player gets for killing this monster
     int type; // 1 = normal, 2 = boss
 } Monster;
 

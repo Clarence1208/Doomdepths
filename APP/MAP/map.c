@@ -256,6 +256,19 @@ void createMap(Player* player) {
 void startTest() {
 
     Player* player = malloc(sizeof(Player));
+    player->health = 100;
+    player->max_health = 100;
+    player->mana = 100;
+    player->max_mana = 100;
+    player->attack = 10;
+    player->level = 1;
+    player->map_level = 1;
+    player->experience = 0;
+    player->gold = 0;
+    player->x = 0;
+    player->y = 0;
+    player->weapon = createDefaultWeapon();
+    player->armor = createDefaultArmor();
     
     createMap(player);
 
