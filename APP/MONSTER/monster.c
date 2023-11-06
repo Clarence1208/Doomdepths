@@ -19,10 +19,21 @@ void printMonster(Monster * monster){
 
 }
 
-Monster * newMonster(char *name, int hp, int attack, int defense, int level, int type){
-    Monster *monster = malloc(sizeof(Monster*));
-    monster->name = malloc(sizeof(char) * strlen(name));
-    strcpy(monster->name, name);
+Monster *newMonster(char *name, int hp, int attack, int defense, int level, int type) {
+    Monster *monster = malloc(sizeof(Monster));
+    if (monster == NULL) {
+        fprintf(stderr, "Failed to allocate memory for Monster structure\n");
+        return NULL;
+    }
+
+    monster->name = malloc(sizeof(char) * (strlen(name) + 1));
+    if (monster->name == NULL) {
+        fprintf(stderr, "Failed to allocate memory for monster name\n");
+        free(monster);
+        return NULL;
+    }
+
+    // Initialize the monster attributes
     monster->hp = hp;
     monster->attack = attack;
     monster->defense = defense;
@@ -30,9 +41,13 @@ Monster * newMonster(char *name, int hp, int attack, int defense, int level, int
     monster->experience = hp * level;
     monster->gold = attack * level;
     monster->type = type;
-    printf("%s\n", monster->name);
+    
+    // Copy the name to monster->name
+    strcpy(monster->name, name);
+
     return monster;
 }
+
 
 Monster * createMonster(Player *player){
     int type = rand() % 5;
@@ -54,5 +69,10 @@ Monster * createMonster(Player *player){
             break;
     }
     return NULL;
+}
+
+void freeMonster(Monster *monster){
+    free(monster->name);
+    free(monster);
 }
 

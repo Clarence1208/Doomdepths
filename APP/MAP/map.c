@@ -1,3 +1,7 @@
+// Creation date: 16-10-2023
+// Author: Nino PLANE
+// Last modified: 06-11-2023
+
 #include "stdio.h"
 #include "stdlib.h"
 #include "math.h"
@@ -17,6 +21,7 @@ const int MAX_VOID_ROOM = 15;
 
 
 void movePlayer(Player* player, char** map, char movement) {
+    map[player->x][player->y] = 'R';
     char tile = '0';
     switch (movement) {
         case 'z' :
@@ -251,6 +256,7 @@ void createMap(Player* player) {
     // TO DO : Save the game
 
     freeMap(map);
+    freePlayer(player);
 }
 
 void startTest() {

@@ -25,4 +25,6 @@ void printMonster(Monster *monster);
 
 void printMonsterInfo(Monster *monster);
 
+void freeMonster(Monster *monster);
+
 #endif //DOOMDEPTHS_MONSTER_H

@@ -25,3 +25,10 @@ Player * newPlayer(char * name){
 
     return player;
 }
+
+void freePlayer(Player *player){
+    free(player->name);
+    free(player->weapon);
+    free(player->armor);
+    free(player);
+}

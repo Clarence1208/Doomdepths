@@ -29,5 +29,6 @@ typedef struct Player {
 
 }Player;
 
+void freePlayer(Player *player);
 
 #endif //DOOMDEPTHS_PLAYER_H
