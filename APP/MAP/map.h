@@ -8,8 +8,6 @@
 #include "math.h"
 #include "time.h"
 
-void cls();
-
 void movePlayer(Player *player, char **map, char direction);
 
 void printMap(char **map);

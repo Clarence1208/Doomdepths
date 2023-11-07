@@ -60,7 +60,10 @@
 				15,
 				17,
 				19,
-				21
+				21,
+				23,
+				25,
+				27
 			]
 		}
 	],
@@ -104,7 +107,10 @@
 				15,
 				17,
 				19,
-				21
+				21,
+				23,
+				25,
+				27
 			]
 		},
 		{
@@ -121,7 +127,9 @@
 				16,
 				18,
 				20,
-				22
+				22,
+				24,
+				26
 			]
 		}
 	],
@@ -253,6 +261,34 @@
 			"backtrace" : 1,
 			"path" : "APP/LOGGER/logger.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "APP/INVENTORY/inventoryMenu.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "APP/INVENTORY/inventoryMenu.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "APP/MAP/map.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "APP/MAP/map.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "APP/UTILS/utils.c",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"

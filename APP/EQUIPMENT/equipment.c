@@ -9,7 +9,9 @@
 
 Equipment *createDefaultWeapon() {
     Equipment *weapon = malloc(sizeof(Equipment));
+    weapon->name = malloc(sizeof(char) * 25);
     weapon->name = "basicSword";
+    weapon->description = malloc(sizeof(char) * 100);
     weapon->description = "basicSwordDescription";
     weapon->equipmentEffectivenessValue =  50;
     weapon->durability = 100;
@@ -21,7 +23,9 @@ Equipment *createDefaultWeapon() {
 
 Equipment *createDefaultArmor() {
     Equipment *armor = malloc(sizeof(Equipment));
+    armor->name = malloc(sizeof(char) * 25);
     armor->name = "basicArmor";
+    armor->description = malloc(sizeof(char) * 100);
     armor->description = "basicArmorDescription";
     armor->equipmentEffectivenessValue =  50;
     armor->durability = 100;
@@ -33,7 +37,9 @@ Equipment *createDefaultArmor() {
 
 Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, enum EquipmentType type) {
     Equipment *equipment = malloc(sizeof(Equipment));
+    equipment->name = malloc(sizeof(char) * 50);
     equipment->name = name;
+    equipment->description = malloc(sizeof(char) * 100);
     equipment->description = description;
     equipment->equipmentEffectivenessValue = equipmentEffectivenessValue;
     equipment->durability = durability;

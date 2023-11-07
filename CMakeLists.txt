@@ -26,4 +26,9 @@ add_executable(Doomdepths APP/main.c
         APP/DATABASE/sqlite3.h
         APP/LOGGER/logger.c
         APP/LOGGER/logger.h
+        APP/INVENTORY/inventoryMenu.c
+        APP/INVENTORY/inventoryMenu.h
+        APP/MAP/map.c
+        APP/MAP/map.h
+        APP/UTILS/utils.c
 )

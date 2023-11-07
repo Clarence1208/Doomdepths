@@ -48,8 +48,7 @@ Player * newPlayer(char * name, enum Language language){
     player->weapon = weapon;
     player->armor = armor;
 
-    Inventory * inventory = create_inventory(10);
-    player->inventory = inventory;
+    player->inventory = create_inventory(10);
 
     player->translationList = loadTranslations(languagePathResolver(language));
 
@@ -151,11 +150,10 @@ void freePlayer(Player * player) {
 }
 
 
-
 // print and toString of things related to player
 
 char* weaponToString(Player * player) {
-    equipmentToString(*player->weapon, player->translationList);
+    return equipmentToString(*player->weapon, player->translationList);
 }
 
 void printWeapon(Player * player) {
@@ -163,7 +161,7 @@ void printWeapon(Player * player) {
 }
 
 char* armorToString(Player * player) {
-    equipmentToString(*player->armor, player->translationList);
+    return equipmentToString(*player->armor, player->translationList);
 }
 
 void printArmor(Player * player) {

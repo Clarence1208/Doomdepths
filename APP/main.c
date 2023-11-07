@@ -4,6 +4,7 @@
 #include "MESSAGE_RESOLVER/messageResolver.h"
 #include "EQUIPMENT/equipment.h"
 #include "INVENTORY/inventory.h"
+#include "INVENTORY/inventoryMenu.h"
 #include "DATABASE/database.h"
 #include "PLAYER/player.h"
 #include "LOGGER/logger.h"
@@ -25,6 +26,7 @@ int main() {
     printf("%s",player->name);
 
     printWeapon(player);
+
 
 
     // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
@@ -64,30 +66,35 @@ int main() {
     addEquipmentToInventory(inventory, *equipment);
     printInventory(inventory, translationList);
 
+    addEquipmentToInventory(inventory, *equipment);
+    addEquipmentToInventory(inventory, *equipment2);
+    addEquipmentToInventory(inventory, *equipment3);
+
+    addEquipmentToPlayerInventory(player, *equipment);
+    addEquipmentToPlayerInventory(player, *equipment2);
+    addEquipmentToPlayerInventory(player, *equipment3);
+
+    selectableItemInventoryMenu(player);
+    selectableItemInventoryMenu(player);
 
 
-/*
 
-    sqlite3 *db;
-    char *zErrMsg = "failed to open database";
-    int rc =  sqlite3_open("doomdepths.db", &db);
-    if (rc) {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        return 0;
-    } else {
-        fprintf(stderr, "Opened database successfully\n");
-    }
-    char *sql = "";
-   // createDatabase(db, "", zErrMsg, rc);
+    printf("inventory size : %d\n", player->inventory->size);
+    printf("inventory max size : %d\n", player->inventory->max_size);
+    printf("inventory nbr equipment : %d\n", player->inventory->nbrEquipment);
+    printf("inventory nbr consumable : %d\n", player->inventory->nbrConsumable);
 
-    createTableEquipments(db,sql,  zErrMsg, rc);
-    insterIntoTest();
-*//*
+    printf("inventory size : %d\n", inventory->size);
+    printf("inventory max size : %d\n", inventory->max_size);
+    printf("inventory nbr equipment : %d\n", inventory->nbrEquipment);
+    printf("inventory nbr consumable : %d\n", inventory->nbrConsumable);
 
+    addEquipmentToInventory(player->inventory, *equipment);
 
-    // Free what's needed to be freed
-    freeTranslationList(translationList);
-    freeInventory(inventory);*/
+//
+//    // Free what's needed to be freed
+//    freeTranslationList(translationList);
+//    freeInventory(inventory);
 
     closeLogger();
     return 0;

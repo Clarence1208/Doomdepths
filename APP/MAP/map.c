@@ -13,9 +13,6 @@ const int MAX_SHOP_ROOM = 1;
 const int MAX_ENNEMIES_ROOM = 20;
 const int MAX_VOID_ROOM = 15;
 
-void cls(){
-    printf("\e[1;1H\e[2J");
-}
 
 void movePlayer(char** map, Player* player, char movement) {
     switch (movement) {
@@ -238,12 +235,12 @@ void createMap(Player* player) {
 
     freeMap(map);
 }
-
-int main(int argc, char**argv) {
-
-    Player* player = malloc(sizeof(Player));
-    
-    createMap(player);
-
-    return 0;
-}
+//
+//int main(int argc, char**argv) {
+//
+//    Player* player = malloc(sizeof(Player));
+//
+//    createMap(player);
+//
+//    return 0;
+//}

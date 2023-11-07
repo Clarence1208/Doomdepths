@@ -35,6 +35,17 @@ void addExperience(Player * player, int experience);
 
 void freePlayer(Player * player);
 
+void addEquipmentToPlayerInventory(Player * player, Equipment equipment);
+
+void addConsumableToPlayerInventory(Player * player, Consumable consumable);
+
+void equipWeaponFromInventory(Player * player, int index);
+
+void equipNewWeapon(Player * player, Equipment * weapon);
+
+void equipArmorFromInventory(Player * player, int index);
+
+void equipNewArmor(Player * player, Equipment * armor);
 
 char* weaponToString(Player * player);
 

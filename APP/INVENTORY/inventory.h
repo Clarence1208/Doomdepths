@@ -23,6 +23,14 @@ char * inventoryToString(Inventory * inventory, TranslationList * translationLis
 
 void printInventory(Inventory * inventory, TranslationList * translationList);
 
+char * inventoryItemToString(Inventory * inventory, int slotNbr, TranslationList * translationList);
+
+void printInventoryItem(Inventory * inventory, int slotNbr, TranslationList * translationList);
+
+int isSlotEquipment (Inventory * inventory, int slotNbr);
+
+int isSlotWeapon (Inventory * inventory, int slotNbr);
+
 void addEquipmentToInventory(Inventory *inventory, Equipment equipment);
 
 void addConsumableToInventory(Inventory *inventory, Consumable consumable);

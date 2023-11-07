@@ -50,8 +50,36 @@ void printInventory(Inventory * inventory, TranslationList * translationList) {
     free(string);
 }
 
+char * inventoryItemToString(Inventory * inventory, int slotNbr, TranslationList * translationList) {
+    char * string = malloc(sizeof(char) * 100);
+
+    if (slotNbr > inventory->size) {
+        sprintf(string, "%d - %s", slotNbr, translate("emptySlot", translationList));
+    } else if (slotNbr < inventory->nbrEquipment) {
+        sprintf(string, "%d - %s", slotNbr, translate(inventory->equipment[slotNbr].name, translationList));
+    } else {
+        sprintf(string, "%d - %s", slotNbr, translate(inventory->consumable[slotNbr - inventory->nbrEquipment].name, translationList));
+    }
+
+    return string;
+}
+
+int isSlotEquipment (Inventory * inventory, int slotNbr) {
+    return slotNbr < inventory->nbrEquipment;
+}
+
+int isSlotWeapon (Inventory * inventory, int slotNbr) {
+    return isSlotEquipment(inventory, slotNbr) && inventory->equipment[slotNbr].type == WEAPON;
+}
+
+void printInventoryItem(Inventory * inventory, int slotNbr, TranslationList * translationList) {
+    char * string = inventoryItemToString(inventory, slotNbr, translationList);
+    printf("%s", string);
+    free(string);
+}
+
 void addEquipmentToInventory(Inventory *inventory, Equipment equipment) {
-    if (inventory->size < inventory->max_size) {
+    if (inventory->size < inventory->max_size - 1) {
         inventory->equipment[inventory->size] = equipment;
         inventory->nbrEquipment++;
         inventory->size++;
@@ -61,7 +89,7 @@ void addEquipmentToInventory(Inventory *inventory, Equipment equipment) {
 }
 
 void addConsumableToInventory(Inventory *inventory, Consumable consumable) {
-    if (inventory->size < inventory->max_size) {
+    if (inventory->size < inventory->max_size - 1) {
         inventory->consumable[inventory->size] = consumable;
         inventory->nbrConsumable++;
         inventory->size++;
