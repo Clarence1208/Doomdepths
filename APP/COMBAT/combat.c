@@ -18,16 +18,29 @@ void popMonster(Monster **monsters, int index, int nbMonsters) {
     }
 }
 
-void startBattle(Player *player){
+void startBattle(Player *player, int isBoss) {
     cls();
-    printf("Battle started !\n\n");
-    srand(time(NULL));
-    int nbMonsters = rand() % 3 + 1;
-    int monsterToFree = nbMonsters;
-    Monster **monsters = malloc(sizeof(Monster**) * nbMonsters);
-    for (int i = 0; i < nbMonsters; i++) {
-        monsters[i] = createMonster(player);
-        printf("You are getting attacked by a %s !\n", monsters[i]->name);
+    int nbMonsters = 0;
+    int monsterToFree = 0;
+    Monster **monsters = NULL;
+    if (isBoss) {
+        printf("THIS IS THE BOSS OF THIS AREA !!!\n");
+        printf("Be careful, he is very strong !\n\n");
+        printf("Kill him to get to the next area !\n\n");
+        monsters = malloc(sizeof(Monster**));
+        monsters[0] = createBoss(player);
+        nbMonsters = 1;
+        monsterToFree = 1;
+        printf("You are getting attacked by a %s !\n", monsters[0]->name);
+    } else {
+        nbMonsters = rand() % 3 + 1;
+        monsterToFree = nbMonsters;
+        srand(time(NULL));
+        monsters = malloc(sizeof(Monster**) * nbMonsters);
+        for (int i = 0; i < nbMonsters; i++) {
+            monsters[i] = createMonster(player);
+            printf("You are getting attacked by a %s !\n", monsters[i]->name);
+        }
     }
 
     printf("\n");
@@ -94,6 +107,11 @@ void startBattle(Player *player){
                         if (nbMonsters == 0) {
                             free(monsters);
                             printf("\nYou won the battle !\n");
+                            if (isBoss) {
+                                printf("You are now is the new area !\n");
+                                printf("Careful, the monsters are stronger here !\n");
+                                player->map_level++;
+                            }
                             printf("\nPress any key to continue...\n");
                             system("/bin/stty raw");
                             char wait = getchar();

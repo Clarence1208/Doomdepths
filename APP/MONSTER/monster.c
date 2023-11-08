@@ -71,6 +71,27 @@ Monster * createMonster(Player *player){
     return NULL;
 }
 
+Monster * createBoss(Player *player){
+    int type = rand() % 5;
+    switch (type) {
+        case 0:
+            return newMonster("King Goblin", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
+            break;
+        case 1:
+            return newMonster("King Orc", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
+            break;
+        case 2:
+            return newMonster("King Troll", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
+            break;
+        case 3:
+            return newMonster("King Dragon", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
+            break;
+        case 4:
+            return newMonster("King Demon", 1 * player->map_level, 1 * player->map_level, 1 * player->map_level, player->map_level, 1);
+            break;
+    }
+}
+
 void freeMonster(Monster *monster){
     free(monster->name);
     free(monster);

@@ -21,6 +21,8 @@ Monster *newMonster(char *name, int hp, int attack, int defense, int level, int 
 
 Monster *createMonster(Player *player);
 
+Monster *createBoss(Player *player);
+
 void printMonster(Monster *monster);
 
 void printMonsterInfo(Monster *monster);

@@ -8,6 +8,7 @@
 #import "../EQUIPMENT/equipment.h"
 #import "../SPELL/spells.h"
 #import "../INVENTORY/inventory.h"
+#include "../UTILS/utils.h"
 
 typedef struct Player {
     char *name;
@@ -30,5 +31,7 @@ typedef struct Player {
 }Player;
 
 void freePlayer(Player *player);
+
+void printPlayer(Player *player);
 
 #endif //DOOMDEPTHS_PLAYER_H
