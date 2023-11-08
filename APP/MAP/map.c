@@ -272,7 +272,7 @@ void startTest() {
     player->mana = 100;
     player->max_mana = 100;
     player->attack = 10;
-    player->level = 1;
+    player->level = 30;
     player->map_level = 1;
     player->experience = 0;
     player->gold = 0;
