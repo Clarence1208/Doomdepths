@@ -59,13 +59,13 @@ void movePlayer(Player* player, char** map, char movement) {
     }
 
     if (tile == 'E') {
-        startBattle(player);
+        startBattle(player, 0);
     } else if (tile == 'S') {
         // TO DO : Create shop
         //startShop(player);
     } else if (tile == 'B') {
-        // TO DO : Create boss battle
-        //startBossBattle(player);
+        startBattle(player, 1);
+        createMap(player);
     }
 }
 
@@ -189,6 +189,8 @@ void freeMap(char** map) {
 }
 
 void printPlayableMap(char** map, Player* player) {
+    cls();
+    printf("Dungeon Stair : %d\n\n", player->map_level);
     int count = 0;
     for (int i = 0; i < MAP_SIZE; count++) {
         if (count == MAP_TILE_SIZE-1 && count != 0) {
@@ -241,12 +243,15 @@ void createMap(Player* player) {
     char movement = 0;
     do {
         
-        printf("Move around with ZQSD and 'p' to exit game !\n\n");
+        printf("Move around with ZQSD, see your player infos with 'a' or 'p' to exit game !\n\n");
         system("/bin/stty raw");
         movement = getchar();
         system("/bin/stty cooked");
         movePlayer(player, map, movement);
         cls();
+        if (movement == 'a') {
+            printPlayer(player);
+        }
         printPlayableMap(map, player);
 
     }while(movement != 'p' && movement != 'P');
@@ -256,7 +261,7 @@ void createMap(Player* player) {
     // TO DO : Save the game
 
     freeMap(map);
-    freePlayer(player);
+    //freePlayer(player); TO DO NEED TO BE FIXED
 }
 
 void startTest() {

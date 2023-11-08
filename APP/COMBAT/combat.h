@@ -9,6 +9,6 @@
 #include "math.h"
 #include "time.h"
 
-void startBattle(Player *player);
+void startBattle(Player *player, int isBoss);
 
 #endif //DOOMDEPTHS_COMBAT_H
