@@ -15,6 +15,7 @@ typedef struct Monster{
     int experience; // how much experience the player gets for killing this monster
     int gold; // how much gold the player gets for killing this monster
     int type; // 1 = normal, 2 = boss
+    char **sprite;
 } Monster;
 
 Monster *newMonster(char *name, int hp, int attack, int defense, int level, int type);

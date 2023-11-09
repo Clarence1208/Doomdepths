@@ -12,6 +12,39 @@
 #include "../MONSTER/monster.h"
 #include "../SPELL/spell.h"
 
+void printHUD(Player *player, Monster **monsters, int nbMonsters) {
+
+    printf("PV   : %d / %d : ", player->health, player->max_health);
+    for (int i = 0; i < 50; i++) {
+        if (i < (player->health * 50 / player->max_health)) {
+            printf("\033[1;32m%c\033[0m", '#');
+        } else {
+            printf("#");
+        }
+    }
+
+    printf("\n");
+
+    printf("\nMana : %d / %d : ", player->mana, player->max_mana);
+    for (int i = 0; i < 50; i++) {
+        if (i < (player->mana * 50 / player->max_mana)) {
+            printf("\033[1;34m%c\033[0m", '#');
+        } else {
+            printf("#");
+        }
+    }
+
+    printf("\n\n");
+
+    for (int i = 0; i < 16; i++) {
+        for (int j = 0; j < nbMonsters; j++) {
+            printf("%s", monsters[j]->sprite[i]);
+        }
+        printf("\n");
+    }
+    printf("\n\n");
+}
+
 void popMonster(Monster **monsters, int index, int nbMonsters) {
     freeMonster(monsters[index]);
     for (int i = index; i < nbMonsters - 1; i++) {
@@ -59,14 +92,10 @@ void startBattle(Player *player, int isBoss) {
     Monster **monsters = NULL;
     Spell **spells = loadSpells();
     if (isBoss) {
-        printf("THIS IS THE BOSS OF THIS AREA !!!\n");
-        printf("Be careful, he is very strong !\n\n");
-        printf("Kill him to get to the next area !\n\n");
-        monsters = malloc(sizeof(Monster**));
+        monsters = malloc(sizeof(Monster**) * 1);
         monsters[0] = createBoss(player);
         nbMonsters = 1;
         monsterToFree = 1;
-        printf("You are getting attacked by a %s !\n", monsters[0]->name);
     } else {
         nbMonsters = rand() % 3 + 1;
         monsterToFree = nbMonsters;
@@ -74,13 +103,31 @@ void startBattle(Player *player, int isBoss) {
         monsters = malloc(sizeof(Monster**) * nbMonsters);
         for (int i = 0; i < nbMonsters; i++) {
             monsters[i] = createMonster(player);
-            printf("You are getting attacked by a %s !\n", monsters[i]->name);
         }
     }
 
-    printf("\n");
+    printHUD(player, monsters, nbMonsters);
 
-    // TODO: Create monsters in terminal
+    if (isBoss) {
+        printf("THIS IS THE BOSS OF THIS AREA !!!\n");
+        printf("Be careful, he is very strong !\n\n");
+        printf("Kill him to get to the next area !\n\n");
+    }
+
+    for (int i = 0; i < nbMonsters; i++) {
+        if (isBoss) {
+            printf("You are getting attacked by the %s !\n", monsters[i]->name);
+        } else {
+            printf("You are getting attacked by a %s !\n", monsters[i]->name);
+        }
+    }
+    
+
+    printf("\nPress any key to continue...\n");
+    system("/bin/stty raw");
+    char wait = getchar();
+    system("/bin/stty cooked");
+    cls();
 
     int turn = 0;
     int playerTurn = 1;
@@ -89,6 +136,7 @@ void startBattle(Player *player, int isBoss) {
     int experienceSpell = 1;
     while (1) {
         if (playerTurn) {
+            printHUD(player, monsters, nbMonsters);
             printf("It's your turn !\n");
             char input = '0';
             while (input != 'a' && input != 's' && input != 'p') {
@@ -106,6 +154,7 @@ void startBattle(Player *player, int isBoss) {
                     int choice = 0;
                     while(choice < 1 || choice > nbMonsters) {
                         cls();
+                        printHUD(player, monsters, nbMonsters);
                         printf("You have %d attacks left\n", amountAttack);
                         printf("Choose a monster to attack : \n");
                         for(int k = 0; k < nbMonsters; k++) {
@@ -117,6 +166,7 @@ void startBattle(Player *player, int isBoss) {
                         choice = input - '0';
                     }
                     cls();
+                    printHUD(player, monsters, nbMonsters);
                     int damage = 0;
                     if (player->weapon != NULL) {
                         damage = player->attack + player->weapon->equipmentEffectivenessValue - monsters[choice-1]->defense;
@@ -148,6 +198,7 @@ void startBattle(Player *player, int isBoss) {
                 }
                 while(choice < 1 || choice > nbUsableSpells) {
                     cls();
+                    printHUD(player, monsters, nbMonsters);
                     int count = 0;
                     printf("Choose a spell to use or 'h' to see spells infos : \n\n");
                     for(int k = 0; k < nbSpells; k++) {
@@ -163,6 +214,7 @@ void startBattle(Player *player, int isBoss) {
                     system("/bin/stty cooked");
                     if (input == 'h') {
                         cls();
+                        printHUD(player, monsters, nbMonsters);
                         printf("Spells infos :\n\n");
                         for(int k = 0; k < nbSpells; k++) {
                             if (spells[k]->levelToUnlock <= player->level) {
@@ -179,6 +231,7 @@ void startBattle(Player *player, int isBoss) {
                     choice = input - '0';
                 }
                 cls();
+                printHUD(player, monsters, nbMonsters);
                 int findSpell = 0;
                 for (int i = 0; i < nbSpells; i++) {
                     if (spells[i]->levelToUnlock <= player->level) {
@@ -187,9 +240,11 @@ void startBattle(Player *player, int isBoss) {
                     if (findSpell == choice) {
                         if (player->mana >= spells[i]->manaCost) {
                             if (spells[i]->type == Fireball) {
+                                player->mana -= spells[i]->manaCost;
                                 int choice = 0;
                                 while(choice < 1 || choice > nbMonsters) {
                                     cls();
+                                    printHUD(player, monsters, nbMonsters);
                                     printf("Choose a monster to attack : \n");
                                     for(int k = 0; k < nbMonsters; k++) {
                                         printf("%d : %s\n", k+1, monsters[k]->name);
@@ -200,6 +255,7 @@ void startBattle(Player *player, int isBoss) {
                                     choice = input - '0';
                                 }
                                 cls();
+                                printHUD(player, monsters, nbMonsters);
                                 int isOver = damageMonster(monsters, spells[i]->spellEffectivenessValue + player->level, choice-1, &nbMonsters, player, isBoss, moneySpell, experienceSpell);
                                 if (isOver) {
                                     // TO DO : Free monsters and spells
@@ -208,7 +264,10 @@ void startBattle(Player *player, int isBoss) {
                                     return;
                                 }
                             } else if (spells[i]->type == Bang) {
+                                player->mana -= spells[i]->manaCost;
                                 for (int k = nbMonsters-1; k >= 0; k--) {
+                                    cls();
+                                    printHUD(player, monsters, nbMonsters);
                                     int isOver = damageMonster(monsters, spells[i]->spellEffectivenessValue + player->level, k, &nbMonsters, player, isBoss, moneySpell, experienceSpell);
                                     if (isOver) {
                                         // TO DO : Free monsters and spells
@@ -218,29 +277,35 @@ void startBattle(Player *player, int isBoss) {
                                     }
                                 }
                             } else if (spells[i]->type == Heal) {
+                                player->mana -= spells[i]->manaCost;
                                 player->health += spells[i]->spellEffectivenessValue + player->level;
                                 if (player->health > player->max_health) {
                                     player->health = player->max_health;
                                 }
                                 cls();
+                                printHUD(player, monsters, nbMonsters);
                                 printf("You healed yourself for %d health\n", spells[i]->spellEffectivenessValue + player->level);
                                 printf("\nPress any key to continue...\n");
                                 system("/bin/stty raw");
                                 char wait = getchar();
                                 system("/bin/stty cooked");
                             } else if (spells[i]->type == Mana) {
+                                player->mana -= spells[i]->manaCost;
                                 player->mana += spells[i]->spellEffectivenessValue + player->level;
                                 if (player->mana > player->max_mana) {
                                     player->mana = player->max_mana;
                                 }
                                 cls();
+                                printHUD(player, monsters, nbMonsters);
                                 printf("You regenerated %d mana\n", spells[i]->spellEffectivenessValue + player->level);
                                 printf("\nPress any key to continue...\n");
                                 system("/bin/stty raw");
                                 char wait = getchar();
                                 system("/bin/stty cooked");
                             } else if (spells[i]->type == Money) {
+                                player->mana -= spells[i]->manaCost;
                                 cls();
+                                printHUD(player, monsters, nbMonsters);
                                 moneySpell = 2;
                                 printf("You used the spell Money Rain !\n");
                                 printf("The monsters will drop more gold !\n");
@@ -249,7 +314,9 @@ void startBattle(Player *player, int isBoss) {
                                 char wait = getchar();
                                 system("/bin/stty cooked");
                             } else if (spells[i]->type == Experience) {
+                                player->mana -= spells[i]->manaCost;
                                 cls();
+                                printHUD(player, monsters, nbMonsters);
                                 experienceSpell = 2;
                                 printf("You used the spell Experience Rain !\n");
                                 printf("The monsters will drop more experience !\n");
@@ -258,7 +325,6 @@ void startBattle(Player *player, int isBoss) {
                                 char wait = getchar();
                                 system("/bin/stty cooked");
                             }
-                            player->mana -= spells[i]->manaCost;
                             playerTurn = 0;
                             monsterTurn = 1;
                             findSpell++;
@@ -276,6 +342,7 @@ void startBattle(Player *player, int isBoss) {
             }
         } else if (monsterTurn) {
             cls();
+            printHUD(player, monsters, nbMonsters);
             printf("It's the monster's turn !\n\n");
 
             for (int i = 0; i < nbMonsters; i++) {

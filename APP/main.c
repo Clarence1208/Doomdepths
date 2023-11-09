@@ -8,6 +8,46 @@
 
 int main() {
 
+
+        // int nbMessage = 3;
+        // char **messages[3];
+        // messages[0] = malloc(sizeof(char*) * 7);
+        // messages[0][0] = "       ";
+        // messages[0][1] = " XXXXX ";
+        // messages[0][2] = " X000X ";
+        // messages[0][3] = " X000X ";
+        // messages[0][4] = " X000X ";
+        // messages[0][5] = " XXXXX ";
+        // messages[0][6] = "       ";
+
+        // messages[1] = malloc(sizeof(char*) * 7);
+        // messages[1][0] = "       ";
+        // messages[1][1] = " 00000 ";
+        // messages[1][2] = " 00000 ";
+        // messages[1][3] = " 00000 ";
+        // messages[1][4] = " 00000 ";
+        // messages[1][5] = " 00000 ";
+        // messages[1][6] = "       ";
+        
+        // messages[2] = malloc(sizeof(char*) * 7);
+        // messages[2][0] = "       ";
+        // messages[2][1] = " XXXXX ";
+        // messages[2][2] = " XXXXX ";
+        // messages[2][3] = " XX0XX ";
+        // messages[2][4] = " XXXXX ";
+        // messages[2][5] = " XXXXX ";
+        // messages[2][6] = "       ";
+
+        // for (int i = 0; i < 7; i++) {
+        //         for (int j = 0; j < 3; j++) {
+        //                 printf("%s", messages[j][i]);
+        //         }
+        //         printf("\n");
+        // }
+
+
+        // return 0;
+
         startTest();
 
 //     // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
