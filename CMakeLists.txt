@@ -23,4 +23,7 @@ add_executable(Doomdepths APP/main.c
         APP/DATABASE/database.c
         APP/DATABASE/database.h
         APP/DATABASE/sqlite3.c
-        APP/DATABASE/sqlite3.h)
+        APP/DATABASE/sqlite3.h
+        APP/DATABASE/BDDControleur.c
+        APP/DATABASE/BDDControleur.h
+        APP/DATABASE/createDatabase.c)

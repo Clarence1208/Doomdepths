@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 int callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
     int i;
@@ -18,21 +19,7 @@ int callback(void *NotUsed, int argc, char **argv, char **azColName)
 }
 
 
-void createDatabase(sqlite3 *db, char *sql, char *zErrMsg, int* rc) {
 
-
-
-    *rc = sqlite3_open("doomdepths.db", &db);
-
-    if( rc )
-    {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        exit(0);
-    } else
-    {
-        printf("Database opened\n");
-    }
-}
 
 void createTableEquipments(sqlite3 *db, char *sql, char *zErrMsg, int rc) {
     /* Create SQL statement */

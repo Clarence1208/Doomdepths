@@ -1,0 +1,4 @@
+ToolSet: w64 11.0 (local)@C:\Users\9608902J\OneDrive - SNCF\Documents\A garder\Logiciel\CLion\bin\mingw
+Options: 
+
+Options:
