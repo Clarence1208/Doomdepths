@@ -3,78 +3,86 @@
 #include <string.h>
 #include "MESSAGE_RESOLVER/messageResolver.h"
 #include "EQUIPMENT/equipment.h"
-#include "INVENTORY/inventory.h"
-#include "DATABASE/database.h"
-#include "PLAYER/player.h"
+#include "MAP/map.h"
 
 
 int main() {
 
-    Player * player = newPlayer("test", FR);
 
-    printWeapon(player);
+        // int nbMessage = 3;
+        // char **messages[3];
+        // messages[0] = malloc(sizeof(char*) * 7);
+        // messages[0][0] = "       ";
+        // messages[0][1] = " XXXXX ";
+        // messages[0][2] = " X000X ";
+        // messages[0][3] = " X000X ";
+        // messages[0][4] = " X000X ";
+        // messages[0][5] = " XXXXX ";
+        // messages[0][6] = "       ";
 
-    // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
-    TranslationList* translationList = loadTranslations("../TEXT/message-en.env");
+        // messages[1] = malloc(sizeof(char*) * 7);
+        // messages[1][0] = "       ";
+        // messages[1][1] = " 00000 ";
+        // messages[1][2] = " 00000 ";
+        // messages[1][3] = " 00000 ";
+        // messages[1][4] = " 00000 ";
+        // messages[1][5] = " 00000 ";
+        // messages[1][6] = "       ";
+        
+        // messages[2] = malloc(sizeof(char*) * 7);
+        // messages[2][0] = "       ";
+        // messages[2][1] = " XXXXX ";
+        // messages[2][2] = " XXXXX ";
+        // messages[2][3] = " XX0XX ";
+        // messages[2][4] = " XXXXX ";
+        // messages[2][5] = " XXXXX ";
+        // messages[2][6] = "       ";
 
-    // Set the currently selected language (e.g., based on user preference)
-
-    // Use the translate function to display translated text
-    const char *playText = translate("play", translationList);
-    const char *quitText = translate("quit", translationList);
-    const char *welcomeText = translate("welcome_message", translationList);
-
-    printf("%s\n%s\n%s\n", playText, quitText, welcomeText);
-
-    translationList = loadTranslations("../TEXT/message-fr.env");
-
-    printf("\n\n%s\n%s\n%s\n"
-            , translate("play", translationList)
-            , translate("quit", translationList)
-            , translate("welcome_message", translationList));
-
-    Equipment *equipment = createDefaultWeapon();
-
-    printEquipment(*equipment, translationList);
-
-    Equipment *equipment2 = createDefaultArmor();
-
-    printEquipment(*equipment2, translationList);
-
-    Equipment *equipment3 = createEquipment("name", "description", 10, 100, 100, 100, WEAPON);
-
-    printEquipment(*equipment3, translationList);
-
-    Inventory * inventory = create_inventory(10);
-    printInventory(inventory, translationList);
-
-    addEquipmentToInventory(inventory, *equipment);
-    printInventory(inventory, translationList);
+        // for (int i = 0; i < 7; i++) {
+        //         for (int j = 0; j < 3; j++) {
+        //                 printf("%s", messages[j][i]);
+        //         }
+        //         printf("\n");
+        // }
 
 
+        // return 0;
 
-/*
+        startTest();
 
-    sqlite3 *db;
-    char *zErrMsg = "failed to open database";
-    int rc =  sqlite3_open("doomdepths.db", &db);
-    if (rc) {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-        return 0;
-    } else {
-        fprintf(stderr, "Opened database successfully\n");
-    }
-    char *sql = "";
-   // createDatabase(db, "", zErrMsg, rc);
+//     // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
+//     TranslationList* translationList = loadTranslations("../TEXT/message-en.env");
 
-    createTableEquipments(db,sql,  zErrMsg, rc);
-    insterIntoTest();
-*/
+//     // Set the currently selected language (e.g., based on user preference)
 
+//     // Use the translate function to display translated text
+//     const char *playText = translate("play", translationList);
+//     const char *quitText = translate("quit", translationList);
+//     const char *welcomeText = translate("welcome_message", translationList);
 
-    // Free what's needed to be freed
-    freeTranslationList(translationList);
-    freeInventory(inventory);
+//     printf("%s\n%s\n%s\n", playText, quitText, welcomeText);
+
+//     translationList = loadTranslations("../TEXT/message-fr.env");
+
+//     printf("\n\n%s\n%s\n%s\n"
+//             , translate("play", translationList)
+//             , translate("quit", translationList)
+//             , translate("welcome_message", translationList));
+
+//     Equipment *equipment = createDefaultWeapon();
+
+//     printEquipment(*equipment, translationList);
+
+//     Equipment *equipment2 = createDefaultArmor();
+
+//     printEquipment(*equipment2, translationList);
+
+//     Equipment *equipment3 = createEquipment("name", "description", 10, 100, 100, 100, WEAPON);
+
+//     printEquipment(*equipment3, translationList);
+
+//     freeTranslationList(translationList);
+
     return 0;
 }
 

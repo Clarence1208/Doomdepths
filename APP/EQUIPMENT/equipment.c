@@ -15,6 +15,7 @@ Equipment *createDefaultWeapon() {
     weapon->durability = 100;
     weapon->durabilityMax = 100;
     weapon->price = 0;
+    weapon->nbAttack = 1;
     weapon->type = WEAPON;
     return weapon;
 }
@@ -27,11 +28,12 @@ Equipment *createDefaultArmor() {
     armor->durability = 100;
     armor->durabilityMax = 100;
     armor->price = 0;
+    armor->nbAttack = 0;
     armor->type = ARMOR;
     return armor;
 }
 
-Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, enum EquipmentType type) {
+Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, int nbAttack, enum EquipmentType type) {
     Equipment *equipment = malloc(sizeof(Equipment));
     equipment->name = name;
     equipment->description = description;
@@ -39,23 +41,14 @@ Equipment *createEquipment(char *name, char *description, int equipmentEffective
     equipment->durability = durability;
     equipment->durabilityMax = durabilityMax;
     equipment->price = price;
+    equipment->nbAttack = 0;
     equipment->type = type;
     return equipment;
 }
 
 char *equipmentToString(Equipment equipment, TranslationList *translationList) {
     char *equipmentString = malloc(sizeof(char) * 256);
-    sprintf(equipmentString, "%s: %s\n"
-                             "Description: %s\n"
-                             "EquipmentEffectivenessValue: %d\n"
-                             "Durability: %d\nDurabilityMax: %d\n"
-                             "Price: %d\n"
-                             "Type: %d\n",
-                             translate("name", translationList),
-                             translate(equipment.name, translationList),
-                             translate(equipment.description, translationList),
-                             equipment.equipmentEffectivenessValue, equipment.durability,
-                             equipment.durabilityMax, equipment.price, equipment.type);
+    sprintf(equipmentString, "Name: %s\nDescription: %s\nEquipmentEffectivenessValue: %d\nDurability: %d\nDurabilityMax: %d\nPrice: %d\nNbAttack: %d\nType: %d\n", translate(equipment.name, translationList), translate(equipment.description, translationList), equipment.equipmentEffectivenessValue, equipment.durability, equipment.durabilityMax, equipment.price, equipment.nbAttack, equipment.type);
     return equipmentString;
 }
 

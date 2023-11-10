@@ -8,6 +8,7 @@
 #import "../EQUIPMENT/equipment.h"
 #import "../SPELL/spells.h"
 #import "../INVENTORY/inventory.h"
+#include "../UTILS/utils.h"
 
 typedef struct Player {
     char *name;
@@ -17,8 +18,8 @@ typedef struct Player {
     int max_mana;
     int attack;
     int level;
+    int map_level;
     int experience;
-    int experience_to_next_level;
     int gold;
     int x;
     int y;
@@ -26,23 +27,11 @@ typedef struct Player {
     Equipment *armor;
     Spells *spells;
     Inventory *inventory;
-    TranslationList *translationList;
+
 }Player;
 
-Player * newPlayer(char * name, enum Language language);
+void freePlayer(Player *player);
 
-void addExperience(Player * player, int experience);
-
-void freePlayer(Player * player);
-
-
-char* weaponToString(Player * player);
-
-void printWeapon(Player * player);
-
-char* armorToString(Player * player);
-
-void printArmor(Player * player);
-
+void printPlayer(Player *player);
 
 #endif //DOOMDEPTHS_PLAYER_H
