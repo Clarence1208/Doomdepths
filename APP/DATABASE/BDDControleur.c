@@ -12,7 +12,6 @@
 #include "BDDService/equipmentService.c"
 #include "BDDService/consumableService.c"
 #include "BDDService/spellService.c"
-#include "BDDService/spellsService.c"
 #include "BDDService/monsterService.c"
 
 // Contrôleur CRUD pour la table Player
@@ -44,12 +43,6 @@ int createSpellBDD(sqlite3 *db, Spell *spell);
 int readSpellBDD(sqlite3 *db, int spellId, Spell *spell);
 int updateSpellBDD(sqlite3 *db, int spellId, const Spell *spell);
 int deleteSpellBDD(sqlite3 *db, int spellId);
-
-// Contrôleur CRUD pour la table Spells
-int createSpellsBDD(sqlite3 *db, Spells *spells);
-int readSpellsBDD(sqlite3 *db, int playerId, Spells *spells);
-int updateSpellsBDD(sqlite3 *db, int playerId, const Spells *spells);
-int deleteSpellsBDD(sqlite3 *db, int playerId);
 
 // Contrôleur CRUD pour la table Monster
 int createMonsterBDD(sqlite3 *db, Monster *monster);
