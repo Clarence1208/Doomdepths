@@ -19,14 +19,14 @@ Equipment **createEquipmentsForSale(Player *player) {
     //random between 0 and 1
     int random = rand() % 2;
     if (random == 0) {
-        equipments[0] = createEquipment("basicSword", "basicSwordDescription", equipmentEffectivenessValue * 1.2, durability * 1.2, durability * 1.2, 10 * (player->map_level / 2), WEAPON);
+        equipments[0] = createEquipment("basicSword", "basicSwordDescription", (int)(equipmentEffectivenessValue * 1.2), (int)(durability * 1.2), (int)(durability * 1.2), 10 * (player->map_level / 2), WEAPON);
         equipments[1] = createEquipment("LegendarySword", "LegendarySwordDescription", equipmentEffectivenessValue * 2, durability * 2, durability * 2, 10 * (player->map_level), WEAPON);
-        equipments[2] = createEquipment("basicShield", "basicShieldDescription", equipmentEffectivenessValue * 1.2, durability * 1.2, durability * 1.2, 10 * (player->map_level / 2), ARMOR);
-        equipments[3] = createEquipment("advancedShield", "advancedShieldDescription", equipmentEffectivenessValue * 1.5, durability * 1.5, durability * 1.5, 10 * (player->map_level), ARMOR);
+        equipments[2] = createEquipment("basicShield", "basicShieldDescription", (int)(equipmentEffectivenessValue * 1.2), (int)(durability * 1.2), (int)(durability * 1.2), 10 * (player->map_level / 2), ARMOR);
+        equipments[3] = createEquipment("advancedShield", "advancedShieldDescription", (int)(equipmentEffectivenessValue * 1.5), (int)(durability * 1.5), (int)(durability * 1.5), 10 * (player->map_level), ARMOR);
     } else {
-       equipments[0] = createEquipment("basicSword", "basicSwordDescription", equipmentEffectivenessValue * 1.2, durability * 1.2, durability * 1.2, 10 * (player->map_level / 2), WEAPON);
-       equipments[1] = createEquipment("advancedWeapon", "advancedWeaponDescription", equipmentEffectivenessValue * 1.5, durability * 1.5, durability * 1.5, 10 * (player->map_level), WEAPON);
-       equipments[2] = createEquipment("basicShield", "basicShieldDescription", equipmentEffectivenessValue * 1.2, durability * 1.2, durability * 1.2, 10 * (player->map_level / 2), ARMOR);
+       equipments[0] = createEquipment("basicSword", "basicSwordDescription", (int)(equipmentEffectivenessValue * 1.2), (int)(durability * 1.2), (int)(durability * 1.2), 10 * (player->map_level / 2), WEAPON);
+       equipments[1] = createEquipment("advancedSword", "advancedSwordDescription", (int)(equipmentEffectivenessValue * 1.5), (int)(durability * 1.5), (int)(durability * 1.5), 10 * (player->map_level), WEAPON);
+       equipments[2] = createEquipment("basicShield", "basicShieldDescription", (int)(equipmentEffectivenessValue * 1.2), (int)(durability * 1.2), (int)(durability * 1.2), 10 * (player->map_level / 2), ARMOR);
        equipments[3] = createEquipment("LegendaryShield", "LegendaryShieldDescription", equipmentEffectivenessValue * 2, durability * 2, durability * 2, 10 * (player->map_level), ARMOR);
     }
     return equipments;
