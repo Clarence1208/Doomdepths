@@ -11,6 +11,7 @@
 typedef struct Inventory {
     Equipment *equipment;
     Consumable *consumable;
+    int id;
     int nbrEquipment;
     int nbrConsumable;
     int size;

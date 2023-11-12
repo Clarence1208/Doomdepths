@@ -21,31 +21,26 @@ int updatePlayerBDD(sqlite3 *db, const Player *player){ return updatePlayer(db, 
 
 
 // Contrôleur CRUD pour la table Inventory
-int createInventoryBDD(sqlite3 *db, Inventory *inventory);
-int readInventoryBDD(sqlite3 *db, int inventoryId, Inventory *inventory);
-int updateInventoryBDD(sqlite3 *db, int inventoryId, const Inventory *inventory);
-int deleteInventoryBDD(sqlite3 *db, int inventoryId);
+int createInventoryBDD(sqlite3 *db, Inventory *inventory){ return createInventory(db, inventory);};
+int readInventoryBDD(sqlite3 *db, Inventory *inventory){ return readInventory(db, inventory);};
+int updateInventoryBDD(sqlite3 *db, const Inventory *inventory){ return updateInventory(db, inventory);};
 
 // Contrôleur CRUD pour la table Equipment
-int createEquipmentBDD(sqlite3 *db, Equipment *equipment);
-int readEquipmentBDD(sqlite3 *db, int equipmentId, Equipment *equipment);
-int updateEquipmentBDD(sqlite3 *db, int equipmentId, const Equipment *equipment);
-int deleteEquipmentBDD(sqlite3 *db, int equipmentId);
+int createEquipmentBDD(sqlite3 *db, Equipment *equipment){ return createEquipment(db, equipment);};
+int readEquipmentBDD(sqlite3 *db, Equipment *equipment){ return readEquipment(db, equipment);};
+int updateEquipmentBDD(sqlite3 *db, const Equipment *equipment){ return updateEquipment(db, equipment);};
 
 // Contrôleur CRUD pour la table Consumable
-int createConsumableBDD(sqlite3 *db, Consumable *consumable);
-int readConsumableBDD(sqlite3 *db, int consumableId, Consumable *consumable);
-int updateConsumableBDD(sqlite3 *db, int consumableId, const Consumable *consumable);
-int deleteConsumableBDD(sqlite3 *db, int consumableId);
+int createConsumableBDD(sqlite3 *db, Consumable *consumable){ return createConsumablebdd(db, consumable);};
+int readConsumableBDD(sqlite3 *db, int consumableId, Consumable *consumable){ return readConsumablebdd(db, consumable);};
+int updateConsumableBDD(sqlite3 *db, int consumableId, const Consumable *consumable){ return updateConsumablebdd(db, consumable);};
 
 // Contrôleur CRUD pour la table Spell
-int createSpellBDD(sqlite3 *db, Spell *spell);
-int readSpellBDD(sqlite3 *db, int spellId, Spell *spell);
-int updateSpellBDD(sqlite3 *db, int spellId, const Spell *spell);
-int deleteSpellBDD(sqlite3 *db, int spellId);
+int createSpellBDD(sqlite3 *db, Spell *spell){ return createSpellbdd(db, spell);};
+int readSpellBDD(sqlite3 *db, int spellId, Spell *spell){ return readSpellbdd(db, spell);};
+int updateSpellBDD(sqlite3 *db, int spellId, const Spell *spell){ return updateSpellbdd(db, spell);};
 
 // Contrôleur CRUD pour la table Monster
-int createMonsterBDD(sqlite3 *db, Monster *monster);
-int readMonsterBDD(sqlite3 *db, int monsterId, Monster *monster);
-int updateMonsterBDD(sqlite3 *db, int monsterId, const Monster *monster);
-int deleteMonsterBDD(sqlite3 *db, int monsterId);
+int createMonsterBDD(sqlite3 *db, Monster *monster){ return createMonsterbdd(db, monster);};
+int readMonsterBDD(sqlite3 *db, int monsterId, Monster *monster){ return readMonsterbdd(db, monster);};
+int updateMonsterBDD(sqlite3 *db, int monsterId, const Monster *monster){ return updateMonsterbdd(db, monster);};

@@ -72,14 +72,13 @@ int createTables(sqlite3 *db) {
     const char *createInventoryTableSQL =
             "CREATE TABLE IF NOT EXISTS Inventory ("
             "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-            "player_id INTEGER NOT NULL,"
             "equipment INTEGER,"
             "consumable INTEGER,"
             "nbrEquipment INTEGER NOT NULL,"
             "nbrConsumable INTEGER NOT NULL,"
             "size INTEGER NOT NULL,"
             "max_size INTEGER NOT NULL,"
-            "FOREIGN KEY(player_id) REFERENCES Player(id)"
+            "FOREIGN KEY(id) REFERENCES Player(id)"
             ");";
     result = sqlite3_exec(db, createInventoryTableSQL, 0, 0, 0);
 
@@ -147,8 +146,8 @@ int createTables(sqlite3 *db) {
             "hp INTEGER NOT NULL,"
             "attack INTEGER NOT NULL,"
             "defense INTEGER NOT NULL,"
-            "speed INTEGER NOT NULL,"
             "level INTEGER NOT NULL,"
+            "experience INTEGER NOT NULL,"
             "type INTEGER NOT NULL"
             ");";
     result = sqlite3_exec(db, createMonsterTableSQL, 0, 0, 0);

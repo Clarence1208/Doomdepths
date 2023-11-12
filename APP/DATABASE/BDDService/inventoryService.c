@@ -32,9 +32,20 @@ int createInventory(sqlite3 *db, const Inventory *inventory) {
     return 0; // Échec
 }
 
-// Fonction pour lire un enregistrement Inventory par son ID
-int readInventory(sqlite3 *db, int inventoryId, Inventory *inventory) {
-    const char *selectInventorySQL = "SELECT * FROM Inventory WHERE id = ?;";
+// Fonction pour lire un enregistrement Inventory
+int readInventory(sqlite3 *db, Inventory *inventory) {
+    const char *selectInventorySQL =
+            "SELECT Inventory.id, "
+            "Equipment.id AS equipment_id, Equipment.name AS equipment_name, Equipment.description AS equipment_description, "
+            "Equipment.equipmentEffectivenessValue, Equipment.durability, Equipment.durabilityMax, Equipment.price, "
+            "Consumable.id AS consumable_id, Consumable.name AS consumable_name, Consumable.description AS consumable_description, "
+            "Consumable.price, Consumable.consumableEffectivenessValue, Consumable.type, "
+            "Inventory.nbrEquipment, Inventory.nbrConsumable, Inventory.size, Inventory.max_size "
+            "FROM Inventory "
+            "JOIN Equipment ON Inventory.equipment_id = Equipment.id "
+            "JOIN Consumable ON Inventory.consumable_id = Consumable.id "
+            "WHERE Inventory.id = ?;";
+
     sqlite3_stmt *stmt;
 
     if (sqlite3_prepare_v2(db, selectInventorySQL, -1, &stmt, 0) == SQLITE_OK) {
@@ -42,20 +53,35 @@ int readInventory(sqlite3 *db, int inventoryId, Inventory *inventory) {
 
         if (sqlite3_step(stmt) == SQLITE_ROW) {
             inventory->id = sqlite3_column_int(stmt, 0);
-            // Récupérer les données binaires (equipment et consumable) et les autres champs ici
-            // Assurez-vous de dé-sérialiser les données correctement
+
+            // Remplir la structure Equipment
+            inventory->equipment->name = strdup((char *) sqlite3_column_text(stmt, 3));
+            inventory->equipment->description = strdup((char *) sqlite3_column_text(stmt, 4));
+            inventory->equipment->equipmentEffectivenessValue = sqlite3_column_int(stmt, 5);
+            inventory->equipment->durability = sqlite3_column_int(stmt, 6);
+            inventory->equipment->durabilityMax = sqlite3_column_int(stmt, 7);
+            inventory->equipment->price = sqlite3_column_int(stmt, 8);
+
+            // Remplir la structure Consumable
+            inventory->consumable->name = strdup((char *) sqlite3_column_text(stmt, 10));
+            inventory->consumable->description = strdup((char *) sqlite3_column_text(stmt, 11));
+            inventory->consumable->price = sqlite3_column_int(stmt, 12);
+            inventory->consumable->consumableEffectivenessValue = sqlite3_column_int(stmt, 13);
+            inventory->consumable->type = sqlite3_column_int(stmt, 14);
+
+            inventory->nbrEquipment = sqlite3_column_int(stmt, 15);
+            inventory->nbrConsumable = sqlite3_column_int(stmt, 16);
+            inventory->size = sqlite3_column_int(stmt, 17);
+            inventory->max_size = sqlite3_column_int(stmt, 18);
 
             sqlite3_finalize(stmt);
             return 1; // Succès
         }
     }
-
-    sqlite3_finalize(stmt);
-    return 0; // Échec
 }
 
 // Fonction pour mettre à jour un enregistrement Inventory par son ID
-int updateInventory(sqlite3 *db, int inventoryId, const Inventory *inventory) {
+int updateInventory(sqlite3 *db, const Inventory *inventory) {
     const char *updateInventorySQL = "UPDATE Inventory SET equipment = ?, consumable = ?, nbrEquipment = ?, nbrConsumable = ?, size = ?, max_size = ? WHERE id = ?;";
     sqlite3_stmt *stmt;
 
@@ -67,7 +93,7 @@ int updateInventory(sqlite3 *db, int inventoryId, const Inventory *inventory) {
         sqlite3_bind_int(stmt, 4, inventory->nbrConsumable);
         sqlite3_bind_int(stmt, 5, inventory->size);
         sqlite3_bind_int(stmt, 6, inventory->max_size);
-        sqlite3_bind_int(stmt, 7, inventoryId);
+        sqlite3_bind_int(stmt, 7, 1);
 
         if (sqlite3_step(stmt) == SQLITE_DONE) {
             sqlite3_finalize(stmt);
