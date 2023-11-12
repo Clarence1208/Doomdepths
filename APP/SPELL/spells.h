@@ -13,4 +13,6 @@ typedef struct Spells{
     int max_size;
 } Spells;
 
+Spells *create_spells(int max_size);
+
 #endif //DOOMDEPTHS_SPELLS_H

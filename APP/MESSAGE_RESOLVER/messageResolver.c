@@ -6,8 +6,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "messageResolver.h"
+#include "../LOGGER/logger.h"
+#include "../UTILS/utils.h"
 
-/*
+/**
  * create_translation_list
  * Creates a new translation list
  * size is set to 0
@@ -21,7 +23,7 @@ TranslationList *create_translation_list(int numTranslations) {
     return translationList;
 }
 
-/*
+/**
  * loadTranslations
  * Loads translations from a file
  * The file should be in the format:
@@ -57,7 +59,8 @@ TranslationList *loadTranslations(const char *filename) {
     }
     rewind(file);
     lines++; //add one to account for the last buffer
-    printf("Number of lines in file: %d\n", lines);
+
+    logMessage(INFO, "Number of lines in file: %d", lines);
 
     TranslationList *translationList = create_translation_list(lines);
 
@@ -89,6 +92,10 @@ TranslationList *loadTranslations(const char *filename) {
  * @return The translation of the messageID
  */
 const char *translate(const char *messageID, TranslationList *translationList) {
+    if (messageID == NULL) {
+        logMessage(ERROR, "messageID is NULL");
+        return "NULL messageID";
+    }
     for (int i = 0; i < translationList->size; i++) {
         if (strcmp(messageID, translationList->translations[i].messageID) == 0) {
             return translationList->translations[i].translation;
@@ -106,4 +113,59 @@ const char *translate(const char *messageID, TranslationList *translationList) {
 void freeTranslationList(TranslationList *translationList){
     free(translationList->translations);
     free(translationList);
+}
+
+char* languagePathResolver(enum Language language){
+    char *path = malloc(sizeof(char) * 256);
+    //base string:
+    strcat(path, "../TRANSLATIONS/message-");
+    switch (language) {
+        case EN:
+            strcat(path, "EN");
+            break;
+        case FR:
+            strcat(path, "FR");
+            break;
+        default:
+            perror("Language not supported");
+            exit(1);
+    }
+    strcat(path, ".env");
+    return path;
+}
+
+
+Language selectLanguageMenu(){
+    int choice = 0;
+    int movement = 0;
+    do {
+        system("/bin/stty cooked");
+        cls();
+        printf("Select your language:\n");
+        printf("%s", choice==0 ? "\x1b[30;47m(*)" : "()");
+        printf(" English%s\n",  choice==0 ? "\x1b[0m" : "");
+        printf("%s", choice==1 ? "\x1b[30;47m(*)" : "()");
+        printf(" French%s\n",  choice==1 ? "\x1b[0m" : "");
+
+        printf("\n\nPress c to confirm\n");
+        system("/bin/stty raw");
+        movement = getchar();
+        system("/bin/stty cooked");
+        if (movement == 66 && choice < 1 ) {
+            choice++;
+        } else if (movement == 65 && choice > 0) {
+            choice--;
+        }
+    } while (movement != 'c' && movement != 'C');
+    switch (choice) {
+        case 0:
+            logMessage(INFO, "Language selected: EN");
+            return EN;
+        case 1:
+            logMessage(INFO, "Language selected: FR");
+            return FR;
+        default:
+            logMessage(ERROR, "Invalid language selected, defaulting to EN");
+            return EN;
+    }
 }

@@ -86,7 +86,7 @@ void createSprite(Monster *monster, char *name) {
         sprite[2] = "                   `:.`---.__         `-._          ";
         sprite[3] = "                     `:.     `--.         `.        ";
         sprite[4] = "                      \\.        `.         `.       ";
-        sprite[5] = "              (,,(,    \\.         `.   ____,-`.,    "; 
+        sprite[5] = "              (,,(,    \\.         `.   ____,-`.,    ";
         sprite[6] = "           (,'     `/   \\.   ,--.___`.'             ";
         sprite[7] = "       ,  ,'  ,--.  `,   \\.;'         `             ";
         sprite[8] = "       `{D, {    \\  :    \\;                         ";
@@ -213,7 +213,7 @@ void createSprite(Monster *monster, char *name) {
         sprite[12] = "           ";
         sprite[13] = "           ";
         sprite[14] = "           ";
-        sprite[15] = "           "; 
+        sprite[15] = "           ";
     }
     monster->sprite = sprite;
 }
@@ -240,7 +240,7 @@ Monster *newMonster(char *name, int hp, int attack, int defense, int level, int 
     monster->experience = hp * level;
     monster->gold = attack * level;
     monster->type = type;
-    
+
     // Copy the name to monster->name
     strcpy(monster->name, name);
 

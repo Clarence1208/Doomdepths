@@ -1,0 +1,21 @@
+This is a log message: Hello, World!
+Another log message: 42
+This is a log message: Hello, World!
+Another log message: 42
+This is a log message: Hello, World!
+Another log message: 42
+This is a log message: Hello, World!
+Another log message: 42
+This is a log message: Hello, World!
+Another log message: 42
+This is a log message: ×Cÿ
+Another log message: 1827730592
+This is a log message: %s
+
+Another log message: %d
+
+jfjjfjfjfj
+This is a log message: %s
+
+Another log message: %d
+

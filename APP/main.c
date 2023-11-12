@@ -3,6 +3,11 @@
 #include <string.h>
 #include "MESSAGE_RESOLVER/messageResolver.h"
 #include "EQUIPMENT/equipment.h"
+#include "INVENTORY/inventory.h"
+#include "INVENTORY/inventoryMenu.h"
+#include "DATABASE/database.h"
+#include "PLAYER/player.h"
+#include "LOGGER/logger.h"
 #include "MAP/map.h"
 #include "UTILS/utils.h"
 #include "PLAYER/player.h"
@@ -10,6 +15,10 @@
 #include <stdio.h>
 
 int main() {
+
+    initLogger("../APP/app.log");
+
+    cls();
     printf("\n\n\n                                     /\\ \n");
     printf("                                     || \n");
     printf("                       ____ (((\033[1;33m+\033[0m))) _||_ \n");
@@ -38,7 +47,9 @@ int main() {
     char *name = malloc(sizeof(char) * 21);
     scanf("%s", name);
 
-    Player *player = newPlayer(name);
+    enum Language language = selectLanguageMenu();
+
+    Player *player = newPlayer(name, language);
 
     createMap(player);
 

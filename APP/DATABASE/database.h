@@ -7,8 +7,7 @@
 
 #include "sqlite3.h"
 
-int createDatabase(const char *playerName, char **dbName);
-int doesDatabaseExist(const char *dbName);
+void createDatabase(sqlite3 *db, char *sql, char *zErrMsg, int *rc);
 
 void createTableEquipments(sqlite3 *db, char *sql, char *zErrMsg, int rc);
 

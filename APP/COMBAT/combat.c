@@ -11,6 +11,8 @@
 #include "../UTILS/utils.h"
 #include "../MONSTER/monster.h"
 #include "../SPELL/spell.h"
+#include "../INVENTORY/inventoryMenu.h"
+#include "../LOGGER/logger.h"
 
 void printHUD(Player *player, Monster **monsters, int nbMonsters) {
 
@@ -54,31 +56,55 @@ void popMonster(Monster **monsters, int index, int nbMonsters) {
 
 int damageMonster(Monster **monsters, int damage, int choice, int *nbMonsters, Player *player, int isBoss, int moneySpell, int experienceSpell) {
     monsters[choice]->hp -= damage;
-    printf("You attacked the %s for %d damage\n", monsters[choice]->name, damage);
+    //"You attacked the %s for %d damage\n"
+    printf("%s %s %s %d %s\n",
+           translate("attack1", player->translationList),
+           translate("for", player->translationList),
+           monsters[choice]->name, damage,
+           translate("damage", player->translationList));
     if (monsters[choice]->hp <= 0) {
-        printf("\nYou killed the %s !\n", monsters[choice]->name);
-        player->experience += monsters[choice]->experience * experienceSpell;
+        // "You killed the %s !\n"
+        printf("\n%s %s !\n",
+               translate("killed", player->translationList),
+               monsters[choice]->name);
+
+        addExperience(player,  monsters[choice]->experience * experienceSpell);
         player->gold += monsters[choice]->gold * moneySpell;
-        printf("You gained %d experience !\n", (monsters[choice]->experience * experienceSpell));
-        printf("You gained %d gold !\n", (monsters[choice]->gold * moneySpell));
+
+        // "You gained %d experience !\n"
+        printf("%s %d %s !\n",
+               translate("gained", player->translationList),
+               (monsters[choice]->experience * experienceSpell),
+               translate("experience", player->translationList));
+
+        // "You gained %d gold !\n"
+        printf("%s %d %s !\n",
+               translate("gained", player->translationList),
+               (monsters[choice]->gold * moneySpell),
+               translate("gold", player->translationList));
         popMonster(monsters, choice, *nbMonsters);
         (*nbMonsters)--;
         if (*nbMonsters == 0) {
             free(monsters);
-            printf("\nYou won the battle !\n");
+            // "You won the battle !\n"
+            printf("\n%s\n", translate("wonBattle", player->translationList));
             if (isBoss) {
-                printf("You are now is the new area !\n");
-                printf("Careful, the monsters are stronger here !\n");
+                // "You are now is the new area !\n"
+                printf("%s\n", translate("newArea", player->translationList));
+                // "Careful, the monsters are stronger here !\n"
+                printf("%s\n", translate("newAreaCareful", player->translationList));
                 player->map_level++;
             }
-            printf("\nPress any key to continue...\n");
+            // "Press any key to continue...\n"
+            printf("\n%s\n", translate("pressAnyKey", player->translationList));
             system("/bin/stty raw");
             char wait = getchar();
             system("/bin/stty cooked");
             return 1;
         }
     }
-    printf("\nPress any key to continue...\n");
+    // "Press any key to continue...\n"
+    printf("\n%s\n", translate("pressAnyKey", player->translationList));
     system("/bin/stty raw");
     char wait = getchar();
     system("/bin/stty cooked");
@@ -110,21 +136,28 @@ void startBattle(Player *player, int isBoss) {
     printHUD(player, monsters, nbMonsters);
 
     if (isBoss) {
-        printf("THIS IS THE BOSS OF THIS AREA !!!\n");
-        printf("Be careful, he is very strong !\n\n");
-        printf("Kill him to get to the next area !\n\n");
+        // "THIS IS THE BOSS OF THIS AREA !!!\n"
+        printf("%s\n", translate("bossArea1", player->translationList));
+        // "Be careful, he is very strong !\n"
+        printf("%s\n\n", translate("bossArea2", player->translationList));
+        // "Kill him to get to the next area !\n"
+        printf("%s\n\n", translate("bossArea3", player->translationList));
     }
 
     for (int i = 0; i < nbMonsters; i++) {
         if (isBoss) {
-            printf("You are getting attacked by the %s !\n", monsters[i]->name);
+            printf("%s %s !\n",
+                   translate("attackedByBoss", player->translationList),
+                   monsters[i]->name);
         } else {
-            printf("You are getting attacked by a %s !\n", monsters[i]->name);
+            printf("%s %s !\n",
+                   translate("attackedBy", player->translationList),
+                   monsters[i]->name);
         }
     }
     
 
-    printf("\nPress any key to continue...\n");
+    printf("\n%s\n", translate("pressAnyKey", player->translationList));
     system("/bin/stty raw");
     char wait = getchar();
     system("/bin/stty cooked");
@@ -137,15 +170,17 @@ void startBattle(Player *player, int isBoss) {
     int experienceSpell = 1;
     while (1) {
         if (playerTurn) {
+            cls();
             printHUD(player, monsters, nbMonsters);
-            printf("It's your turn !\n");
+            // "It's your turn !\n"
+            printf("%s\n", translate("yourTurn", player->translationList));
             char input = '0';
-            while (input != 'a' && input != 's' && input != 'p') {
-                printf("Press 'a' to attack, 's' to use a spell or 'e' to use your inventory\n");
+            do{
+                printf("%s\n", translate("yourTurnMenu", player->translationList));
                 system("/bin/stty raw");
                 input = getchar();
                 system("/bin/stty cooked");
-            }
+            } while (input != 'a' && input != 's' && input != 'p' && input != 'e');
             if (input == 'a') {
                 int amountAttack = 1;
                 if (player->weapon != NULL) {
@@ -156,8 +191,12 @@ void startBattle(Player *player, int isBoss) {
                     while(choice < 1 || choice > nbMonsters) {
                         cls();
                         printHUD(player, monsters, nbMonsters);
-                        printf("You have %d attacks left\n", amountAttack);
-                        printf("Choose a monster to attack : \n");
+                        // "You have %d attacks left\n"
+                        printf("%s %d %s\n",
+                               translate("youHave", player->translationList),
+                               amountAttack,
+                               translate("attacksLeft", player->translationList));
+                        printf("%s\n", translate("chooseMonster", player->translationList));
                         for(int k = 0; k < nbMonsters; k++) {
                             printf("%d : %s\n", k+1, monsters[k]->name);
                         }
@@ -179,7 +218,7 @@ void startBattle(Player *player, int isBoss) {
                     }
                     int isOver = damageMonster(monsters, damage, choice-1, &nbMonsters, player, isBoss, moneySpell, experienceSpell);
                     if (isOver) {
-                        // TO DO : Free monsters and spells
+                        // TODO : Free monsters and spells
                         // free(monsters);
                         // free(spells);
                         return;
@@ -201,13 +240,17 @@ void startBattle(Player *player, int isBoss) {
                     cls();
                     printHUD(player, monsters, nbMonsters);
                     int count = 0;
-                    printf("Choose a spell to use or 'h' to see spells infos : \n\n");
+                    // "Choose a spell or 'h' to see spells infos : \n"
+                    printf("%s\n\n", translate("chooseSpell", player->translationList));
                     for(int k = 0; k < nbSpells; k++) {
                         if (spells[k]->levelToUnlock <= player->level) {
                             count++;
                             printf("%d : %s - %d\n", count, spells[k]->name, spells[k]->manaCost);
                         } else {
-                            printf("XXXXXXXXXXXXXX - (Unlock at level %d !)\n", spells[k]->levelToUnlock);
+                            // "XXXXXXXXXXXXXX - (Unlock at level %d !)\n"
+                            printf("XXXXXXXXXXXXXX - (%s %d !)\n",
+                                   translate("unlockAt", player->translationList),
+                                   spells[k]->levelToUnlock);
                         }
                     }
                     system("/bin/stty raw");
@@ -216,15 +259,19 @@ void startBattle(Player *player, int isBoss) {
                     if (input == 'h') {
                         cls();
                         printHUD(player, monsters, nbMonsters);
-                        printf("Spells infos :\n\n");
+                        // "Spells infos :\n\n"
+                        printf("%s\n\n", translate("spellsInfos", player->translationList));
                         for(int k = 0; k < nbSpells; k++) {
                             if (spells[k]->levelToUnlock <= player->level) {
                                 printf("%s : %s\n", spells[k]->name, spells[k]->description);
                             } else {
-                                printf("XXXXXXXXXXXXXX : (Unlock at level %d !)\n", spells[k]->levelToUnlock);
+                                // "XXXXXXXXXXXXXX - (Unlock at level %d !)\n"
+                                printf("XXXXXXXXXXXXXX : (%s %d !)\n",
+                                        translate("unlockAt", player->translationList),
+                                       spells[k]->levelToUnlock);
                             }
                         }
-                        printf("\nPress any key to continue...\n");
+                        printf("\n%s\n", translate("pressAnyKey", player->translationList));
                         system("/bin/stty raw");
                         char wait = getchar();
                         system("/bin/stty cooked");
@@ -246,7 +293,8 @@ void startBattle(Player *player, int isBoss) {
                                 while(choice < 1 || choice > nbMonsters) {
                                     cls();
                                     printHUD(player, monsters, nbMonsters);
-                                    printf("Choose a monster to attack : \n");
+                                    // "Choose a monster to attack : \n"
+                                    printf("%s : \n", translate("chooseMonster", player->translationList));
                                     for(int k = 0; k < nbMonsters; k++) {
                                         printf("%d : %s\n", k+1, monsters[k]->name);
                                     }
@@ -285,8 +333,14 @@ void startBattle(Player *player, int isBoss) {
                                 }
                                 cls();
                                 printHUD(player, monsters, nbMonsters);
-                                printf("You healed yourself for %d health\n", spells[i]->spellEffectivenessValue + player->level);
-                                printf("\nPress any key to continue...\n");
+                                // "You healed yourself for %d health\n"
+                                printf("%s %d %s\n",
+                                        translate("healedYourself", player->translationList),
+                                       spells[i]->spellEffectivenessValue + player->level,
+                                       translate("health", player->translationList));
+                                logMessage(INFO, "Player %s healed himself for %d health", player->name ,spells[i]->spellEffectivenessValue + player->level);
+                                // "Press any key to continue...\n"
+                                printf("\n%s\n", translate("pressAnyKey", player->translationList));
                                 system("/bin/stty raw");
                                 char wait = getchar();
                                 system("/bin/stty cooked");
@@ -298,7 +352,9 @@ void startBattle(Player *player, int isBoss) {
                                 }
                                 cls();
                                 printHUD(player, monsters, nbMonsters);
-                                printf("You regenerated %d mana\n", spells[i]->spellEffectivenessValue + player->level);
+                                printf("%s %d mana\n",
+                                        translate("restoredMana", player->translationList),
+                                       spells[i]->spellEffectivenessValue + player->level);
                                 printf("\nPress any key to continue...\n");
                                 system("/bin/stty raw");
                                 char wait = getchar();
@@ -308,9 +364,11 @@ void startBattle(Player *player, int isBoss) {
                                 cls();
                                 printHUD(player, monsters, nbMonsters);
                                 moneySpell = 2;
-                                printf("You used the spell Money Rain !\n");
-                                printf("The monsters will drop more gold !\n");
-                                printf("\nPress any key to continue...\n");
+                                // "You used the spell Money Rain !\n"
+                                printf("%s\n", translate("moneyRain", player->translationList));
+                                // "The monsters will drop more gold !\n"
+                                printf("%s\n", translate("moneyRain2", player->translationList));
+                                printf("\n%s\n", translate("pressAnyKey", player->translationList));
                                 system("/bin/stty raw");
                                 char wait = getchar();
                                 system("/bin/stty cooked");
@@ -319,9 +377,11 @@ void startBattle(Player *player, int isBoss) {
                                 cls();
                                 printHUD(player, monsters, nbMonsters);
                                 experienceSpell = 2;
-                                printf("You used the spell Experience Rain !\n");
-                                printf("The monsters will drop more experience !\n");
-                                printf("\nPress any key to continue...\n");
+                                // "You used the spell Experience Rain !\n"
+                                printf("%s\n", translate("xpRain", player->translationList));
+                                // "The monsters will drop more experience !\n"
+                                printf("%s\n", translate("xpRain2", player->translationList));
+                                printf("\n%s\n", translate("pressAnyKey", player->translationList));
                                 system("/bin/stty raw");
                                 char wait = getchar();
                                 system("/bin/stty cooked");
@@ -330,21 +390,22 @@ void startBattle(Player *player, int isBoss) {
                             monsterTurn = 1;
                             findSpell++;
                         } else {
-                            printf("You don't have enough mana !\n");
-                            printf("\nPress any key to continue...\n");
+                            // "You don't have enough mana !\n"
+                            printf("%s\n", translate("noMana", player->translationList));
+                            printf("\n%s\n", translate("pressAnyKey", player->translationList));
                             system("/bin/stty raw");
                             char wait = getchar();
                             system("/bin/stty cooked");
                         }
                     }
                 }
-            } else {
-                // TO DO : Inventory
+            } else if (input == 'e') {
+                selectableItemInventoryMenu(player);
             }
         } else if (monsterTurn) {
             cls();
             printHUD(player, monsters, nbMonsters);
-            printf("It's the monster's turn !\n\n");
+            printf("%s\n\n", translate("monsterTurn", player->translationList));
 
             for (int i = 0; i < nbMonsters; i++) {
                 int damage = 0;
@@ -357,9 +418,16 @@ void startBattle(Player *player, int isBoss) {
                     damage = 0;
                 }
                 player->health -= damage;
-                printf("The %s attacked you for %d damage\n", monsters[i]->name, damage);
+                // "The %s attacked you for %d damage\n"
+                printf("%s %s %s %d %s\n",
+                       translate("the", player->translationList),
+                       monsters[i]->name,
+                       translate("attackedYou", player->translationList),
+                       damage,
+                       translate("damage", player->translationList));
                 if (player->health <= 0) {
-                    printf("\nYou died !\n");
+                    // "You died !\n"
+                    printf("\n%s\n", translate("youDied", player->translationList));
                     printf("      GAME OVER\n");
                     printf("  ---------------\n");
                     printf("  |             |\n");
@@ -368,7 +436,7 @@ void startBattle(Player *player, int isBoss) {
                     printf("  |   LOOSER!   |\n");
                     printf("  |             |\n");
                     printf("  ---------------\n");
-                    printf("\nPress any key to continue...\n");
+                    printf("\n%s\n", translate("pressAnyKey", player->translationList));
                     system("/bin/stty raw");
                     char wait = getchar();
                     system("/bin/stty cooked");
@@ -378,7 +446,7 @@ void startBattle(Player *player, int isBoss) {
                 }
             }
 
-            printf("\nPress any key to continue...\n");
+            printf("\n%s\n", translate("pressAnyKey", player->translationList));
             system("/bin/stty raw");
             char wait = getchar();
             system("/bin/stty cooked");
