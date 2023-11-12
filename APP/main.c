@@ -74,8 +74,34 @@ int main() {
     addEquipmentToPlayerInventory(player, *equipment2);
     addEquipmentToPlayerInventory(player, *equipment3);
 
+    Consumable *consumable = createRandomConsumableOfType(1);
+    addConsumableToPlayerInventory(player, *consumable);
+
+    Consumable *consumable2 = createRandomConsumable();
+    addConsumableToPlayerInventory(player, *consumable2);
+    addConsumableToPlayerInventory(player, *consumable2);
+    addConsumableToPlayerInventory(player, *consumable2);
+    addConsumableToPlayerInventory(player, *consumable2);
+    addConsumableToPlayerInventory(player, *consumable2);
+    addConsumableToPlayerInventory(player, *consumable2);
+
+    printConsumable(consumable);
+    printConsumable(consumable2);
+
+    printConsumable(&player->inventory->consumable[0]);
+
+
+    player->health = 50;
+    player->mana = 50;
+
+
+    Equipment *equipment4 = createEquipment("test", "description", 10, 100, 100, 100, WEAPON);
+    addEquipmentToPlayerInventoryMenu(player, *equipment4);
+
     selectableItemInventoryMenu(player);
-    selectableItemInventoryMenu(player);
+
+    printf("health : %d\n", player->health);
+    printf("mana : %d\n", player->mana);
 
 
 

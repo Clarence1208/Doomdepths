@@ -47,6 +47,8 @@ void equipArmorFromInventory(Player * player, int index);
 
 void equipNewArmor(Player * player, Equipment * armor);
 
+void useConsumableFromPlayerInventory(Player *player, int index);
+
 char* weaponToString(Player * player);
 
 void printWeapon(Player * player);

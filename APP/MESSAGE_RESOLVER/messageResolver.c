@@ -59,7 +59,7 @@ TranslationList *loadTranslations(const char *filename) {
     rewind(file);
     lines++; //add one to account for the last buffer
 
-    logMessage(INFO, "Number of lines in file: %d\n", lines);
+    logMessage(INFO, "Number of lines in file: %d", lines);
 
     TranslationList *translationList = create_translation_list(lines);
 
@@ -91,6 +91,10 @@ TranslationList *loadTranslations(const char *filename) {
  * @return The translation of the messageID
  */
 const char *translate(const char *messageID, TranslationList *translationList) {
+    if (messageID == NULL) {
+        logMessage(ERROR, "messageID is NULL");
+        return "NULL messageID";
+    }
     for (int i = 0; i < translationList->size; i++) {
         if (strcmp(messageID, translationList->translations[i].messageID) == 0) {
             return translationList->translations[i].translation;

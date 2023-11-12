@@ -6,13 +6,14 @@
 #include "../MESSAGE_RESOLVER/messageResolver.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 Equipment *createDefaultWeapon() {
     Equipment *weapon = malloc(sizeof(Equipment));
     weapon->name = malloc(sizeof(char) * 25);
-    weapon->name = "basicSword";
+    strcpy(weapon->name, "basicSword");
     weapon->description = malloc(sizeof(char) * 100);
-    weapon->description = "basicSwordDescription";
+    strcpy(weapon->description, "basicSwordDescription");
     weapon->equipmentEffectivenessValue =  50;
     weapon->durability = 100;
     weapon->durabilityMax = 100;
@@ -24,9 +25,9 @@ Equipment *createDefaultWeapon() {
 Equipment *createDefaultArmor() {
     Equipment *armor = malloc(sizeof(Equipment));
     armor->name = malloc(sizeof(char) * 25);
-    armor->name = "basicArmor";
+    strcpy(armor->name, "basicArmor");
     armor->description = malloc(sizeof(char) * 100);
-    armor->description = "basicArmorDescription";
+    strcpy(armor->description, "basicArmorDescription");
     armor->equipmentEffectivenessValue =  50;
     armor->durability = 100;
     armor->durabilityMax = 100;

@@ -6,9 +6,8 @@
 #define DOOMDEPTHS_CONSUMABLE_H
 
 enum consumableType {
-    HEALING_POTION,
+    HEALING,
     MANA_POTION,
-    BANDAGE,
     BUFF,
     ENEMY_DEBUFF
 };
@@ -20,6 +19,14 @@ typedef struct Consumable {
     int consumableEffectivenessValue;
     enum consumableType type;
 } Consumable;
+
+Consumable *createRandomConsumableOfType(enum consumableType type);
+
+Consumable *createRandomConsumable();
+
+char * consumableToString(Consumable * consumable);
+
+void printConsumable(Consumable * consumable);
 
 Consumable *createConsumable(char *name,
                              char *description,

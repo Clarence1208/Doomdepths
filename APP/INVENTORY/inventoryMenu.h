@@ -13,4 +13,6 @@ void printSelectionItemInventoryMenu (Inventory * inventory, int selectedItem, T
 
 void selectableItemInventoryMenu (Player * player);
 
+void addEquipmentToPlayerInventoryMenu(Player * player, Equipment equipment);
+
 #endif //DOOMDEPTHS_INVENTORYMENU_H

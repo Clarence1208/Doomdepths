@@ -26,7 +26,7 @@
  * @return a default player
  */
 Player * newPlayer(char * name, enum Language language){
-    Player *player = malloc(sizeof(Player*));
+    Player *player = malloc(sizeof(Player));
     player->name = malloc(sizeof(char) * (strlen(name) + 1));
     strcpy(player->name, name);
     player->health = 100;
@@ -41,8 +41,8 @@ Player * newPlayer(char * name, enum Language language){
     player->x = 0;
     player->y = 0;
 
-    player->weapon = malloc(sizeof(Equipment*));
-    player->armor = malloc(sizeof(Equipment*));
+    player->weapon = malloc(sizeof(Equipment));
+    player->armor = malloc(sizeof(Equipment));
     Equipment * weapon = createDefaultWeapon();
     Equipment * armor = createDefaultArmor();
     player->weapon = weapon;
@@ -67,9 +67,10 @@ void addConsumableToPlayerInventory(Player * player, Consumable consumable){
 
 void equipWeaponFromInventory(Player * player, int index){
     if (index < player->inventory->nbrEquipment){
-        Equipment * tmp = player->weapon;
-        player->weapon = &player->inventory->equipment[index];
-        player->inventory->equipment[index] = *tmp;
+        // Swap the armor with the one in the inventory
+        Equipment temp = player->inventory->equipment[index]; // Use a temporary Equipment structure to hold the armor from the inventory
+        player->inventory->equipment[index] = *(player->weapon); // Place the currently equipped armor back into the inventory
+        *(player->weapon) = temp; // Equip the new armor from the inventory
     }else{
         perror("Index out of range");
     }
@@ -84,13 +85,57 @@ void equipNewWeapon(Player * player, Equipment * weapon){
 
 void equipArmorFromInventory(Player * player, int index){
     if (index < player->inventory->nbrEquipment){
-        Equipment * tmp = player->armor;
-        player->armor = &player->inventory->equipment[index];
-        player->inventory->equipment[index] = *tmp;
+        // Swap the armor with the one in the inventory
+        Equipment temp = player->inventory->equipment[index]; // Use a temporary Equipment structure to hold the armor from the inventory
+        player->inventory->equipment[index] = *(player->armor); // Place the currently equipped armor back into the inventory
+        *(player->armor) = temp; // Equip the new armor from the inventory
     }else{
         perror("Index out of range");
     }
 }
+
+void useConsumableFromPlayerInventory(Player *player, int index) {
+    // Check if index is valid
+    if (index < 0 || index >= player->inventory->nbrConsumable) {
+        logMessage(ERROR, "Index %d out of range for consumables", index);
+        return;
+    }
+
+    // Get the consumable from inventory
+    Consumable *consumable = &player->inventory->consumable[index];
+
+    // Apply the consumable's effect based on its type
+    switch (consumable->type) {
+        case HEALING:
+            player->health += consumable->consumableEffectivenessValue;
+            if (player->health > player->max_health) {
+                player->health = player->max_health; // Cap health at max value
+            }
+            break;
+        case MANA_POTION:
+            player->mana += consumable->consumableEffectivenessValue;
+            if (player->mana > player->max_mana) {
+                player->mana = player->max_mana; // Cap mana at max value
+            }
+            break;
+        case BUFF:
+            // Apply buff effect; depending on game mechanics, may require additional fields in player struct
+            break;
+        case ENEMY_DEBUFF:
+            // Apply debuff effect; likely requires interaction with enemy player/NPC, not included in Player struct
+            break;
+        default:
+            logMessage(ERROR, "Unknown consumable type");
+            return;
+    }
+
+    // Print out a message confirming use
+    logMessage(INFO,"Used %s.", consumable->name);
+
+    // Remove the consumable from inventory
+    removeConsumableFromInventory(player->inventory, index);
+}
+
 
 void equipNewArmor(Player * player, Equipment * armor){
     // add the new armor to the inventory

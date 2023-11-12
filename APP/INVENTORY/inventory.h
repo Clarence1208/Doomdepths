@@ -35,6 +35,10 @@ void addEquipmentToInventory(Inventory *inventory, Equipment equipment);
 
 void addConsumableToInventory(Inventory *inventory, Consumable consumable);
 
+void removeConsumableFromInventory(Inventory *inventory, int index);
+
+void removeEquipmentFromInventory(Inventory *inventory, int index);
+
 void freeInventory(Inventory *inventory);
 
 #endif //DOOMDEPTHS_INVENTORY_H

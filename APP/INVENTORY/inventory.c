@@ -3,6 +3,7 @@
 //
 
 #include "inventory.h"
+#include "../LOGGER/logger.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -79,8 +80,8 @@ void printInventoryItem(Inventory * inventory, int slotNbr, TranslationList * tr
 }
 
 void addEquipmentToInventory(Inventory *inventory, Equipment equipment) {
-    if (inventory->size < inventory->max_size - 1) {
-        inventory->equipment[inventory->size] = equipment;
+    if (inventory->size < inventory->max_size) {
+        inventory->equipment[inventory->nbrEquipment] = equipment;
         inventory->nbrEquipment++;
         inventory->size++;
     }else{
@@ -89,14 +90,65 @@ void addEquipmentToInventory(Inventory *inventory, Equipment equipment) {
 }
 
 void addConsumableToInventory(Inventory *inventory, Consumable consumable) {
-    if (inventory->size < inventory->max_size - 1) {
-        inventory->consumable[inventory->size] = consumable;
+    if (inventory->size < inventory->max_size) {
+        inventory->consumable[inventory->nbrConsumable] = consumable;
         inventory->nbrConsumable++;
         inventory->size++;
     }else{
         perror("Inventory is full");
     }
 }
+
+void removeConsumableFromInventory(Inventory *inventory, int index) {
+    // Check if the index is valid
+    if (index >= 0 && index < inventory->nbrConsumable) {
+
+        // Shift all consumables after 'index' one position to the left
+        for (int i = index; i < inventory->nbrConsumable - 1; i++) {
+            inventory->consumable[i] = inventory->consumable[i + 1];
+        }
+
+        logMessage(INFO, "nbrConsumableBefore: %d", inventory->nbrConsumable);
+        // Decrease the count of consumables
+        inventory->nbrConsumable--;
+        // Decrease the total size of the inventory
+        inventory->size--;
+        logMessage(INFO, "nbrConsumableAfter: %d", inventory->nbrConsumable);
+
+        // Free the last item of the array
+        //freeConsumable(&inventory->consumable[inventory->nbrConsumable]);
+    } else {
+        // Handle the case where the index is out of bounds
+        logMessage(ERROR, "Error: Index %d is out of range for consumables.\n", index);
+    }
+}
+
+void removeEquipmentFromInventory(Inventory *inventory, int index) {
+    // Check if the index is valid
+    if (index >= 0 && index < inventory->nbrEquipment) {
+
+        // Shift all consumables after 'index' one position to the left
+        for (int i = index; i < inventory->nbrEquipment - 1; i++) {
+            inventory->equipment[i] = inventory->equipment[i + 1];
+        }
+
+        logMessage(INFO, "nbrConsumableBefore: %d", inventory->equipment);
+        // Decrease the count of consumables
+        inventory->nbrEquipment--;
+        // Decrease the total size of the inventory
+        inventory->size--;
+        logMessage(INFO, "nbrConsumableAfter: %d", inventory->nbrEquipment);
+
+        // Free the last item of the array
+        //freeConsumable(&inventory->consumable[inventory->nbrConsumable]);
+    } else {
+        // Handle the case where the index is out of bounds
+        logMessage(ERROR, "Error: Index %d is out of range for consumables.\n", index);
+    }
+}
+
+
+
 
 void freeInventory(Inventory *inventory) {
     for (int i = 0; i < inventory->nbrEquipment; ++i) {
