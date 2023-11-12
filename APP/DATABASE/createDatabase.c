@@ -10,7 +10,7 @@
 
 int createTables(sqlite3 *db);
 
-int createDatabase(const char *playerName, char **dbName) {
+int createDatabase(const char *playerName) {
     char filename[128];
     snprintf(filename, sizeof(filename), "%s.db", playerName); // Créer un nom de fichier basé sur le nom du joueur
 
@@ -22,7 +22,6 @@ int createDatabase(const char *playerName, char **dbName) {
         createTables(db); // Créer les tables dans la base de données
         printf("Base de donnees creee avec succes : %s\n", filename);
         sqlite3_close(db);
-        *dbName = strdup(filename); // Copie du nom de la base de données pour une utilisation ultérieure
         return 1; // Succès
     } else {
         printf("Erreur lors de la creation de la base de donnees : %s\n", sqlite3_errmsg(db));
@@ -31,11 +30,11 @@ int createDatabase(const char *playerName, char **dbName) {
     }
 }
 
-int doesDatabaseExist(const char *dbName) {
-    printf("Verification de l'existence de la base de donnees : %s\n", dbName);
+int doesDatabaseExist(const char *playerName) {
+    printf("Verification de l'existence de la base de donnees : %s\n", playerName);
     //Prend dbname et rajoute .db à la fin
     char filename[128];
-    snprintf(filename, sizeof(filename), "%s.db", dbName);
+    snprintf(filename, sizeof(filename), "%s.db", playerName);
     if (access(filename, F_OK) != -1) {
         // Le fichier (base de données) existe
         printf("La base de donnees existe deja : %s\n", filename);
@@ -60,6 +59,7 @@ int createTables(sqlite3 *db) {
             "max_mana INTEGER NOT NULL,"
             "attack INTEGER NOT NULL,"
             "level INTEGER NOT NULL,"
+            "map_level INTEGER NOT NULL,"
             "experience INTEGER NOT NULL,"
             "experience_to_next_level INTEGER NOT NULL,"
             "gold INTEGER NOT NULL,"

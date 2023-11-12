@@ -15,9 +15,9 @@
 #include "BDDService/monsterService.c"
 
 // Contrôleur CRUD pour la table Player
-int createPlayerBDD(sqlite3 *db, Player *player){ return createPlayer(db, player); };
-int readPlayerBDD(sqlite3 *db, Player *player){ return readPlayer(db, player);};
-int updatePlayerBDD(sqlite3 *db, const Player *player){ return updatePlayer(db, player);};
+int createPlayerBDD(Player *player){ return createPlayer(db, player); };
+int readPlayerBDD(Player *player){ return readPlayer(db, player);};
+int updatePlayerBDD(const Player *player){ return updatePlayer(db, player);};
 
 
 // Contrôleur CRUD pour la table Inventory

@@ -5,6 +5,8 @@
 #include "string.h"
 #include "../LOGGER/logger.h"
 #include "../UTILS/utils.h"
+#include "../DATABASE/database.h"
+#include "../DATABASE/BDDControleur.h"
 
 /**
  * Create a new player
@@ -27,6 +29,8 @@
  * @return a default player
  */
 Player * newPlayer(char * name, enum Language language){
+
+
     Player *player = malloc(sizeof(Player));
     player->name = malloc(sizeof(char) * (strlen(name) + 1));
     strcpy(player->name, name);
@@ -55,6 +59,43 @@ Player * newPlayer(char * name, enum Language language){
     player->translationList = loadTranslations(languagePathResolver(language));
 
     logMessage(INFO,"new player created : %s , %s", player->name, name);
+
+    // Création de la base de données avec le nom du joueur
+    if (createDatabase(player->name)) {
+        logMessage(INFO, "Database created successfully: %s", dbName);
+    } else {
+        logMessage(ERROR, "Failed to create the database.");
+    }
+
+    // Créer le joueur dans la table Player
+    if (!createPlayer(player)) {
+        // Gestion des erreurs
+        return 0;
+    }
+
+    // Créer l'équipement dans la table Equipment
+    if (!createEquipment(player->name , player->weapon) || !createEquipment(player->name , player->armor)) {
+        // Gestion des erreurs
+        return 0;
+    }
+
+    // Créer les sorts dans la table Spells
+    if (!insertSpells(player->spells)) {
+        // Gestion des erreurs
+        return 0;
+    }
+
+    // Créer l'inventaire dans la table Inventory
+    if (!insertInventory(player->inventory)) {
+        // Gestion des erreurs
+        return 0;
+    }
+
+    // Créer les traductions dans la table TranslationList
+    if (!insertTranslationList(player->translationList)) {
+        // Gestion des erreurs
+        return 0;
+    }
 
     return player;
 }

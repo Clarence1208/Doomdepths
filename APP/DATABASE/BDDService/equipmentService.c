@@ -7,14 +7,22 @@
 #include "../sqlite3.h"
 
 // Fonction pour créer un nouvel équipement dans la table Equipment
-int createEquipment(sqlite3 *db, Equipment *equipment) {
+int createEquipment(const char *playerName, Equipment *equipment) {
+    char filename[128];
+    snprintf(filename, sizeof(filename), "%s.db", playerName); // Créer un nom de fichier basé sur le nom du joueur
+
+    sqlite3 *db;
+
+    int result = sqlite3_open(filename, &db);
+
     const char *insertEquipmentSQL =
-            "INSERT INTO Equipment (name, description, equipmentEffectivenessValue, durability, durabilityMax, price) "
+            "INSERT INTO Equipment (id, name, description, equipmentEffectivenessValue, durability, durabilityMax, price) "
             "VALUES (?, ?, ?, ?, ?, ?);";
 
     sqlite3_stmt *stmt;
 
     if (sqlite3_prepare_v2(db, insertEquipmentSQL, -1, &stmt, 0) == SQLITE_OK) {
+        sqlite3_bind_int(stmt, 0 , e)
         sqlite3_bind_text(stmt, 1, equipment->name, -1, SQLITE_STATIC);
         sqlite3_bind_text(stmt, 2, equipment->description, -1, SQLITE_STATIC);
         sqlite3_bind_int(stmt, 3, equipment->equipmentEffectivenessValue);
@@ -24,10 +32,11 @@ int createEquipment(sqlite3 *db, Equipment *equipment) {
 
         int result = sqlite3_step(stmt);
         sqlite3_finalize(stmt);
+        sqlite3_close(db);
 
         return (result == SQLITE_DONE) ? 1 : 0; // Succès si la requête est exécutée avec succès
     }
-
+    sqlite3_close(db);
     return 0; // Échec
 }
 
