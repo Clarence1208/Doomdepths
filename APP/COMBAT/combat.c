@@ -11,6 +11,7 @@
 #include "../UTILS/utils.h"
 #include "../MONSTER/monster.h"
 #include "../SPELL/spell.h"
+#include "../INVENTORY/inventoryMenu.h"
 
 void printHUD(Player *player, Monster **monsters, int nbMonsters) {
 
@@ -57,7 +58,7 @@ int damageMonster(Monster **monsters, int damage, int choice, int *nbMonsters, P
     printf("You attacked the %s for %d damage\n", monsters[choice]->name, damage);
     if (monsters[choice]->hp <= 0) {
         printf("\nYou killed the %s !\n", monsters[choice]->name);
-        player->experience += monsters[choice]->experience * experienceSpell;
+        addExperience(player,  monsters[choice]->experience * experienceSpell);
         player->gold += monsters[choice]->gold * moneySpell;
         printf("You gained %d experience !\n", (monsters[choice]->experience * experienceSpell));
         printf("You gained %d gold !\n", (monsters[choice]->gold * moneySpell));
@@ -137,15 +138,16 @@ void startBattle(Player *player, int isBoss) {
     int experienceSpell = 1;
     while (1) {
         if (playerTurn) {
+            cls();
             printHUD(player, monsters, nbMonsters);
             printf("It's your turn !\n");
             char input = '0';
-            while (input != 'a' && input != 's' && input != 'p') {
+            do{
                 printf("Press 'a' to attack, 's' to use a spell or 'e' to use your inventory\n");
                 system("/bin/stty raw");
                 input = getchar();
                 system("/bin/stty cooked");
-            }
+            } while (input != 'a' && input != 's' && input != 'p' && input != 'e');
             if (input == 'a') {
                 int amountAttack = 1;
                 if (player->weapon != NULL) {
@@ -179,7 +181,7 @@ void startBattle(Player *player, int isBoss) {
                     }
                     int isOver = damageMonster(monsters, damage, choice-1, &nbMonsters, player, isBoss, moneySpell, experienceSpell);
                     if (isOver) {
-                        // TO DO : Free monsters and spells
+                        // TODO : Free monsters and spells
                         // free(monsters);
                         // free(spells);
                         return;
@@ -338,8 +340,8 @@ void startBattle(Player *player, int isBoss) {
                         }
                     }
                 }
-            } else {
-                // TO DO : Inventory
+            } else if (input == 'e') {
+                selectableItemInventoryMenu(player);
             }
         } else if (monsterTurn) {
             cls();

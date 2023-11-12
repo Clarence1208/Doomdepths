@@ -5,10 +5,10 @@
 #ifndef DOOMDEPTHS_MESSAGERESOLVER_H
 #define DOOMDEPTHS_MESSAGERESOLVER_H
 
-enum Language {
+typedef enum Language {
     EN,
     FR
-};
+} Language;
 
 typedef struct {
     char messageID[256];
@@ -29,5 +29,7 @@ const char *translate(const char *messageID, TranslationList *translationList);
 void freeTranslationList(TranslationList *translationList);
 
 char* languagePathResolver(enum Language language);
+
+enum Language selectLanguageMenu();
 
 #endif //DOOMDEPTHS_MESSAGERESOLVER_H

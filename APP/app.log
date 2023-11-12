@@ -1861,3 +1861,25 @@ New session started at 12-11-2023 13:43:27
 [12-11-2023 13:43:34] [INFO] nbrConsumableBefore: 871383168
 [12-11-2023 13:43:34] [INFO] nbrConsumableAfter: 2
 [12-11-2023 13:43:34] [INFO] equipment added to player inventory : test
+
+
+New session started at 12-11-2023 16:29:16
+[12-11-2023 16:30:02] [INFO] Number of lines in file: 4
+[12-11-2023 16:30:02] [INFO] new player created : tets , tets
+
+
+New session started at 12-11-2023 16:34:11
+[12-11-2023 16:34:16] [INFO] Number of lines in file: 4
+[12-11-2023 16:34:16] [INFO] new player created : [Bets , [Bets
+
+
+New session started at 12-11-2023 16:50:34
+[12-11-2023 16:51:03] [INFO] Language selected: FR
+[12-11-2023 16:51:03] [INFO] Number of lines in file: 11
+[12-11-2023 16:51:03] [INFO] new player created : [Atest , [Atest
+
+
+New session started at 12-11-2023 16:51:17
+[12-11-2023 16:51:28] [INFO] Language selected: EN
+[12-11-2023 16:51:28] [INFO] Number of lines in file: 4
+[12-11-2023 16:51:28] [INFO] new player created : test , test

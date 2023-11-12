@@ -7,6 +7,7 @@
 #include <string.h>
 #include "messageResolver.h"
 #include "../LOGGER/logger.h"
+#include "../UTILS/utils.h"
 
 /**
  * create_translation_list
@@ -131,4 +132,40 @@ char* languagePathResolver(enum Language language){
     }
     strcat(path, ".env");
     return path;
+}
+
+
+Language selectLanguageMenu(){
+    int choice = 0;
+    int movement = 0;
+    do {
+        system("/bin/stty cooked");
+        cls();
+        printf("Select your language:\n");
+        printf("%s", choice==0 ? "\x1b[30;47m(*)" : "()");
+        printf(" English%s\n",  choice==0 ? "\x1b[0m" : "");
+        printf("%s", choice==1 ? "\x1b[30;47m(*)" : "()");
+        printf(" French%s\n",  choice==1 ? "\x1b[0m" : "");
+
+        printf("\n\nPress c to confirm\n");
+        system("/bin/stty raw");
+        movement = getchar();
+        system("/bin/stty cooked");
+        if (movement == 66 && choice < 1 ) {
+            choice++;
+        } else if (movement == 65 && choice > 0) {
+            choice--;
+        }
+    } while (movement != 'c' && movement != 'C');
+    switch (choice) {
+        case 0:
+            logMessage(INFO, "Language selected: EN");
+            return EN;
+        case 1:
+            logMessage(INFO, "Language selected: FR");
+            return FR;
+        default:
+            logMessage(ERROR, "Invalid language selected, defaulting to EN");
+            return EN;
+    }
 }

@@ -43,10 +43,9 @@ void selectableItemInventoryMenu (Player * player) {
         printf("Press p to quit\n");
 //        printf("movement : %d\n", movement);
         system("/bin/stty raw");
-        //echap char to quit
         movement = getchar();
         system("/bin/stty cooked");
-        if (movement == 66 && slotNbr < player->inventory->size - 1 || movement =='s') {
+        if (movement == 66 && slotNbr < player->inventory->size - 1) {
             slotNbr++;
         } else if (movement == 65 && slotNbr > 0) {
             slotNbr--;

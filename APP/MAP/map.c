@@ -244,7 +244,7 @@ void createMap(Player* player) {
     char movement = 0;
     while (movement != 'p' && movement != 'P'){
 
-        printf("Move around with ZQSD, see your player infos with 'a' or 'p' to exit game !\n\n");
+        printf("%s\n\n", translate("mapMovement", player->translationList));
         system("/bin/stty raw");
         movement = getchar();
         system("/bin/stty cooked");

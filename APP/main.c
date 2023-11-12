@@ -15,6 +15,10 @@
 #include <stdio.h>
 
 int main() {
+
+    initLogger("../APP/app.log");
+
+    cls();
     printf("\n\n\n                                     /\\ \n");
     printf("                                     || \n");
     printf("                       ____ (((\033[1;33m+\033[0m))) _||_ \n");
@@ -43,7 +47,9 @@ int main() {
     char *name = malloc(sizeof(char) * 21);
     scanf("%s", name);
 
-    Player *player = newPlayer(name);
+    enum Language language = selectLanguageMenu();
+
+    Player *player = newPlayer(name, language);
 
     createMap(player);
 

@@ -44,7 +44,7 @@ Equipment *createDefaultWeapon();
 
 Equipment *createDefaultArmor();
 
-Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, int nbAttack, enum EquipmentType type);
+Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, enum EquipmentType type);
 
 char *equipmentToString(Equipment equipment, TranslationList *translationList);
 
