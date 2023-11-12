@@ -113,14 +113,14 @@ void removeItemFromPlayerInventoryMenu(Player * player) {
 }
 
 
-void addEquipmentToPlayerInventoryMenu(Player * player, Equipment equipment) {
+int addEquipmentToPlayerInventoryMenu(Player * player, Equipment equipment) {
     int selected = 0;
     int movement = 0;
     if (player->inventory->size < player->inventory->max_size) {
         do {
             system("/bin/stty cooked");
             cls();
-            // "Do you want to add %s to your inventory ?\n"
+            // "Do you want to buy %s and add it to your inventory ?\n"
             printf("\n\n%s %s %s\n",
                 translate("addItem", player->translationList),
                 translate(equipment.name, player->translationList),
@@ -180,11 +180,14 @@ void addEquipmentToPlayerInventoryMenu(Player * player, Equipment equipment) {
 
     if (selected == 0) {
         addEquipmentToPlayerInventory(player, equipment);
+        player->gold -= equipment.price;
         logMessage(INFO, "equipment added to player inventory : %s", equipment.name);
+        return 1;
     }
+    return 0;
 }
 
-void addConsumableToPlayerInventoryMenu(Player * player, Consumable consumable) {
+int addConsumableToPlayerInventoryMenu(Player * player, Consumable consumable) {
     int selected = 0;
     int movement = 0;
     if (player->inventory->size < player->inventory->max_size) {
@@ -249,6 +252,9 @@ void addConsumableToPlayerInventoryMenu(Player * player, Consumable consumable) 
 
     if (selected == 0) {
         addConsumableToPlayerInventory(player, consumable);
+        player->gold -= consumable.price;
         logMessage(INFO, "equipment added to player inventory : %s", consumable.name);
+        return 1;
     }
+    return 0;
 }

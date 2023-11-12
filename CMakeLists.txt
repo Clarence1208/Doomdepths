@@ -34,4 +34,6 @@ add_executable(Doomdepths APP/main.c
         APP/UTILS/utils.h
         APP/COMBAT/combat.c
         APP/COMBAT/combat.h
+        APP/SHOP/shop.c
+        APP/SHOP/shop.h
 )

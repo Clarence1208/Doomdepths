@@ -5,6 +5,8 @@
 #ifndef DOOMDEPTHS_CONSUMABLE_H
 #define DOOMDEPTHS_CONSUMABLE_H
 
+#include "../MESSAGE_RESOLVER/messageResolver.h"
+
 enum consumableType {
     HEALING,
     MANA_POTION,
@@ -33,6 +35,8 @@ Consumable *createConsumable(char *name,
                              int price,
                              int consumableEffectivenessValue,
                              enum consumableType type);
+
+char * shortConsumableToString(Consumable consumable, TranslationList * translationList);
 
 void freeConsumable(Consumable * consumable);
 

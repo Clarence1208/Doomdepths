@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "consumable.h"
+#include "../MESSAGE_RESOLVER/messageResolver.h"
 
 Consumable *createConsumable(char *name, char *description, int price, int consumableEffectivenessValue, enum consumableType type) {
     Consumable *consumable = malloc(sizeof(Consumable));
@@ -93,6 +94,26 @@ void printConsumable(Consumable * consumable) {
     char * string = consumableToString(consumable);
     printf("%s", string);
     free(string);
+}
+
+int isHealing(Consumable consumable) {
+    return consumable.type == HEALING;
+}
+
+char * shortConsumableToString(Consumable consumable, TranslationList * translationList) {
+    char *consumableToString = malloc(sizeof(char) * 500);
+    sprintf(consumableToString, "%s: %s | "
+                             "%s: %s | "
+                             "%s: %d | "
+                             "Price: %d | ",
+            translate("name", translationList),
+            translate(consumable.name, translationList),
+            translate("description", translationList),
+            translate(consumable.description, translationList),
+            isHealing(consumable) ? translate("healing", translationList) : translate("retoreMana", translationList),
+            consumable.consumableEffectivenessValue,
+            consumable.price);
+    return consumableToString;
 }
 
 void freeConsumable(Consumable * consumable) {
