@@ -18,6 +18,7 @@ Equipment *createDefaultWeapon() {
     weapon->durability = 100;
     weapon->durabilityMax = 100;
     weapon->price = 0;
+    weapon->nbAttack = 1;
     weapon->type = WEAPON;
     return weapon;
 }
@@ -32,6 +33,7 @@ Equipment *createDefaultArmor() {
     armor->durability = 100;
     armor->durabilityMax = 100;
     armor->price = 0;
+    armor->nbAttack = 0;
     armor->type = ARMOR;
     return armor;
 }
@@ -46,6 +48,7 @@ Equipment *createEquipment(char *name, char *description, int equipmentEffective
     equipment->durability = durability;
     equipment->durabilityMax = durabilityMax;
     equipment->price = price;
+    equipment->nbAttack = 0;
     equipment->type = type;
     return equipment;
 }

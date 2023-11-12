@@ -1851,3 +1851,13 @@ New session started at 12-11-2023 10:40:09
 [12-11-2023 10:40:13] [INFO] nbrConsumableBefore: 996166176
 [12-11-2023 10:40:13] [INFO] nbrConsumableAfter: 2
 [12-11-2023 10:40:13] [INFO] equipment added to player inventory : test
+
+
+New session started at 12-11-2023 13:43:27
+[12-11-2023 13:43:27] [INFO] Number of lines in file: 11
+[12-11-2023 13:43:27] [INFO] new player created : test , test
+[12-11-2023 13:43:27] [INFO] Number of lines in file: 4
+[12-11-2023 13:43:27] [INFO] Number of lines in file: 7
+[12-11-2023 13:43:34] [INFO] nbrConsumableBefore: 871383168
+[12-11-2023 13:43:34] [INFO] nbrConsumableAfter: 2
+[12-11-2023 13:43:34] [INFO] equipment added to player inventory : test

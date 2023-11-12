@@ -17,6 +17,7 @@ typedef struct Player {
     int max_mana;
     int attack;
     int level;
+    int map_level;
     int experience;
     int experience_to_next_level;
     int gold;
@@ -34,6 +35,8 @@ Player * newPlayer(char * name, enum Language language);
 void addExperience(Player * player, int experience);
 
 void freePlayer(Player * player);
+
+void printPlayer(Player *player);
 
 void addEquipmentToPlayerInventory(Player * player, Equipment equipment);
 

@@ -31,4 +31,7 @@ add_executable(Doomdepths APP/main.c
         APP/MAP/map.c
         APP/MAP/map.h
         APP/UTILS/utils.c
+        APP/UTILS/utils.h
+        APP/COMBAT/combat.c
+        APP/COMBAT/combat.h
 )

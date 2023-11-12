@@ -139,6 +139,12 @@ build CMakeFiles/Doomdepths.dir/APP/UTILS/utils.c.o: C_COMPILER__Doomdepths_unsc
   OBJECT_DIR = CMakeFiles/Doomdepths.dir
   OBJECT_FILE_DIR = CMakeFiles/Doomdepths.dir/APP/UTILS
 
+build CMakeFiles/Doomdepths.dir/APP/COMBAT/combat.c.o: C_COMPILER__Doomdepths_unscanned_Debug /Users/clarence/CLionProjects/Doomdepths/APP/COMBAT/combat.c || cmake_object_order_depends_target_Doomdepths
+  DEP_FILE = CMakeFiles/Doomdepths.dir/APP/COMBAT/combat.c.o.d
+  FLAGS = -g -std=gnu11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/Doomdepths.dir
+  OBJECT_FILE_DIR = CMakeFiles/Doomdepths.dir/APP/COMBAT
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Doomdepths
@@ -147,7 +153,7 @@ build CMakeFiles/Doomdepths.dir/APP/UTILS/utils.c.o: C_COMPILER__Doomdepths_unsc
 #############################################
 # Link the executable Doomdepths
 
-build Doomdepths: C_EXECUTABLE_LINKER__Doomdepths_Debug CMakeFiles/Doomdepths.dir/APP/main.c.o CMakeFiles/Doomdepths.dir/APP/PLAYER/player.c.o CMakeFiles/Doomdepths.dir/APP/EQUIPMENT/equipment.c.o CMakeFiles/Doomdepths.dir/APP/SPELL/spell.c.o CMakeFiles/Doomdepths.dir/APP/SPELL/spells.c.o CMakeFiles/Doomdepths.dir/APP/INVENTORY/inventory.c.o CMakeFiles/Doomdepths.dir/APP/CONSUMABLE/consumable.c.o CMakeFiles/Doomdepths.dir/APP/MESSAGE_RESOLVER/messageResolver.c.o CMakeFiles/Doomdepths.dir/APP/MONSTER/monster.c.o CMakeFiles/Doomdepths.dir/APP/DATABASE/database.c.o CMakeFiles/Doomdepths.dir/APP/DATABASE/sqlite3.c.o CMakeFiles/Doomdepths.dir/APP/LOGGER/logger.c.o CMakeFiles/Doomdepths.dir/APP/INVENTORY/inventoryMenu.c.o CMakeFiles/Doomdepths.dir/APP/MAP/map.c.o CMakeFiles/Doomdepths.dir/APP/UTILS/utils.c.o
+build Doomdepths: C_EXECUTABLE_LINKER__Doomdepths_Debug CMakeFiles/Doomdepths.dir/APP/main.c.o CMakeFiles/Doomdepths.dir/APP/PLAYER/player.c.o CMakeFiles/Doomdepths.dir/APP/EQUIPMENT/equipment.c.o CMakeFiles/Doomdepths.dir/APP/SPELL/spell.c.o CMakeFiles/Doomdepths.dir/APP/SPELL/spells.c.o CMakeFiles/Doomdepths.dir/APP/INVENTORY/inventory.c.o CMakeFiles/Doomdepths.dir/APP/CONSUMABLE/consumable.c.o CMakeFiles/Doomdepths.dir/APP/MESSAGE_RESOLVER/messageResolver.c.o CMakeFiles/Doomdepths.dir/APP/MONSTER/monster.c.o CMakeFiles/Doomdepths.dir/APP/DATABASE/database.c.o CMakeFiles/Doomdepths.dir/APP/DATABASE/sqlite3.c.o CMakeFiles/Doomdepths.dir/APP/LOGGER/logger.c.o CMakeFiles/Doomdepths.dir/APP/INVENTORY/inventoryMenu.c.o CMakeFiles/Doomdepths.dir/APP/MAP/map.c.o CMakeFiles/Doomdepths.dir/APP/UTILS/utils.c.o CMakeFiles/Doomdepths.dir/APP/COMBAT/combat.c.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   OBJECT_DIR = CMakeFiles/Doomdepths.dir
   POST_BUILD = :

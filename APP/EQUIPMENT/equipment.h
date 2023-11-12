@@ -17,7 +17,7 @@ enum EquipmentType {
     ARMOR
 };
 
-/*
+/**
  * Structure of an equipment
  *  -name: name of the equipment
  *  -equipmentEffectivenessValue: value that represent the effectiveness of the equipment
@@ -36,6 +36,7 @@ typedef struct Equipment {
     int durability;
     int durabilityMax;
     int price;
+    int nbAttack;
     enum EquipmentType type;
 } Equipment;
 

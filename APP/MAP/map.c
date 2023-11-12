@@ -1,9 +1,15 @@
+// Creation date: 16-10-2023
+// Author: Nino PLANE
+// Last modified: 06-11-2023
+
 #include "stdio.h"
 #include "stdlib.h"
 #include "math.h"
 #include "time.h"
+#include "map.h"
 #include "../PLAYER/player.h"
 #include "../UTILS/utils.h"
+#include "../COMBAT/combat.h"
 
 const int MAP_SIZE = 7;
 const int MAP_TILE_SIZE = 5;
@@ -14,12 +20,15 @@ const int MAX_ENNEMIES_ROOM = 20;
 const int MAX_VOID_ROOM = 15;
 
 
-void movePlayer(char** map, Player* player, char movement) {
+void movePlayer(Player* player, char** map, char movement) {
+    map[player->x][player->y] = 'R';
+    char tile = '0';
     switch (movement) {
         case 'z' :
             if (player->x > 0) {
                 if (map[player->x-1][player->y] != 'V') {
                     player->x--;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -27,6 +36,7 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->y > 0) {
                 if (map[player->x][player->y-1] != 'V') {
                     player->y--;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -34,6 +44,7 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->x < MAP_SIZE-1) {
                 if (map[player->x+1][player->y] != 'V') {
                     player->x++;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
@@ -41,9 +52,21 @@ void movePlayer(char** map, Player* player, char movement) {
             if (player->y < MAP_SIZE-1) {
                 if (map[player->x][player->y+1] != 'V') {
                     player->y++;
+                    tile = map[player->x][player->y];
                 }
             }
             break;
+    }
+
+    if (tile == 'E') {
+        startBattle(player, 0);
+    } else if (tile == 'S') {
+        // TO DO : Create shop
+        //startShop(player);
+    } else if (tile == 'B') {
+        startBattle(player, 1);
+        freeMap(map);
+        createMap(player);
     }
 }
 
@@ -77,7 +100,7 @@ void fillMap(char** map, Player* player) {
                 switch (value) {
                     case 0 :
                         if (sizeBoss == (MAP_SIZE/2)+1) {
-                            map[i][j] = 'B'; 
+                            map[i][j] = 'B';
                             countBoss++;
                             sizeBoss++;
                         } else if (countBoss < MAX_BOSS_ROOM) {
@@ -90,7 +113,7 @@ void fillMap(char** map, Player* player) {
 
                     case 1 :
                         if (sizeStarting == (MAP_SIZE/2)+2) {
-                            map[i][j] = 'X'; 
+                            map[i][j] = 'X';
                             countStarting++;
                             sizeStarting++;
                             player->x = i;
@@ -102,10 +125,10 @@ void fillMap(char** map, Player* player) {
                             check++;
                         }
                         break;
-                        
+
                     case 2 :
                         if (sizeShop == (MAP_SIZE/2)+3) {
-                            map[i][j] = 'S'; 
+                            map[i][j] = 'S';
                             countShop++;
                             sizeShop++;
                         } else if (countShop < MAX_SHOP_ROOM) {
@@ -115,21 +138,21 @@ void fillMap(char** map, Player* player) {
                             check++;
                         }
                         break;
-                        
+
                     case 3 :
                         if (countEnnemies < MAX_ENNEMIES_ROOM) {
-                            map[i][j] = 'E'; 
+                            map[i][j] = 'E';
                             countEnnemies++;
                         } else {
                             check++;
                         }
                         break;
-                        
+
                     case 4 :
                         if (countVoid < MAX_VOID_ROOM) {
                             if (i > 0 && j > 0 && i < MAP_SIZE-1 && j < MAP_SIZE-1) {
                                 if (map[i-1][j] != 'V' && map[i+1][j] != 'V' && map[i][j-1] != 'V' && map[i][j+1] != 'V' && map[i+1][j+1] != 'V' && map[i-1][j+1] != 'V' && map[i+1][j-1] != 'V' && map[i-1][j-1] != 'V') {
-                                    map[i][j] = 'V'; 
+                                    map[i][j] = 'V';
                                     countVoid++;
                                 } else {
                                     check++;
@@ -140,12 +163,12 @@ void fillMap(char** map, Player* player) {
                         } else {
                             check++;
                         }
-                        break;  
-                        
+                        break;
+
                     case 5 :
                         map[i][j] = 'R';
                         break;
-                        
+
                 }
             }
         }
@@ -167,6 +190,8 @@ void freeMap(char** map) {
 }
 
 void printPlayableMap(char** map, Player* player) {
+    cls();
+    printf("Dungeon Level : %d\n\n", player->map_level);
     int count = 0;
     for (int i = 0; i < MAP_SIZE; count++) {
         if (count == MAP_TILE_SIZE-1 && count != 0) {
@@ -215,32 +240,27 @@ void createMap(Player* player) {
     cls();
 
     printPlayableMap(map, player);
-    
+
     char movement = 0;
-    do {
-        
-        printf("Move around with ZQSD and 'p' to exit game !\n\n");
+    while (movement != 'p' && movement != 'P'){
+
+        printf("Move around with ZQSD, see your player infos with 'a' or 'p' to exit game !\n\n");
         system("/bin/stty raw");
         movement = getchar();
         system("/bin/stty cooked");
-        movePlayer(map, player, movement);
+        movePlayer(player, map, movement);
         cls();
+        if (movement == 'a') {
+            printPlayer(player);
+        }
         printPlayableMap(map, player);
 
-    }while(movement != 'p' && movement != 'P');
+    };
 
     system("/bin/stty cooked");
 
     // TO DO : Save the game
 
     freeMap(map);
+    freePlayer(player);
 }
-//
-//int main(int argc, char**argv) {
-//
-//    Player* player = malloc(sizeof(Player));
-//
-//    createMap(player);
-//
-//    return 0;
-//}
