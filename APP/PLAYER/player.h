@@ -8,6 +8,7 @@
 #include "../EQUIPMENT/equipment.h"
 #include "../SPELL/spells.h"
 #include "../INVENTORY/inventory.h"
+#include "../UTILS/utils.h"
 
 typedef struct Player {
     char *name;

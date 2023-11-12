@@ -35,7 +35,7 @@ Player * newPlayer(char * name, enum Language language){
     player->mana = 100;
     player->max_mana = 100;
     player->attack = 30;
-    player->level = 0;
+    player->level = 1;
     player->map_level = 1;
     player->experience = 0;
     player->experience_to_next_level = 200;

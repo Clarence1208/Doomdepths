@@ -8,120 +8,44 @@
 #include "DATABASE/database.h"
 #include "PLAYER/player.h"
 #include "LOGGER/logger.h"
+#include "MAP/map.h"
+#include "UTILS/utils.h"
+#include "PLAYER/player.h"
 
+#include <stdio.h>
 
 int main() {
+    printf("\n\n\n                                     /\\ \n");
+    printf("                                     || \n");
+    printf("                       ____ (((\033[1;33m+\033[0m))) _||_ \n");
+    printf("                      /.--.\\  .-.  /.||.\\ \n");
+    printf("                     /.,   \\\\(\033[1;31m0\033[0m.\033[1;31m0\033[0m)// || \\\\ \n");
+    printf("                    /;`\";/\\ \\\\|\033[1;31mm\033[0m|//  ||  ;\\ \n");
+    printf("                    |:   \\ \\__`:`____||__:| \n");
+    printf("                    |:    \\__ \\\033[1;33mT\033[0m/ (@~)(~@)| \n");
+    printf("                    |:    _/|     |\\_\\/  :| \n");
+    printf("                    |:   /  |     |  \\   :| \n");
+    printf("\033[1;33m______ _____  ________  ________ ___________ _____ _   _  _____ \n");
+    printf("|  _  \\  _  ||  _  |  \\/  |  _  \\  ___| ___ \\_   _| | | |/  ___| \n");
+    printf("| | | | | | || | | | .  . | | | | |__ | |_/ / | | | |_| |\\ `--. \n");
+    printf("| | | | | | || | | | |\\/| | | | |  __||  __/  | | |  _  | `--. \\ \n");
+    printf("| |/ /\\ \\_/ /\\ \\_/ / |  | | |/ /| |___| |     | | | | | |/\\__/ / \n");
+    printf("|___/  \\___/  \\___/\\_|  |_/___/ \\____/\\_|     \\_/ \\_| |_|\\____/\033[0m \n\n\n\n\n\n\n\n");
 
-    initLogger("../APP/app.log");
+    printf("Press any key to start the game...\n");
+    system("/bin/stty raw");
+    char movement = getchar();
+    system("/bin/stty cooked");
 
-//    logMessage(DEBUG, "This is a debug message: %d", 42);
-//    logMessage(INFO, "This is an informational message: %s", "Hello, world!");
-//    logMessage(ERROR, "This is an error message: %s", "Something went wrong!");
+    cls();
+    printf("What is your name young traveller... (max = 20)\n\n");
+    printf("Name >> ");
+    char *name = malloc(sizeof(char) * 21);
+    scanf("%s", name);
 
+    Player *player = newPlayer(name);
 
+    createMap(player);
 
-
-    Player * player = newPlayer("test", FR);
-
-    printf("%s",player->name);
-
-    printWeapon(player);
-
-
-
-    // Load the appropriate language file (e.g., "strings_fr.txt" or "strings_en.txt")
-    TranslationList* translationList = loadTranslations("../TEXT/message-en.env");
-
-    // Set the currently selected language (e.g., based on user preference)
-
-    // Use the translate function to display translated text
-    const char *playText = translate("play", translationList);
-    const char *quitText = translate("quit", translationList);
-    const char *welcomeText = translate("welcome_message", translationList);
-
-    printf("%s\n%s\n%s\n", playText, quitText, welcomeText);
-
-    translationList = loadTranslations("../TEXT/message-fr.env");
-
-    printf("\n\n%s\n%s\n%s\n"
-            , translate("play", translationList)
-            , translate("quit", translationList)
-            , translate("welcome_message", translationList));
-
-    Equipment *equipment = createDefaultWeapon();
-
-    printEquipment(*equipment, translationList);
-
-    Equipment *equipment2 = createDefaultArmor();
-
-    printEquipment(*equipment2, translationList);
-
-    Equipment *equipment3 = createEquipment("name", "description", 10, 100, 100, 100, WEAPON);
-
-    printEquipment(*equipment3, translationList);
-
-    Inventory * inventory = create_inventory(10);
-    printInventory(inventory, translationList);
-
-    addEquipmentToInventory(inventory, *equipment);
-    printInventory(inventory, translationList);
-
-    addEquipmentToInventory(inventory, *equipment);
-    addEquipmentToInventory(inventory, *equipment2);
-    addEquipmentToInventory(inventory, *equipment3);
-
-    addEquipmentToPlayerInventory(player, *equipment);
-    addEquipmentToPlayerInventory(player, *equipment2);
-    addEquipmentToPlayerInventory(player, *equipment3);
-
-    Consumable *consumable = createRandomConsumableOfType(1);
-    addConsumableToPlayerInventory(player, *consumable);
-
-    Consumable *consumable2 = createRandomConsumable();
-    addConsumableToPlayerInventory(player, *consumable2);
-    addConsumableToPlayerInventory(player, *consumable2);
-    addConsumableToPlayerInventory(player, *consumable2);
-    addConsumableToPlayerInventory(player, *consumable2);
-    addConsumableToPlayerInventory(player, *consumable2);
-    addConsumableToPlayerInventory(player, *consumable2);
-
-    printConsumable(consumable);
-    printConsumable(consumable2);
-
-    printConsumable(&player->inventory->consumable[0]);
-
-
-    player->health = 50;
-    player->mana = 50;
-
-
-    Equipment *equipment4 = createEquipment("test", "description", 10, 100, 100, 100, WEAPON);
-    addEquipmentToPlayerInventoryMenu(player, *equipment4);
-
-    selectableItemInventoryMenu(player);
-
-    printf("health : %d\n", player->health);
-    printf("mana : %d\n", player->mana);
-
-
-
-    printf("inventory size : %d\n", player->inventory->size);
-    printf("inventory max size : %d\n", player->inventory->max_size);
-    printf("inventory nbr equipment : %d\n", player->inventory->nbrEquipment);
-    printf("inventory nbr consumable : %d\n", player->inventory->nbrConsumable);
-
-    printf("inventory size : %d\n", inventory->size);
-    printf("inventory max size : %d\n", inventory->max_size);
-    printf("inventory nbr equipment : %d\n", inventory->nbrEquipment);
-    printf("inventory nbr consumable : %d\n", inventory->nbrConsumable);
-
-    addEquipmentToInventory(player->inventory, *equipment);
-
-//
-//    // Free what's needed to be freed
-//    freeTranslationList(translationList);
-//    freeInventory(inventory);
-
-    closeLogger();
     return 0;
 }

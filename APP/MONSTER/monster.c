@@ -298,3 +298,4 @@ void freeMonster(Monster *monster){
     free(monster->name);
     free(monster);
 }
+

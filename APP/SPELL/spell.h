@@ -28,7 +28,7 @@ typedef struct Spell {
     enum SpellType type;
 } Spell;
 
-Spell *newSpell(char *name, char *description, int spellEffectivenessValue, int manaCost, int levelToUnlock, enum SpellType type);
+Spell *createSpell(char *name, char *description, int spellEffectivenessValue, int manaCost, int levelToUnlock, enum SpellType type);
 
 Spell **loadSpells();
 
