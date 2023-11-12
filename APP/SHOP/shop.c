@@ -34,8 +34,6 @@ Equipment **createEquipmentsForSale(Player *player) {
 
 Consumable **createConsumablesForSale(Player *player) {
     Consumable **consumables = malloc(sizeof(Consumable*) * 2);
-    int durability = player->weapon->durabilityMax;
-    int equipmentEffectivenessValue = player->weapon->equipmentEffectivenessValue;
 
     //random between 0 and 1
     int random = rand() % 2;
