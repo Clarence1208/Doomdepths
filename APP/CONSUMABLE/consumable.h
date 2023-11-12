@@ -5,10 +5,11 @@
 #ifndef DOOMDEPTHS_CONSUMABLE_H
 #define DOOMDEPTHS_CONSUMABLE_H
 
+#include "../MESSAGE_RESOLVER/messageResolver.h"
+
 enum consumableType {
-    HEALING_POTION,
+    HEALING,
     MANA_POTION,
-    BANDAGE,
     BUFF,
     ENEMY_DEBUFF
 };
@@ -20,5 +21,23 @@ typedef struct Consumable {
     int consumableEffectivenessValue;
     enum consumableType type;
 } Consumable;
+
+Consumable *createRandomConsumableOfType(enum consumableType type);
+
+Consumable *createRandomConsumable();
+
+char * consumableToString(Consumable * consumable);
+
+void printConsumable(Consumable * consumable);
+
+Consumable *createConsumable(char *name,
+                             char *description,
+                             int price,
+                             int consumableEffectivenessValue,
+                             enum consumableType type);
+
+char * shortConsumableToString(Consumable consumable, TranslationList * translationList);
+
+void freeConsumable(Consumable * consumable);
 
 #endif //DOOMDEPTHS_CONSUMABLE_H

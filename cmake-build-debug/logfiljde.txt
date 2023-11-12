@@ -1,0 +1,2 @@
+This is a log message: Hello, World!
+Another log message: 42

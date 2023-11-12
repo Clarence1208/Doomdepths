@@ -17,7 +17,7 @@ enum EquipmentType {
     ARMOR
 };
 
-/*
+/**
  * Structure of an equipment
  *  -name: name of the equipment
  *  -equipmentEffectivenessValue: value that represent the effectiveness of the equipment
@@ -44,11 +44,15 @@ Equipment *createDefaultWeapon();
 
 Equipment *createDefaultArmor();
 
-Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, int nbAttack, enum EquipmentType type);
+Equipment *createEquipment(char *name, char *description, int equipmentEffectivenessValue, int durability, int durabilityMax, int price, enum EquipmentType type);
 
 char *equipmentToString(Equipment equipment, TranslationList *translationList);
 
 void printEquipment(Equipment equipment, TranslationList *translationList);
+
+char *shortEquipmentToString(Equipment equipment, TranslationList *translationList);
+
+void shortPrintEquipment(Equipment equipment, TranslationList *translationList);
 
 void freeEquipment(Equipment *equipment);
 

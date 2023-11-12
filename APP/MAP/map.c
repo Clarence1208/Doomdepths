@@ -10,6 +10,7 @@
 #include "../PLAYER/player.h"
 #include "../UTILS/utils.h"
 #include "../COMBAT/combat.h"
+#include "../SHOP/shop.h"
 
 const int MAP_SIZE = 7;
 const int MAP_TILE_SIZE = 5;
@@ -63,6 +64,7 @@ void movePlayer(Player* player, char** map, char movement) {
     } else if (tile == 'S') {
         // TO DO : Create shop
         //startShop(player);
+        enterShop(player);
     } else if (tile == 'B') {
         startBattle(player, 1);
         freeMap(map);
@@ -191,7 +193,10 @@ void freeMap(char** map) {
 
 void printPlayableMap(char** map, Player* player) {
     cls();
-    printf("Dungeon Level : %d\n\n", player->map_level);
+    // "Dungeon Level : %d\n\n"
+    printf("%s : %d\n\n",
+        translate("dungeonLvl", player->translationList),
+           player->map_level);
     int count = 0;
     for (int i = 0; i < MAP_SIZE; count++) {
         if (count == MAP_TILE_SIZE-1 && count != 0) {
@@ -243,8 +248,8 @@ void createMap(Player* player) {
     
     char movement = 0;
     while (movement != 'p' && movement != 'P'){
-        
-        printf("Move around with ZQSD, see your player infos with 'a' or 'p' to exit game !\n\n");
+
+        printf("%s\n\n", translate("mapMovement", player->translationList));
         system("/bin/stty raw");
         movement = getchar();
         system("/bin/stty cooked");
