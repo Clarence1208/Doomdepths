@@ -35,12 +35,21 @@ void selectableItemInventoryMenu (Player * player) {
     do {
         system("/bin/stty cooked");
         cls();
-        printf("%s est equipé en armure\n", translate(player->weapon->name, player->translationList));
-        printf("%s est equipé en arme\n", translate(player->armor->name, player->translationList));
-        printf("\nSelect an item : \n");
+        // "%s is equipped as weapon\n"
+        printf("%s %s\n",
+               translate(player->weapon->name, player->translationList),
+               translate("equipedAsWeapon", player->translationList));
+        // "%s is equipped as armor\n"
+        printf("%s %s\n",
+               translate(player->armor->name, player->translationList),
+               translate("equipedAsArmor", player->translationList));
+        // "Select an item : \n"
+        printf("\n%s\n", translate("selectItem", player->translationList));
         printSelectionItemInventoryMenu(player->inventory, slotNbr, player->translationList);
-        printf("\nPress c to use selected item\n");
-        printf("Press p to quit\n");
+        // "Press c to use selected item\n"
+        printf("\n%s\n", translate("useItemAction", player->translationList));
+        // "Press p to exit inventory\n"
+        printf("%s\n", translate("exitInventory", player->translationList));
 //        printf("movement : %d\n", movement);
         system("/bin/stty raw");
         movement = getchar();
@@ -72,11 +81,18 @@ void removeItemFromPlayerInventoryMenu(Player * player) {
     do {
         system("/bin/stty cooked");
         cls();
-        printf("%s est equipé en armure\n", translate(player->weapon->name, player->translationList));
-        printf("%s est equipé en arme\n", translate(player->armor->name, player->translationList));
-        printf("\nSelect an item to remove from player inventory : \n");
+        // "%s is equipped as weapon\n"
+        printf("%s %s\n",
+               translate(player->weapon->name, player->translationList),
+               translate("equipedAsWeapon", player->translationList));
+        // "%s is equipped as armor\n"
+        printf("%s %s\n",
+               translate(player->armor->name, player->translationList),
+               translate("equipedAsArmor", player->translationList));
+        // "Select an item to remove from player inventory : \n"
+        printf("\n%s\n", translate("selectItemToRemove", player->translationList));
         printSelectionItemInventoryMenu(player->inventory, slotNbr, player->translationList);
-        printf("\nPress c to confirm\n");
+        printf("\n%s\n", translate("useItemAction", player->translationList));
 //        printf("movement : %d\n", movement);
         system("/bin/stty raw");
         //echap char to quit
@@ -104,16 +120,21 @@ void addEquipmentToPlayerInventoryMenu(Player * player, Equipment equipment) {
         do {
             system("/bin/stty cooked");
             cls();
-            printf("\n\n Voulez-vous ajouter %s à votre inventaire ?\n", translate(equipment.name, player->translationList) );
+            // "Do you want to add %s to your inventory ?\n"
+            printf("\n\n%s %s %s\n",
+                translate("addItem", player->translationList),
+                translate(equipment.name, player->translationList),
+                translate("addItem2", player->translationList));
 
             if (selected == 0) {
-                printf("\x1b[30;47m(X) oui\x1b[0m\n");
-                printf("() non\n");
+                printf("\x1b[30;47m(X) %s\x1b[0m\n", translate("yes", player->translationList));
+                printf("() %s\n", translate("no", player->translationList));
             } else {
-                printf("() oui\n");
-                printf("\x1b[30;47m(X) non\x1b[0m\n");
+                printf("() %s\n", translate("yes", player->translationList));
+                printf("\x1b[30;47m(X) %s\x1b[0m\n", translate("no", player->translationList));
             }
-            printf("\nPress c to confirm\n");
+            // "Press c to confirm\n"
+            printf("\n%s\n", translate("confirmAction", player->translationList));
 
             system("/bin/stty raw");
             movement = getchar();
@@ -128,16 +149,19 @@ void addEquipmentToPlayerInventoryMenu(Player * player, Equipment equipment) {
         do {
             system("/bin/stty cooked");
             cls();
-            printf("\n\n L'inventaiter est plein, voulez-vous enlever un objet pour ajouter %s ?\n", translate(equipment.name, player->translationList) );
+            // "Your inventory is full, do you want to remove an item to add %s ?\n"
+            printf("\n\n%s %s ?\n",
+                     translate("inventoryFull", player->translationList),
+                   translate(equipment.name, player->translationList));
 
             if (selected == 0) {
-                printf("\x1b[30;47m(X) oui\x1b[0m\n");
-                printf("() non\n");
+                printf("\x1b[30;47m(X) %s\x1b[0m\n", translate("yes", player->translationList));
+                printf("() %s\n", translate("no", player->translationList));
             } else {
-                printf("() oui\n");
-                printf("\x1b[30;47m(X) non\x1b[0m\n");
+                printf("() %s\n", translate("yes", player->translationList));
+                printf("\x1b[30;47m(X) %s\x1b[0m\n", translate("no", player->translationList));
             }
-            printf("\nPress c to confirm\n");
+            printf("\n%s\n", translate("confirmAction", player->translationList));
 
             system("/bin/stty raw");
             movement = getchar();
@@ -167,16 +191,20 @@ void addConsumableToPlayerInventoryMenu(Player * player, Consumable consumable) 
         do {
             system("/bin/stty cooked");
             cls();
-            printf("\n\n Voulez-vous ajouter %s à votre inventaire ?\n", translate(consumable.name, player->translationList) );
+            // "Do you want to add %s to your inventory ?\n"
+            printf("\n\n%s %s %s\n",
+                    translate("addItem", player->translationList),
+                    translate(consumable.name, player->translationList),
+                    translate("addItem2", player->translationList));
 
             if (selected == 0) {
-                printf("\x1b[30;47m(X) oui\x1b[0m\n");
-                printf("() non\n");
+                printf("\x1b[30;47m(X) %s\x1b[0m\n", translate("yes", player->translationList));
+                printf("() %s\n", translate("no", player->translationList));
             } else {
-                printf("() oui\n");
-                printf("\x1b[30;47m(X) non\x1b[0m\n");
+                printf("() %s\n", translate("yes", player->translationList));
+                printf("\x1b[30;47m(X) %s\x1b[0m\n", translate("no", player->translationList));
             }
-            printf("\nPress c to confirm\n");
+            printf("\n%s\n", translate("confirmAction", player->translationList));
 
             system("/bin/stty raw");
             movement = getchar();
@@ -191,16 +219,18 @@ void addConsumableToPlayerInventoryMenu(Player * player, Consumable consumable) 
         do {
             system("/bin/stty cooked");
             cls();
-            printf("\n\n L'inventaiter est plein, voulez-vous enlever un objet pour ajouter %s ?\n", translate(consumable.name, player->translationList) );
+            printf("\n\n%s %s ?\n",
+                     translate("inventoryFull", player->translationList),
+                   translate(consumable.name, player->translationList) );
 
             if (selected == 0) {
-                printf("\x1b[30;47m(X) oui\x1b[0m\n");
-                printf("() non\n");
+                printf("\x1b[30;47m(X) %s\x1b[0m\n", translate("yes", player->translationList));
+                printf("() %s\n", translate("no", player->translationList));
             } else {
-                printf("() oui\n");
-                printf("\x1b[30;47m(X) non\x1b[0m\n");
+                printf("() %s\n", translate("yes", player->translationList));
+                printf("\x1b[30;47m(X) %s\x1b[0m\n", translate("no", player->translationList));
             }
-            printf("\nPress c to confirm\n");
+            printf("\n%s\n", translate("confirmAction", player->translationList));
 
             system("/bin/stty raw");
             movement = getchar();

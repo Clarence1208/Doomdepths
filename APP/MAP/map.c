@@ -191,7 +191,10 @@ void freeMap(char** map) {
 
 void printPlayableMap(char** map, Player* player) {
     cls();
-    printf("Dungeon Level : %d\n\n", player->map_level);
+    // "Dungeon Level : %d\n\n"
+    printf("%s : %d\n\n",
+        translate("dungeonLvl", player->translationList),
+           player->map_level);
     int count = 0;
     for (int i = 0; i < MAP_SIZE; count++) {
         if (count == MAP_TILE_SIZE-1 && count != 0) {
