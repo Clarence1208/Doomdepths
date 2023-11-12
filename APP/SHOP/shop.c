@@ -62,7 +62,10 @@ void enterShop(Player * player) {
         cls();
         // "Welcome to the shop, what do you want  ?"
         printf("%s", translate("shopWelcome", player->translationList));
-        printf("\n\n");
+        printf("\n%s %d %s\n",
+               translate("youHave", player->translationList),
+               player->gold,
+               translate("gold", player->translationList));
         // "1. Equipment:"
         printf("%s\n", translate("shopEquipment", player->translationList));
         for (int i = 0; i < 4; i++) {
