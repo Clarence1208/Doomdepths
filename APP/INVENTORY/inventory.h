@@ -11,23 +11,8 @@
 typedef struct Inventory {
     Equipment *equipment;
     Consumable *consumable;
-    int id;
-    int nbrEquipment;
-    int nbrConsumable;
     int size;
     int max_size;
 } Inventory;
-
-Inventory *create_inventory(int max_size);
-
-char * inventoryToString(Inventory * inventory, TranslationList * translationList);
-
-void printInventory(Inventory * inventory, TranslationList * translationList);
-
-void addEquipmentToInventory(Inventory *inventory, Equipment equipment);
-
-void addConsumableToInventory(Inventory *inventory, Consumable consumable);
-
-void freeInventory(Inventory *inventory);
 
 #endif //DOOMDEPTHS_INVENTORY_H

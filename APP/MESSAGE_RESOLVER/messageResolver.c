@@ -7,7 +7,7 @@
 #include <string.h>
 #include "messageResolver.h"
 
-/**
+/*
  * create_translation_list
  * Creates a new translation list
  * size is set to 0
@@ -21,7 +21,7 @@ TranslationList *create_translation_list(int numTranslations) {
     return translationList;
 }
 
-/**
+/*
  * loadTranslations
  * Loads translations from a file
  * The file should be in the format:
@@ -106,23 +106,4 @@ const char *translate(const char *messageID, TranslationList *translationList) {
 void freeTranslationList(TranslationList *translationList){
     free(translationList->translations);
     free(translationList);
-}
-
-char* languagePathResolver(enum Language language){
-    char *path = malloc(sizeof(char) * 256);
-    //base string:
-    strcat(path, "../TRANSLATIONS/message-");
-    switch (language) {
-        case EN:
-            strcat(path, "EN");
-            break;
-        case FR:
-            strcat(path, "FR");
-            break;
-        default:
-            perror("Language not supported");
-            exit(1);
-    }
-    strcat(path, ".env");
-    return path;
 }

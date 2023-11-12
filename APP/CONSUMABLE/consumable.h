@@ -21,12 +21,4 @@ typedef struct Consumable {
     enum consumableType type;
 } Consumable;
 
-Consumable *createConsumable(char *name,
-                             char *description,
-                             int price,
-                             int consumableEffectivenessValue,
-                             enum consumableType type);
-
-void freeConsumable(Consumable * consumable);
-
 #endif //DOOMDEPTHS_CONSUMABLE_H
