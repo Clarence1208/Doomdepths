@@ -30,6 +30,8 @@ typedef struct Player {
 
 }Player;
 
+Player * newPlayer(char *name);
+
 void freePlayer(Player *player);
 
 void printPlayer(Player *player);

@@ -261,28 +261,6 @@ void createMap(Player* player) {
 
     // TO DO : Save the game
 
-    //freeMap(map); TO DO NEED TO BE FIXED
-    //freePlayer(player); TO DO NEED TO BE FIXED
-}
-
-void startTest() {
-
-    Player* player = malloc(sizeof(Player));
-    player->health = 100;
-    player->max_health = 100;
-    player->mana = 100;
-    player->max_mana = 100;
-    player->attack = 10;
-    player->level = 30;
-    player->map_level = 1;
-    player->experience = 0;
-    player->gold = 0;
-    player->x = 0;
-    player->y = 0;
-    player->weapon = createDefaultWeapon();
-    player->armor = createDefaultArmor();
-    
-    createMap(player);
-
-    return;
+    freeMap(map);
+    freePlayer(player);
 }

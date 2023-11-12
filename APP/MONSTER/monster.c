@@ -158,7 +158,7 @@ void createSprite(Monster *monster, char *name) {
         sprite[7] = "             ";
         sprite[8] = "   c\"}       ";
         sprite[9] = "  ,(_).      ";
-        sprite[10] = "  -\"-         ";
+        sprite[10] = "   -\"-         ";
         sprite[11] = "             ";
         sprite[13] = "             ";
         sprite[14] = "             ";
@@ -197,7 +197,6 @@ void createSprite(Monster *monster, char *name) {
         sprite[13] = "                             ";
         sprite[14] = "                             ";
         sprite[15] = "                             ";
-
     } else {
         sprite[0] = "           ";
         sprite[1] = "           ";

@@ -5,7 +5,7 @@
 #include "../UTILS/utils.h"
 
 Player * newPlayer(char * name){
-    Player *player = malloc(sizeof(Player*));
+    Player *player = malloc(sizeof(Player));
     player->name = malloc(sizeof(char) * strlen(name) + 1);
     strcpy(player->name, name);
     player->health = 100;
@@ -20,8 +20,8 @@ Player * newPlayer(char * name){
     player->x = 0;
     player->y = 0;
 
-    player->weapon = malloc(sizeof(Equipment*));
-    player->armor = malloc(sizeof(Equipment*));
+    player->weapon = createDefaultWeapon();
+    player->armor = createDefaultArmor();
 
 
     return player;

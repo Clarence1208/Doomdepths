@@ -64,6 +64,7 @@ int damageMonster(Monster **monsters, int damage, int choice, int *nbMonsters, P
         popMonster(monsters, choice, *nbMonsters);
         (*nbMonsters)--;
         if (*nbMonsters == 0) {
+            free(monsters);
             printf("\nYou won the battle !\n");
             if (isBoss) {
                 printf("You are now is the new area !\n");
