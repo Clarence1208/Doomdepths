@@ -76,7 +76,7 @@ void enterShop(Player * player) {
         }
         printf("\n");
         // "2. Consumable:"
-        printf("%s\n", translate("shopConsumable", player->translationList));
+        printf("%s\n", translate("shopConsumables", player->translationList));
         for (int i = 0; i < 2; i++) {
             if (choice == i + 4){
                 printf("\033[1;34m(*) -- %s\033[0m\n", shortConsumableToString(*consumables[i], player->translationList));
@@ -100,7 +100,7 @@ void enterShop(Player * player) {
         if (movement == 65 && choice > 0) {
             choice--;
         }
-        if (movement == 'b' || movement == 'B') {
+        if (movement == 'c') {
             if (choice < 4) {
                 if (player->gold < equipments[choice]->price) {
                     logMessage(INFO, "Player tried to buy an equipment but didn't have enough gold");
@@ -124,6 +124,7 @@ void enterShop(Player * player) {
                         system("/bin/stty raw");
                         getchar();
                         system("/bin/stty cooked");
+                        return;
                     }
                 }
             } else {
@@ -149,16 +150,14 @@ void enterShop(Player * player) {
                         system("/bin/stty raw");
                         getchar();
                         system("/bin/stty cooked");
+                        return;
                     }
                 }
             }
         }
-    } while (movement != 'p' && movement != 'P' && movement != 'b' && movement != 'B');
+    } while (movement != 'p' && movement != 'P');
 
-    if (movement == 'p' || movement == 'P') {
-        free(equipments);
-        free(consumables);
-        logMessage(INFO, "Player left the shop without buying anything");
-        return;
-    }
+    free(equipments);
+    free(consumables);
+    logMessage(INFO, "Player left the shop without buying anything");
 }

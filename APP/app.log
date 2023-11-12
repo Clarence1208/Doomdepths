@@ -1907,3 +1907,69 @@ New session started at 12-11-2023 19:01:16
 [12-11-2023 19:01:23] [INFO] Language selected: FR
 [12-11-2023 19:01:23] [INFO] Number of lines in file: 58
 [12-11-2023 19:01:23] [INFO] new player created : test , test
+
+
+New session started at 12-11-2023 21:06:19
+[12-11-2023 21:06:31] [INFO] Language selected: FR
+[12-11-2023 21:06:31] [INFO] Number of lines in file: 58
+[12-11-2023 21:06:31] [INFO] new player created : [AClarence , [AClarence
+[12-11-2023 21:09:29] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:11:15] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 21:11:18
+[12-11-2023 21:11:26] [INFO] Language selected: FR
+[12-11-2023 21:11:26] [INFO] Number of lines in file: 63
+[12-11-2023 21:11:26] [INFO] new player created : [BClarence , [BClarence
+[12-11-2023 21:12:47] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:13:35] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 21:13:37
+[12-11-2023 21:13:42] [INFO] Language selected: FR
+[12-11-2023 21:13:42] [INFO] Number of lines in file: 63
+[12-11-2023 21:13:42] [INFO] new player created : dd , dd
+[12-11-2023 21:14:13] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:19:34] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 21:20:14
+[12-11-2023 21:20:21] [INFO] Language selected: FR
+[12-11-2023 21:20:21] [INFO] Number of lines in file: 63
+[12-11-2023 21:20:21] [INFO] new player created : [Atets , [Atets
+
+
+New session started at 12-11-2023 21:20:27
+[12-11-2023 21:20:35] [INFO] Language selected: FR
+[12-11-2023 21:20:35] [INFO] Number of lines in file: 63
+[12-11-2023 21:20:35] [INFO] new player created : [Atest , [Atest
+
+
+New session started at 12-11-2023 21:21:47
+[12-11-2023 21:21:52] [INFO] Language selected: FR
+[12-11-2023 21:21:52] [INFO] Number of lines in file: 63
+[12-11-2023 21:21:52] [INFO] new player created : [Atest , [Atest
+[12-11-2023 21:23:00] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 21:23:05
+[12-11-2023 21:23:10] [INFO] Language selected: FR
+[12-11-2023 21:23:10] [INFO] Number of lines in file: 63
+[12-11-2023 21:23:10] [INFO] new player created : [Atest , [Atest
+
+
+New session started at 12-11-2023 21:23:27
+[12-11-2023 21:23:31] [INFO] Language selected: FR
+[12-11-2023 21:23:31] [INFO] Number of lines in file: 63
+[12-11-2023 21:23:31] [INFO] new player created : [Bddd , [Bddd
+[12-11-2023 21:23:38] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:25:14] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:25:17] [INFO] equipment added to player inventory : basicManaPotion
+
+
+New session started at 12-11-2023 21:27:46
+[12-11-2023 21:27:51] [INFO] Language selected: FR
+[12-11-2023 21:27:51] [INFO] Number of lines in file: 66
+[12-11-2023 21:27:51] [INFO] new player created : dddd , dddd
+[12-11-2023 21:28:54] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:31:50] [INFO] equipment added to player inventory : basicShield

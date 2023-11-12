@@ -176,7 +176,7 @@ void startBattle(Player *player, int isBoss) {
             printf("%s\n", translate("yourTurn", player->translationList));
             char input = '0';
             do{
-                printf("%s\n", translate("yourTurnMenu", player->translationList));
+                printf("%s\n", translate("combatMovement", player->translationList));
                 system("/bin/stty raw");
                 input = getchar();
                 system("/bin/stty cooked");

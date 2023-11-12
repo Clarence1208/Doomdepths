@@ -194,7 +194,7 @@ int addConsumableToPlayerInventoryMenu(Player * player, Consumable consumable) {
         do {
             system("/bin/stty cooked");
             cls();
-            // "Do you want to add %s to your inventory ?\n"
+            // "Do you want to buy %s to your inventory ?\n"
             printf("\n\n%s %s %s\n",
                     translate("addItem", player->translationList),
                     translate(consumable.name, player->translationList),

@@ -9,4 +9,8 @@
 
 Equipment **createEquipmentsForSale(Player *player);
 
+Consumable **createConsumablesForSale(Player *player);
+
+void enterShop(Player * player);
+
 #endif //DOOMDEPTHS_SHOP_H
