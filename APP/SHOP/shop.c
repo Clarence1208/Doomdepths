@@ -61,11 +61,11 @@ void enterShop(Player * player) {
         system("/bin/stty cooked");
         cls();
         // "Welcome to the shop, what do you want  ?"
-        printf("%s", translate("shopWelcome", player->translationList));
-        printf("\n%s %d %s\n",
+        printf("%s\n", translate("shopWelcome", player->translationList));
+        printf("\n%s %d %s\n\n",
                translate("youHave", player->translationList),
                player->gold,
-               translate("gold", player->translationList));
+               translate("gold", player->translationList)); // Gold you have
         // "1. Equipment:"
         printf("%s\n", translate("shopEquipment", player->translationList));
         for (int i = 0; i < 4; i++) {

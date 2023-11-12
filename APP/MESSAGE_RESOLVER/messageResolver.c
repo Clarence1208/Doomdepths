@@ -116,22 +116,15 @@ void freeTranslationList(TranslationList *translationList){
 }
 
 char* languagePathResolver(enum Language language){
-    char *path = malloc(sizeof(char) * 256);
-    //base string:
-    strcat(path, "../TRANSLATIONS/message-");
     switch (language) {
         case EN:
-            strcat(path, "EN");
-            break;
+            return "../TRANSLATIONS/message-EN.env";
         case FR:
-            strcat(path, "FR");
-            break;
+            return "../TRANSLATIONS/message-FR.env";
         default:
             perror("Language not supported");
             exit(1);
     }
-    strcat(path, ".env");
-    return path;
 }
 
 

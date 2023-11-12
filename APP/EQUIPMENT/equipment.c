@@ -48,7 +48,7 @@ Equipment *createEquipment(char *name, char *description, int equipmentEffective
     equipment->durability = durability;
     equipment->durabilityMax = durabilityMax;
     equipment->price = price;
-    equipment->nbAttack = 0;
+    equipment->nbAttack = 1;
     equipment->type = type;
     return equipment;
 }
