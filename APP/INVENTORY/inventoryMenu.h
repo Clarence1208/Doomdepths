@@ -13,6 +13,8 @@ void printSelectionItemInventoryMenu (Inventory * inventory, int selectedItem, T
 
 void selectableItemInventoryMenu (Player * player);
 
-void addEquipmentToPlayerInventoryMenu(Player * player, Equipment equipment);
+int addEquipmentToPlayerInventoryMenu(Player * player, Equipment equipment);
+
+int addConsumableToPlayerInventoryMenu(Player * player, Consumable consumable);
 
 #endif //DOOMDEPTHS_INVENTORYMENU_H

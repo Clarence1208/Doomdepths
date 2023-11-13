@@ -48,7 +48,7 @@ Equipment *createEquipment(char *name, char *description, int equipmentEffective
     equipment->durability = durability;
     equipment->durabilityMax = durabilityMax;
     equipment->price = price;
-    equipment->nbAttack = 0;
+    equipment->nbAttack = 1;
     equipment->type = type;
     return equipment;
 }
@@ -72,6 +72,34 @@ char *equipmentToString(Equipment equipment, TranslationList *translationList) {
 
 void printEquipment(Equipment equipment, TranslationList *translationList) {
     char *equipmentString = equipmentToString(equipment, translationList);
+    printf("%s", equipmentString);
+    free(equipmentString);
+}
+
+int isWeapon(Equipment equipment) {
+    return equipment.type == WEAPON;
+}
+
+char *shortEquipmentToString(Equipment equipment, TranslationList *translationList) {
+    char *equipmentString = malloc(sizeof(char) * 500);
+    sprintf(equipmentString, "%s: %s | "
+                             "%s: %s | "
+                             "%s: %d | "
+                             "Durability: %d | "
+                             "Price: %d | ",
+                             translate("name", translationList),
+                             translate(equipment.name, translationList),
+                             translate("description", translationList),
+                             translate(equipment.description, translationList),
+                             isWeapon(equipment) ? translate("damage", translationList) : translate("defense", translationList),
+                             equipment.equipmentEffectivenessValue,
+                             equipment.durability,
+                             equipment.price);
+    return equipmentString;
+}
+
+void shortPrintEquipment(Equipment equipment, TranslationList *translationList) {
+    char *equipmentString = shortEquipmentToString(equipment, translationList);
     printf("%s", equipmentString);
     free(equipmentString);
 }

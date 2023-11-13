@@ -5,7 +5,6 @@
 #include "EQUIPMENT/equipment.h"
 #include "INVENTORY/inventory.h"
 #include "INVENTORY/inventoryMenu.h"
-#include "DATABASE/database.h"
 #include "PLAYER/player.h"
 #include "LOGGER/logger.h"
 #include "MAP/map.h"

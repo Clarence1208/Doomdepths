@@ -92,11 +92,8 @@ int createTables(sqlite3 *db) {
             "durability INTEGER NOT NULL,"
             "durabilityMax INTEGER NOT NULL,"
             "price INTEGER NOT NULL,"
+            "nbAttack INTEGER NOT NULL"
             "type INTEGER NOT NULL,"
-            "player_id INTEGER,"
-            "inventory_id INTEGER,"
-            "FOREIGN KEY(player_id) REFERENCES Player(id),"
-            "FOREIGN KEY(inventory_id) REFERENCES Inventory(id)"
             ");";
     result = sqlite3_exec(db, createEquipmentTableSQL, 0, 0, 0);
 
@@ -151,6 +148,17 @@ int createTables(sqlite3 *db) {
             "type INTEGER NOT NULL"
             ");";
     result = sqlite3_exec(db, createMonsterTableSQL, 0, 0, 0);
+
+    // Création de la table "Map"
+    const char *createMapTableSQL =
+            "CREATE TABLE IF NOT EXISTS Map ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "name TEXT NOT NULL,"
+            "x INTEGER NOT NULL,"
+            "y INTEGER NOT NULL,"
+            "FOREIGN KEY(id) REFERENCES Player(id)"
+            ");";
+    result = sqlite3_exec(db, createMapTableSQL, 0, 0, 0);
 
     if (result != SQLITE_OK) {
         fprintf(stderr, "Erreur lors de la création des tables : %s\n", sqlite3_errmsg(db));

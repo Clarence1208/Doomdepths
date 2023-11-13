@@ -47,9 +47,14 @@ int createPlayer(const Player *player) {
 }
 
 // Fonction pour lire un enregistrement Player
-int readPlayer(Player *player) {
+int readPlayer(char *name, Player *player) {
     const char *selectPlayerSQL = "SELECT * FROM Player WHERE id = ?;";
     sqlite3_stmt *stmt;
+    snprintf(filename, sizeof(filename), "%s.db", name); // Créer un nom de fichier basé sur le nom du joueur
+
+    sqlite3 *db;
+
+    int result = sqlite3_open(filename, &db);
 
     if (sqlite3_prepare_v2(db, selectPlayerSQL, -1, &stmt, 0) == SQLITE_OK) {
         sqlite3_bind_int(stmt, 1, 1);
@@ -62,18 +67,21 @@ int readPlayer(Player *player) {
             player->max_mana = sqlite3_column_int(stmt, 5);
             player->attack = sqlite3_column_int(stmt, 6);
             player->level = sqlite3_column_int(stmt, 7);
-            player->experience = sqlite3_column_int(stmt, 8);
-            player->experience_to_next_level = sqlite3_column_int(stmt, 9);
-            player->gold = sqlite3_column_int(stmt, 10);
-            player->x = sqlite3_column_int(stmt, 11);
-            player->y = sqlite3_column_int(stmt, 12);
+            player->map_level = sqlite3_column_int(stmt, 8);
+            player->experience = sqlite3_column_int(stmt, 9);
+            player->experience_to_next_level = sqlite3_column_int(stmt, 10);
+            player->gold = sqlite3_column_int(stmt, 11);
+            player->x = sqlite3_column_int(stmt, 12);
+            player->y = sqlite3_column_int(stmt, 13);
 
             sqlite3_finalize(stmt);
+            sqlite3_close(db);
             return 1; // Succès
         }
     }
 
     sqlite3_finalize(stmt);
+    sqlite3_close(db);
     return 0; // Échec
 }
 

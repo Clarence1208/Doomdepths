@@ -137,11 +137,11 @@ void startBattle(Player *player, int isBoss) {
 
     if (isBoss) {
         // "THIS IS THE BOSS OF THIS AREA !!!\n"
-        printf("%s\n", translate("bossArea1", player->translationList));
+        printf("%s\n", translate("bossBattle1", player->translationList));
         // "Be careful, he is very strong !\n"
-        printf("%s\n\n", translate("bossArea2", player->translationList));
+        printf("%s\n\n", translate("bossBattle2", player->translationList));
         // "Kill him to get to the next area !\n"
-        printf("%s\n\n", translate("bossArea3", player->translationList));
+        printf("%s\n\n", translate("bossBattle3", player->translationList));
     }
 
     for (int i = 0; i < nbMonsters; i++) {
@@ -176,7 +176,7 @@ void startBattle(Player *player, int isBoss) {
             printf("%s\n", translate("yourTurn", player->translationList));
             char input = '0';
             do{
-                printf("%s\n", translate("yourTurnMenu", player->translationList));
+                printf("%s\n", translate("combatMovement", player->translationList));
                 system("/bin/stty raw");
                 input = getchar();
                 system("/bin/stty cooked");

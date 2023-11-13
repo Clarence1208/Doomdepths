@@ -5,8 +5,6 @@
 #include "string.h"
 #include "../LOGGER/logger.h"
 #include "../UTILS/utils.h"
-#include "../DATABASE/database.h"
-#include "../DATABASE/BDDControleur.h"
 
 /**
  * Create a new player
@@ -30,74 +28,45 @@
  */
 Player * newPlayer(char * name, enum Language language){
 
-
-    Player *player = malloc(sizeof(Player));
-    player->name = malloc(sizeof(char) * (strlen(name) + 1));
-    strcpy(player->name, name);
-    player->health = 100;
-    player->max_health = 100;
-    player->mana = 100;
-    player->max_mana = 100;
-    player->attack = 30;
-    player->level = 1;
-    player->map_level = 1;
-    player->experience = 0;
-    player->experience_to_next_level = 200;
-    player->gold = 0;
-    player->x = 0;
-    player->y = 0;
-
-    player->weapon = malloc(sizeof(Equipment));
-    player->armor = malloc(sizeof(Equipment));
-    Equipment * weapon = createDefaultWeapon();
-    Equipment * armor = createDefaultArmor();
-    player->weapon = weapon;
-    player->armor = armor;
-
-    player->inventory = create_inventory(10);
-
-    player->translationList = loadTranslations(languagePathResolver(language));
-
-    logMessage(INFO,"new player created : %s , %s", player->name, name);
-
-    // Création de la base de données avec le nom du joueur
-    if (createDatabase(player->name)) {
-        logMessage(INFO, "Database created successfully: %s", dbName);
+    if (doesDatabaseExist(name)){
+        logMessage(INFO, "Welcome back! %s", name);
+        Player *player = malloc(sizeof(Player));
+        readPlayer(name, player);
+        return player;
     } else {
-        logMessage(ERROR, "Failed to create the database.");
+        Player *player = malloc(sizeof(Player));
+        player->name = malloc(sizeof(char) * (strlen(name) + 1));
+        strcpy(player->name, name);
+        player->health = 100;
+        player->max_health = 100;
+        player->mana = 100;
+        player->max_mana = 100;
+        player->attack = 30;
+        player->level = 1;
+        player->map_level = 1;
+        player->experience = 0;
+        player->experience_to_next_level = 200;
+        player->gold = 0;
+        player->x = 0;
+        player->y = 0;
+
+        player->weapon = malloc(sizeof(Equipment));
+        player->armor = malloc(sizeof(Equipment));
+        Equipment * weapon = createDefaultWeapon();
+        Equipment * armor = createDefaultArmor();
+        player->weapon = weapon;
+        player->armor = armor;
+
+        player->inventory = create_inventory(10);
+
+        player->translationList = loadTranslations(languagePathResolver(language));
+
+        logMessage(INFO,"new player created : %s , %s", player->name, name);
+
+        return player;
     }
 
-    // Créer le joueur dans la table Player
-    if (!createPlayer(player)) {
-        // Gestion des erreurs
-        return 0;
-    }
 
-    // Créer l'équipement dans la table Equipment
-    if (!createEquipment(player->name , player->weapon) || !createEquipment(player->name , player->armor)) {
-        // Gestion des erreurs
-        return 0;
-    }
-
-    // Créer les sorts dans la table Spells
-    if (!insertSpells(player->spells)) {
-        // Gestion des erreurs
-        return 0;
-    }
-
-    // Créer l'inventaire dans la table Inventory
-    if (!insertInventory(player->inventory)) {
-        // Gestion des erreurs
-        return 0;
-    }
-
-    // Créer les traductions dans la table TranslationList
-    if (!insertTranslationList(player->translationList)) {
-        // Gestion des erreurs
-        return 0;
-    }
-
-    return player;
 }
 
 void addEquipmentToPlayerInventory(Player * player, Equipment equipment){

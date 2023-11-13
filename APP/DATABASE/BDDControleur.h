@@ -13,7 +13,7 @@
 
 // Contrôleur CRUD pour la table Player
 int createPlayerBDD(Player *player);
-int readPlayerBDD(int playerId, Player *player);
+int readPlayerBDD(char *name, Player *player);
 int updatePlayerBDD(int playerId, const Player *player);
 
 // Contrôleur CRUD pour la table Inventory

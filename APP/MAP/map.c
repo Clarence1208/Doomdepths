@@ -10,6 +10,7 @@
 #include "../PLAYER/player.h"
 #include "../UTILS/utils.h"
 #include "../COMBAT/combat.h"
+#include "../SHOP/shop.h"
 
 const int MAP_SIZE = 7;
 const int MAP_TILE_SIZE = 5;
@@ -63,6 +64,7 @@ void movePlayer(Player* player, char** map, char movement) {
     } else if (tile == 'S') {
         // TO DO : Create shop
         //startShop(player);
+        enterShop(player);
     } else if (tile == 'B') {
         startBattle(player, 1);
         freeMap(map);

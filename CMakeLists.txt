@@ -20,8 +20,6 @@ add_executable(Doomdepths APP/main.c
         APP/MESSAGE_RESOLVER/messageResolver.h
         APP/MONSTER/monster.c
         APP/MONSTER/monster.h
-        APP/DATABASE/database.c
-        APP/DATABASE/database.h
         APP/DATABASE/sqlite3.c
         APP/DATABASE/sqlite3.h
         APP/LOGGER/logger.c
@@ -34,4 +32,17 @@ add_executable(Doomdepths APP/main.c
         APP/UTILS/utils.h
         APP/COMBAT/combat.c
         APP/COMBAT/combat.h
+        APP/SHOP/shop.c
+        APP/SHOP/shop.h
+        APP/DATABASE/BDDService/consumableService.c
+        APP/DATABASE/BDDService/equipmentService.c
+        APP/DATABASE/BDDService/inventoryService.c
+        APP/DATABASE/BDDService/mapService.c
+        APP/DATABASE/BDDService/monsterService.c
+        APP/DATABASE/BDDService/playerService.c
+        APP/DATABASE/createDatabase.c
+        APP/DATABASE/BDDService/spellService.c
+        APP/DATABASE/BDDControleur.c
+        APP/DATABASE/BDDControleur.h
+
 )

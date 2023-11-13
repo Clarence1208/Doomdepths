@@ -1592,7 +1592,7 @@ New session started at 11-11-2023 18:44:16
 [11-11-2023 18:44:17] [INFO] Used Mana Potion.
 [11-11-2023 18:44:17] [INFO] nbrConsumableBefore: 3
 [11-11-2023 18:44:17] [INFO] nbrConsumableAfter: 2
-[11-11-2023 18:44:22] [INFO] Used ‡ÄÅ.ˆT.
+[11-11-2023 18:44:22] [INFO] Used ÔøΩÔøΩÔøΩ.ÔøΩT.
 
 
 New session started at 11-11-2023 18:44:30
@@ -1907,3 +1907,177 @@ New session started at 12-11-2023 19:01:16
 [12-11-2023 19:01:23] [INFO] Language selected: FR
 [12-11-2023 19:01:23] [INFO] Number of lines in file: 58
 [12-11-2023 19:01:23] [INFO] new player created : test , test
+
+
+New session started at 12-11-2023 21:06:19
+[12-11-2023 21:06:31] [INFO] Language selected: FR
+[12-11-2023 21:06:31] [INFO] Number of lines in file: 58
+[12-11-2023 21:06:31] [INFO] new player created : [AClarence , [AClarence
+[12-11-2023 21:09:29] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:11:15] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 21:11:18
+[12-11-2023 21:11:26] [INFO] Language selected: FR
+[12-11-2023 21:11:26] [INFO] Number of lines in file: 63
+[12-11-2023 21:11:26] [INFO] new player created : [BClarence , [BClarence
+[12-11-2023 21:12:47] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:13:35] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 21:13:37
+[12-11-2023 21:13:42] [INFO] Language selected: FR
+[12-11-2023 21:13:42] [INFO] Number of lines in file: 63
+[12-11-2023 21:13:42] [INFO] new player created : dd , dd
+[12-11-2023 21:14:13] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:19:34] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 21:20:14
+[12-11-2023 21:20:21] [INFO] Language selected: FR
+[12-11-2023 21:20:21] [INFO] Number of lines in file: 63
+[12-11-2023 21:20:21] [INFO] new player created : [Atets , [Atets
+
+
+New session started at 12-11-2023 21:20:27
+[12-11-2023 21:20:35] [INFO] Language selected: FR
+[12-11-2023 21:20:35] [INFO] Number of lines in file: 63
+[12-11-2023 21:20:35] [INFO] new player created : [Atest , [Atest
+
+
+New session started at 12-11-2023 21:21:47
+[12-11-2023 21:21:52] [INFO] Language selected: FR
+[12-11-2023 21:21:52] [INFO] Number of lines in file: 63
+[12-11-2023 21:21:52] [INFO] new player created : [Atest , [Atest
+[12-11-2023 21:23:00] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 21:23:05
+[12-11-2023 21:23:10] [INFO] Language selected: FR
+[12-11-2023 21:23:10] [INFO] Number of lines in file: 63
+[12-11-2023 21:23:10] [INFO] new player created : [Atest , [Atest
+
+
+New session started at 12-11-2023 21:23:27
+[12-11-2023 21:23:31] [INFO] Language selected: FR
+[12-11-2023 21:23:31] [INFO] Number of lines in file: 63
+[12-11-2023 21:23:31] [INFO] new player created : [Bddd , [Bddd
+[12-11-2023 21:23:38] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:25:14] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:25:17] [INFO] equipment added to player inventory : basicManaPotion
+
+
+New session started at 12-11-2023 21:27:46
+[12-11-2023 21:27:51] [INFO] Language selected: FR
+[12-11-2023 21:27:51] [INFO] Number of lines in file: 66
+[12-11-2023 21:27:51] [INFO] new player created : dddd , dddd
+[12-11-2023 21:28:54] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 21:31:50] [INFO] equipment added to player inventory : basicShield
+
+
+New session started at 12-11-2023 22:40:25
+New session started at 12-11-2023 13:49:20
+[12-11-2023 13:49:23] [INFO] Language selected: EN
+
+
+New session started at 12-11-2023 13:49:30
+[12-11-2023 13:49:33] [INFO] Language selected: EN
+
+
+New session started at 12-11-2023 13:50:39
+[12-11-2023 13:50:41] [INFO] Language selected: EN
+
+
+New session started at 12-11-2023 13:52:13
+[12-11-2023 13:52:16] [INFO] Language selected: EN
+[12-11-2023 13:52:16] [INFO] Number of lines in file: 84
+[12-11-2023 13:52:16] [INFO] new player created : c , c
+
+
+New session started at 12-11-2023 13:52:23
+[12-11-2023 13:52:25] [INFO] Language selected: FR
+[12-11-2023 13:52:25] [INFO] Number of lines in file: 84
+[12-11-2023 13:52:25] [INFO] new player created : c , c
+
+
+New session started at 12-11-2023 13:53:18
+[12-11-2023 13:53:25] [INFO] Language selected: FR
+[12-11-2023 13:53:25] [INFO] Number of lines in file: 84
+[12-11-2023 13:53:25] [INFO] new player created : Clarence , Clarence
+[12-11-2023 13:56:47] [INFO] equipment added to player inventory : basicSword
+[12-11-2023 13:56:59] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:00] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:00] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:00] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:00] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:00] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:02] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:02] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:02] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:57:02] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:58:39] [INFO] equipment added to player inventory : basicManaPotion
+[12-11-2023 13:59:07] [INFO] equipment added to player inventory : advancedSword
+[12-11-2023 13:59:17] [INFO] weapon equipped : advancedSword --- slotnbr 1
+[12-11-2023 13:59:20] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:59:21] [INFO] weapon equipped : advancedSword --- slotnbr 0
+[12-11-2023 13:59:21] [INFO] weapon equipped : basicSword --- slotnbr 1
+[12-11-2023 13:59:22] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:59:22] [INFO] weapon equipped : advancedSword --- slotnbr 1
+[12-11-2023 13:59:22] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:59:22] [INFO] weapon equipped : basicSword --- slotnbr 1
+[12-11-2023 13:59:23] [INFO] weapon equipped : advancedSword --- slotnbr 0
+[12-11-2023 13:59:23] [INFO] weapon equipped : basicSword --- slotnbr 1
+[12-11-2023 13:59:24] [INFO] weapon equipped : advancedSword --- slotnbr 1
+[12-11-2023 13:59:24] [INFO] weapon equipped : basicSword --- slotnbr 1
+[12-11-2023 13:59:24] [INFO] weapon equipped : advancedSword --- slotnbr 1
+[12-11-2023 13:59:25] [INFO] weapon equipped : basicSword --- slotnbr 1
+[12-11-2023 13:59:25] [INFO] weapon equipped : advancedSword --- slotnbr 1
+[12-11-2023 13:59:27] [INFO] weapon equipped : basicSword --- slotnbr 0
+[12-11-2023 13:59:28] [INFO] weapon equipped : advancedSword --- slotnbr 0
+[12-11-2023 13:59:31] [INFO] Used basicManaPotion.
+[12-11-2023 13:59:31] [INFO] nbrConsumableBefore: 1
+[12-11-2023 13:59:31] [INFO] nbrConsumableAfter: 0
+
+
+New session started at 12-11-2023 14:01:19
+[12-11-2023 14:01:23] [INFO] Language selected: EN
+[12-11-2023 14:01:23] [INFO] Number of lines in file: 85
+[12-11-2023 14:01:23] [INFO] new player created : Nino , Nino
+[12-11-2023 14:01:54] [INFO] equipment added to player inventory : LegendarySword
+[12-11-2023 14:02:00] [INFO] weapon equipped : LegendarySword --- slotnbr 0
+
+
+New session started at 12-11-2023 14:05:23
+[12-11-2023 14:05:29] [INFO] Language selected: FR
+[12-11-2023 14:05:29] [INFO] Number of lines in file: 85
+[12-11-2023 14:05:29] [INFO] new player created : IJZdijz , IJZdijz
+[12-11-2023 14:05:40] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 14:05:44] [INFO] Player left the shop without buying anything
+[12-11-2023 14:06:03] [INFO] equipment added to player inventory : advancedSword
+[12-11-2023 14:06:09] [INFO] weapon equipped : advancedSword --- slotnbr 0
+
+
+New session started at 12-11-2023 14:06:45
+[12-11-2023 14:06:54] [INFO] Language selected: FR
+[12-11-2023 14:06:54] [INFO] Number of lines in file: 85
+[12-11-2023 14:06:54] [INFO] new player created : Nino , Nino
+
+
+New session started at 12-11-2023 14:08:00
+[12-11-2023 14:08:04] [INFO] Language selected: FR
+[12-11-2023 14:08:04] [INFO] Number of lines in file: 90
+[12-11-2023 14:08:04] [INFO] new player created : Nino , Nino
+[12-11-2023 14:09:20] [INFO] Player left the shop without buying anything
+
+
+New session started at 12-11-2023 14:09:27
+[12-11-2023 14:09:31] [INFO] Language selected: EN
+[12-11-2023 14:09:31] [INFO] Number of lines in file: 90
+[12-11-2023 14:09:31] [INFO] new player created : Nino , Nino
+[12-11-2023 14:09:56] [INFO] Player tried to buy an equipment but didn't have enough gold
+[12-11-2023 14:09:59] [INFO] Player left the shop without buying anything
+[12-11-2023 14:10:31] [INFO] equipment added to player inventory : LegendarySword
+[12-11-2023 14:10:35] [INFO] weapon equipped : LegendarySword --- slotnbr 0
+[12-11-2023 14:11:37] [INFO] equipment added to player inventory : advancedPotion
+[12-11-2023 14:12:23] [INFO] equipment added to player inventory : LegendaryShield
+[12-11-2023 14:13:38] [INFO] Player left the shop without buying anything
